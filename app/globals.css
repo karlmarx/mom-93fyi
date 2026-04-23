@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #faf5ed;
+  --color-paper-aged: #efe6d0;
+  --color-paper-deeper: #e7dcc2;
+  --color-ink: #2d2621;
+  --color-ink-soft: #635347;
+  --color-rose: #c48a80;
+  --color-rose-soft: #e8cbc4;
+  --color-sage: #8ba088;
+  --color-sage-soft: #c9d5c3;
+  --color-ochre: #c99355;
+  --color-navy: #2f4858;
+
+  --font-hand: var(--font-caveat);
+  --font-body: var(--font-lora);
+  --font-display: var(--font-newsreader);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-lora), Georgia, serif;
+  font-size: 18px;
+  line-height: 1.75;
+
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(196, 138, 128, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(139, 160, 136, 0.05) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.font-hand {
+  font-family: var(--font-caveat), cursive;
+}
+.font-body {
+  font-family: var(--font-lora), Georgia, serif;
+}
+.font-display {
+  font-family: var(--font-newsreader), Georgia, serif;
+}
+
+/* Letter paper effect */
+.letter-paper {
+  background: var(--color-paper);
+  box-shadow:
+    0 1px 2px rgba(45, 38, 33, 0.08),
+    0 8px 24px rgba(45, 38, 33, 0.08),
+    inset 0 0 60px rgba(239, 230, 208, 0.4);
+  border-radius: 2px;
+  position: relative;
+}
+
+.letter-paper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(196, 138, 128, 0.15), transparent);
+}
+
+/* Lined paper effect */
+.lined-paper {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    rgba(196, 138, 128, 0.1) 32px
+  );
+}
+
+/* Washi tape corners */
+.washi-corner {
+  position: absolute;
+  width: 80px;
+  height: 24px;
+  background: rgba(196, 138, 128, 0.3);
+  backdrop-filter: blur(2px);
+  transform: rotate(-5deg);
+  top: -10px;
+  left: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.washi-corner-right {
+  transform: rotate(5deg);
+  left: auto;
+  right: 20px;
+  background: rgba(139, 160, 136, 0.3);
+}
+
+/* Handwritten signature */
+.signature {
+  font-family: var(--font-caveat), cursive;
+  font-size: 2.5rem;
+  color: var(--color-navy);
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+/* Underline scribble */
+.scribble-underline {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'%3E%3Cpath d='M2 5 Q 50 1 100 4 T 198 5' stroke='%23c48a80' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 6px;
+  padding-bottom: 6px;
+}
+
+/* Pull tab for expanding cards */
+.pull-tab {
+  transition: all 0.3s ease;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    min-height: 52px;
+    font-size: 17px;
+  }
+  body {
+    font-size: 17px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-aged);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-rose);
+  border-radius: 5px;
+}
