@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Worry } from "@/lib/worries";
-import { Phone, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export default function WorryCard({
   worry,
@@ -98,15 +98,6 @@ export default function WorryCard({
                 </div>
               )}
 
-              {worry.phoneCall && (
-                <a
-                  href={`tel:${worry.phoneCall.number}`}
-                  className="mt-6 inline-flex items-center gap-3 px-5 py-3 bg-navy text-paper font-display font-semibold hover:bg-rose transition-colors"
-                >
-                  <Phone size={20} />
-                  {worry.phoneCall.label}
-                </a>
-              )}
             </div>
           </motion.div>
         )}

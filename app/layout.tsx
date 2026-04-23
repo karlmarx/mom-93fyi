@@ -26,9 +26,8 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Dear Mom \u00b7 mom.93.fyi",
-  description:
-    "A gentle collection of answers to the things you worry about \u2014 with love, from your son.",
+  title: "Mom \u00b7 mom.93.fyi",
+  description: "A small site answering the things Mom asks about most.",
 };
 
 export const viewport: Viewport = {
