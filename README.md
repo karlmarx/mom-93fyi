@@ -13,6 +13,15 @@ npm run dev
 Open <http://localhost:3000> for the landing page,
 <http://localhost:3000/bedbug> for the PWA.
 
+To test the `bedbug.93.fyi` subdomain locally, edit `/etc/hosts`:
+
+```
+127.0.0.1   bedbug.localhost
+```
+
+then visit <http://bedbug.localhost:3000>. The proxy treats any host that
+starts with `bedbug.` as the PWA subdomain, so this works without DNS.
+
 ## Mom's Bed Bug Plan PWA
 
 A step-by-step interactive checklist Mom executes from her phone.
@@ -50,6 +59,29 @@ When Ben is ready to declare bed bugs confirmed:
 5. Tap "Back to home." All operational cards now appear.
 
 To re-lock, toggle it off in the same place.
+
+### Hosting on `bedbug.93.fyi`
+
+The PWA is reachable two ways:
+
+- `mom.93.fyi/bedbug` (always works)
+- `bedbug.93.fyi/` (requires a one-time DNS + Vercel step, below)
+
+`proxy.ts` at the project root rewrites any host starting with `bedbug.`
+so that `/foo` serves the contents of `/bedbug/foo`. Internal navigation
+still uses `/bedbug/...` paths, so after a click the URL bar will read
+`bedbug.93.fyi/bedbug/laundry` — slightly redundant but functional. In
+PWA standalone mode (Add to Home Screen) the URL bar is hidden anyway.
+
+**One-time setup:**
+
+1. **DNS:** in your registrar for `93.fyi`, add a CNAME record:
+   `bedbug` → `cname.vercel-dns.com`
+2. **Vercel:** in the `mom-93fyi` Vercel project → Settings → Domains, add
+   `bedbug.93.fyi`. Vercel will verify DNS and issue the cert.
+3. Visit `https://bedbug.93.fyi/` to confirm the PWA loads.
+
+No code change is needed — the proxy already handles any `bedbug.*` host.
 
 ### PWA install
 
