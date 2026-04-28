@@ -16,6 +16,13 @@
   --font-hand: var(--font-caveat);
   --font-body: var(--font-lora);
   --font-display: var(--font-newsreader);
+
+  /* Bed bug PWA palette (used under /bedbug/*) */
+  --color-bedbug-cream: #fbf7f0;
+  --color-bedbug-cream-deeper: #f1ead9;
+  --color-bedbug-ink: #1a1a1a;
+  --color-bedbug-sage: #6b8e6f;
+  --color-bedbug-red: #a24545;
 }
 
 html {
