@@ -1,7 +1,8 @@
 # mom.93.fyi
 
 Next.js 16 (App Router) site that serves both the public mom.93.fyi landing
-page (at `/`) and **Mom's Bed Bug Plan** PWA (at `/bedbug`).
+page (at `/`) and **Mom's Bed Bug Plan** (at `/bedbug`, also reachable via
+`bedbug.93.fyi`).
 
 ## Getting started
 
@@ -10,119 +11,91 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:3000> for the landing page,
-<http://localhost:3000/bedbug> for the PWA.
+- <http://localhost:3000> — landing page
+- <http://localhost:3000/bedbug> — bed bug plan
 
-To test the `bedbug.93.fyi` subdomain locally, edit `/etc/hosts`:
+To test the `bedbug.93.fyi` subdomain locally, add to `/etc/hosts`:
 
 ```
 127.0.0.1   bedbug.localhost
 ```
 
 then visit <http://bedbug.localhost:3000>. The proxy treats any host that
-starts with `bedbug.` as the PWA subdomain, so this works without DNS.
+starts with `bedbug.` as the PWA subdomain.
 
-## Mom's Bed Bug Plan PWA
+## Mom's Bed Bug Plan
 
-A step-by-step interactive checklist Mom executes from her phone.
+A single-page overview Mom can read top-to-bottom and three short reference
+cards she opens when she's actually doing a procedure.
 
-The plan is the source of truth. Read **`docs/plan.md`** before changing any
-Mom-facing copy — step text and "DONE when" criteria come verbatim from there.
+The plan is the source of truth. **`docs/plan.md`** is the long-form version
+that the timetable and procedure cards are distilled from.
 
-### Routes
+### Pages
 
-All PWA routes live under `/bedbug/*`.
-
-| Route | Purpose |
+| Route | What it is |
 |---|---|
-| `/bedbug` | Home — big tappable cards |
-| `/bedbug/confirm` | Section 0 photo-task reminders (gates the rest) |
-| `/bedbug/check-in` | Daily 3-question morning routine |
-| `/bedbug/laundry` | 14-step laundry wizard with 45-min dryer timer |
+| `/bedbug` | The whole plan: what we're doing, day-by-day timetable, procedure links |
+| `/bedbug/laundry` | 14-step laundry checklist with 45-min dryer timer |
 | `/bedbug/bedroom` | Entry/exit ritual reference card |
-| `/bedbug/mattress-day` | Thursday flow (encasement, interceptors, sheets) |
-| `/bedbug/rules` | The 5 rules, on one page |
-| `/bedbug/progress` | Loads done, days clean, days quiet |
-| `/bedbug/settings` | Hidden Ben-only controls (5 taps on the title within 3 seconds) |
+| `/bedbug/rules` | The 5 rules, on one screen |
 
-The PWA does not place phone calls or send text messages. Mom uses her phone's
-own camera and Messages app to send Ben photos when the app prompts her to.
-
-### Section 0 gate (Ben unlocks the app)
-
-When Ben is ready to declare bed bugs confirmed:
-
-1. Open <https://mom.93.fyi/bedbug> on Mom's phone.
-2. Tap the "Bed bug plan" title **5 times within 3 seconds**.
-3. Settings opens.
-4. Toggle **"Bed bugs confirmed (unlocks the full app)"** on.
-5. Tap "Back to home." All operational cards now appear.
-
-To re-lock, toggle it off in the same place.
+That's it. No flows, no gates, no settings, no SMS, no photos, no progress
+tracking, no daily check-in. The home page shows the plan; the procedure
+pages show the steps when she's doing the thing.
 
 ### Hosting on `bedbug.93.fyi`
 
-The PWA is reachable two ways:
+`proxy.ts` rewrites any host starting with `bedbug.` so that `/foo` serves
+`/bedbug/foo`. One-time setup:
 
-- `mom.93.fyi/bedbug` (always works)
-- `bedbug.93.fyi/` (requires a one-time DNS + Vercel step, below)
+1. **DNS:** at `93.fyi` registrar, add CNAME `bedbug` → `cname.vercel-dns.com`
+2. **Vercel:** in the `mom-93fyi` project → Settings → Domains, add `bedbug.93.fyi`
+3. Visit `https://bedbug.93.fyi/` — the PWA loads at root.
 
-`proxy.ts` at the project root rewrites any host starting with `bedbug.`
-so that `/foo` serves the contents of `/bedbug/foo`. Internal navigation
-still uses `/bedbug/...` paths, so after a click the URL bar will read
-`bedbug.93.fyi/bedbug/laundry` — slightly redundant but functional. In
-PWA standalone mode (Add to Home Screen) the URL bar is hidden anyway.
-
-**One-time setup:**
-
-1. **DNS:** in your registrar for `93.fyi`, add a CNAME record:
-   `bedbug` → `cname.vercel-dns.com`
-2. **Vercel:** in the `mom-93fyi` Vercel project → Settings → Domains, add
-   `bedbug.93.fyi`. Vercel will verify DNS and issue the cert.
-3. Visit `https://bedbug.93.fyi/` to confirm the PWA loads.
-
-No code change is needed — the proxy already handles any `bedbug.*` host.
+`mom.93.fyi/bedbug` continues to work, unchanged.
 
 ### PWA install
 
-- Manifest at `/manifest.webmanifest` with `start_url: /bedbug` and
-  `scope: /bedbug/`. iOS users add to home screen via the share sheet.
-- Service worker at `public/bedbug-sw.js` caches `/bedbug/*` for offline use
-  and is registered on first visit (scope `/bedbug/`).
+- Manifest at `/manifest.webmanifest` (`start_url: /bedbug`, `scope: /bedbug/`)
+- Service worker at `public/bedbug-sw.js` registered on first visit for
+  offline caching of `/bedbug/*`
+- iOS users: Add to Home Screen via the share sheet
 
-### Architecture notes
+### Architecture
 
-- **Sub-route layout, not separate app**: the PWA lives under `/bedbug/*` so
-  it ships as part of the existing `mom.93.fyi` deployment.
-- **Private folders**: utilities, hooks, and components live in
-  `app/bedbug/_lib`, `_hooks`, `_components` (Next.js convention — folders
-  prefixed with `_` are not routable).
-- **State**: a single `localStorage` blob (`bedbug.appState.v1`) holds
-  laundry count, mattress-day flags, and check-in history. Settings live in
-  a separate blob (`bedbug.settings.v1`). No backend, no auth.
+- **Next.js 16 App Router**, React 19. The PWA is a sub-route, not a
+  separate app. Same deployment, same codebase as the landing page.
+- `app/bedbug/_lib`, `_hooks`, `_components` — Next.js private folders
+  (underscore-prefixed → not routable).
+- **No persistent state** outside the dryer timer's start time
+  (`localStorage` key `bedbug.dryerTimer.startedAt`, so a 45-min timer
+  survives backgrounding).
+- **No backend, no auth.** Single-user device.
 
 ### Workflow
 
 - Branch-first. Never push to `main`. Feature branch → preview → PR.
-- `.gitignore` excludes `node_modules/` and `.next/` — verify before any push.
+- `.gitignore` excludes `node_modules/` and `.next/`.
 - Run `git diff --stat` before committing.
 
-### Deployment
+### Changing Mom-facing copy
 
-`vercel.json` is preconfigured for `framework: nextjs`. Push to a feature
-branch and Vercel will produce a preview URL of the form
-`mom-93fyi-git-<branch>-karlmarxs-projects.vercel.app`.
+The home page timetable lives in `app/bedbug/page.tsx` as a `TIMETABLE`
+constant. Each entry has a date string, an optional ISO date (used to
+highlight "today"), a headline, and a body. Edit there to adjust dates or
+wording. The 14 laundry steps in `app/bedbug/laundry/page.tsx` and the
+bedroom + rules cards mirror sections of `docs/plan.md` — keep them
+roughly in sync.
 
-## Verification checklist before declaring a release
+## Verification before declaring done
 
-- [ ] `.gitignore` excludes `node_modules/` and `.next/` — run `git status`
-- [ ] `npm run lint` is clean
-- [ ] `npm run build` succeeds and lists `/bedbug/*` routes
-- [ ] Vercel preview URL works on iPhone Safari + Android Chrome
-- [ ] Dryer timer alarm fires after 45 minutes (drop `DURATION_MS` to a few
-      seconds in `DryerTimer.tsx` for a quick local test, then revert)
-- [ ] Service worker registers on first visit (`Application` panel in DevTools)
-- [ ] Section 0 gate works: with `confirmedBedbugs=false` only the photo-task
-      card shows; toggle on and the full home appears
-- [ ] All 14 laundry steps render verbatim from `docs/plan.md` Section 4.2
-- [ ] VoiceOver reads through a full laundry-wizard flow without confusion
+- [ ] `.gitignore` excludes `node_modules/` and `.next/`
+- [ ] `npm run lint` clean
+- [ ] `npm run build` lists `/bedbug`, `/bedbug/laundry`, `/bedbug/bedroom`,
+      `/bedbug/rules`, `/manifest.webmanifest`, and the `Proxy` line
+- [ ] On a real phone, the home page reads top-to-bottom without confusion
+- [ ] Dryer timer fires after 45 minutes (drop `DURATION_MS` for a quick
+      local test, then revert)
+- [ ] Service worker registers on first visit (DevTools → Application)
+- [ ] `bedbug.93.fyi/` serves the home page (after DNS + Vercel domain step)

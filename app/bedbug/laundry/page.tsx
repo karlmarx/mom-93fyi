@@ -6,7 +6,6 @@ import { StepCard } from "../_components/StepCard";
 import { BigButton } from "../_components/BigButton";
 import { ProgressDots, StepCount } from "../_components/Wizard";
 import { DryerTimer } from "../_components/DryerTimer";
-import { useAppState } from "../_hooks/useAppState";
 
 // Verbatim from docs/plan.md Section 4.2.
 const STEPS: string[] = [
@@ -28,15 +27,13 @@ const STEPS: string[] = [
 
 export default function LaundryFlow() {
   const router = useRouter();
-  const { state, patch } = useAppState();
   const [idx, setIdx] = useState(0);
 
   function advance() {
     if (idx < STEPS.length - 1) {
       setIdx(idx + 1);
     } else {
-      patch({ laundryRunsCompleted: state.laundryRunsCompleted + 1 });
-      router.push("/bedbug?laundry=done");
+      router.push("/bedbug");
     }
   }
 
