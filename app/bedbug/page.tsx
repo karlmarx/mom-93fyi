@@ -1,138 +1,191 @@
 "use client";
 
-import { useRef } from "react";
-import { useRouter } from "next/navigation";
-import { HomeCard } from "./_components/HomeCard";
-import { useSettings } from "./_hooks/useSettings";
-import { useAppState } from "./_hooks/useAppState";
-import { CONFIG } from "./_lib/config";
+import Link from "next/link";
+import { useSyncExternalStore } from "react";
 import { todayISO } from "./_lib/dates";
 
+type Entry = {
+  date: string;
+  iso?: string;
+  headline: string;
+  body: string;
+};
+
+const TIMETABLE: Entry[] = [
+  {
+    date: "Tue Apr 28",
+    iso: "2026-04-28",
+    headline: "Today — keep going.",
+    body: "You're already doing the work. Don't throw away anything important until you've talked to Ben. Sheets come tomorrow.",
+  },
+  {
+    date: "Wed Apr 29",
+    iso: "2026-04-29",
+    headline: "Sheets arrive in the mail.",
+    body: "Leave them sealed in the original packaging, in the living room, until Thursday.",
+  },
+  {
+    date: "Thu Apr 30",
+    iso: "2026-04-30",
+    headline: "New mattress day. Helper is here.",
+    body: "Old mattress and box spring go out. New mattress goes in the living room with the white zip-up cover, zipped all the way closed. Same for the box spring. Slide one little white plastic cup under each of the four bed legs. Pull the bed at least a hand-span away from the wall. Make it up with the new sheets — nothing hangs to the floor. Sleep here tonight.",
+  },
+  {
+    date: "Fri May 1",
+    iso: "2026-05-01",
+    headline: "First laundry day.",
+    body: "One or two loads. Hot dryer, 45 minutes each. Then shower and put on clean clothes from a Ziploc.",
+  },
+  {
+    date: "Sat May 2",
+    iso: "2026-05-02",
+    headline: "Helper takes the trash bags out.",
+    body: "All the sealed black bags from the bedroom go to the dumpster today. One or two more dryer loads if you're up to it.",
+  },
+  {
+    date: "Sun May 3",
+    iso: "2026-05-03",
+    headline: "Rest.",
+    body: "Look at the four little plastic cups under the bed legs in the morning. One easy load if you want — but only if you want.",
+  },
+  {
+    date: "Mon May 4",
+    iso: "2026-05-04",
+    headline: "First weekly check-in.",
+    body: "Look at all four cups. Look at the sheets. Look at your arms and legs for new bites. Tell Ben what you see.",
+  },
+  {
+    date: "Weeks 2 — 4",
+    headline: "One load a day, max.",
+    body: "Don't try to do it all at once. Slow and steady. Check the cups every morning. Same as before: hot dryer, 45 minutes, sealed Ziploc with the date.",
+  },
+  {
+    date: "~Mid-June",
+    headline: "Six-week check.",
+    body: "If nothing has shown up in the cups and you have no new bites, the plan is working. Ben will let you know what comes next.",
+  },
+  {
+    date: "~October 2027",
+    headline: "Open the sealed bins.",
+    body: "Eighteen months from when the bedroom was sealed off. Anything stored in there comes out, gets a careful look, and goes back into your life.",
+  },
+];
+
+const noopSubscribe = () => () => undefined;
+const getToday = () => (typeof window === "undefined" ? null : todayISO());
+const getServerToday = () => null;
+
 export default function BedbugHome() {
-  const { settings } = useSettings();
-  const { state } = useAppState();
-  const router = useRouter();
-
-  // 5-tap-on-logo gate to /settings
-  const tapsRef = useRef<number[]>([]);
-  function onLogoTap() {
-    const now = Date.now();
-    tapsRef.current = [...tapsRef.current.filter((t) => now - t < 3000), now];
-    if (tapsRef.current.length >= 5) {
-      tapsRef.current = [];
-      router.push("/bedbug/settings");
-    }
-  }
-
-  if (!settings.confirmedBedbugs) {
-    return <PreConfirmHome onLogoTap={onLogoTap} />;
-  }
-
-  const today = todayISO();
-  const showMattressDay =
-    today === CONFIG.MATTRESS_DELIVERY_DATE && !state.mattressDayCompleted;
+  const today = useSyncExternalStore(noopSubscribe, getToday, getServerToday);
 
   return (
-    <div className="flex flex-col gap-6">
-      <Header onLogoTap={onLogoTap} />
+    <div className="flex flex-col gap-10">
+      <header className="flex flex-col gap-2">
+        <span className="text-bedbug-ink/60 text-sm uppercase tracking-wider">Mom&apos;s plan</span>
+        <h1 className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">
+          Bed bug plan
+        </h1>
+      </header>
 
-      <div className="flex flex-col gap-4">
-        <HomeCard
-          href="/bedbug/check-in"
-          title="Today's check-in"
-          subtitle="Three quick questions, then text Karl."
-          variant="primary"
-        />
-        <HomeCard
-          href="/bedbug/laundry"
-          title="Run a load of laundry"
-          subtitle="One bag at a time. Hot dryer, 45 minutes."
-          icon="🧺"
-        />
-        <HomeCard
-          href="/bedbug/bedroom"
-          title="Going into the bedroom?"
-          subtitle="Read the rules first. Every time."
-          icon="🚪"
-        />
+      <section className="flex flex-col gap-3">
+        <h2 className="text-2xl font-semibold text-bedbug-ink">What we&apos;re doing</h2>
+        <p className="text-bedbug-body leading-relaxed text-bedbug-ink">
+          Three things kill bed bugs: heat, plastic, and time. The hot dryer kills them and
+          their eggs. Sealed plastic bags hold them in until they starve. Time finishes the
+          rest.
+        </p>
+        <p className="text-bedbug-body leading-relaxed text-bedbug-ink">
+          Over the next few weeks, you&apos;re moving to the living room with a fresh mattress,
+          running clothes through the dryer one bag at a time, and letting the bedroom sit
+          empty until the bugs starve out. No exterminator. No chemicals.
+        </p>
+      </section>
 
-        {showMattressDay ? (
-          <HomeCard
-            href="/bedbug/mattress-day"
-            title="New mattress day"
-            subtitle="Helper is coming. Step-by-step here."
-            icon="🛏️"
-            variant="primary"
-          />
-        ) : null}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-2xl font-semibold text-bedbug-ink">The plan, day by day</h2>
+        <ol className="flex flex-col gap-3">
+          {TIMETABLE.map((entry, i) => {
+            const isToday = today !== null && entry.iso === today;
+            const isPast = today !== null && !!entry.iso && entry.iso < today;
+            return (
+              <li
+                key={i}
+                className={[
+                  "rounded-lg p-5",
+                  isToday
+                    ? "bg-bedbug-sage text-bedbug-cream shadow-sm"
+                    : isPast
+                      ? "bg-bedbug-cream-deeper/60 text-bedbug-ink/60"
+                      : "bg-bedbug-cream-deeper text-bedbug-ink",
+                ].join(" ")}
+              >
+                <div className="flex flex-col gap-1">
+                  <span
+                    className={`text-sm font-semibold uppercase tracking-wider ${
+                      isToday ? "text-bedbug-cream/90" : "text-bedbug-ink/60"
+                    }`}
+                  >
+                    {entry.date}
+                    {isToday ? " — today" : ""}
+                  </span>
+                  <span className="text-bedbug-title font-semibold leading-snug">
+                    {entry.headline}
+                  </span>
+                </div>
+                <p className="mt-3 text-bedbug-body leading-relaxed">{entry.body}</p>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
 
-        <HomeCard
-          href="/bedbug/progress"
-          title="My progress"
-          subtitle="How many loads, days clean, days quiet."
-        />
-        <HomeCard
-          href="/bedbug/rules"
-          title="The 5 rules"
-          subtitle="The short list, on one screen."
-        />
-        <HomeCard
-          href="/bedbug/stuck"
-          title="I'm stuck — call Karl"
-          subtitle="Tap here when nothing makes sense."
-          variant="danger"
-        />
-      </div>
+      <section className="flex flex-col gap-3">
+        <h2 className="text-2xl font-semibold text-bedbug-ink">When you&apos;re actually doing it</h2>
+        <p className="text-bedbug-body leading-relaxed text-bedbug-ink">
+          Three short reference cards. Open the one you need.
+        </p>
+        <ul className="flex flex-col gap-3">
+          <li>
+            <Link
+              href="/bedbug/laundry"
+              className="block rounded-lg bg-bedbug-cream-deeper p-5 text-bedbug-ink hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
+            >
+              <span className="block text-bedbug-title font-semibold leading-snug">
+                Laundry steps
+              </span>
+              <span className="mt-1 block text-bedbug-body text-bedbug-ink/70">
+                14 steps. One bag at a time. Dryer timer at the dryer step.
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/bedbug/bedroom"
+              className="block rounded-lg bg-bedbug-cream-deeper p-5 text-bedbug-ink hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
+            >
+              <span className="block text-bedbug-title font-semibold leading-snug">
+                Going into the bedroom
+              </span>
+              <span className="mt-1 block text-bedbug-body text-bedbug-ink/70">
+                Read this every time before you open the bedroom door.
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/bedbug/rules"
+              className="block rounded-lg bg-bedbug-cream-deeper p-5 text-bedbug-ink hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
+            >
+              <span className="block text-bedbug-title font-semibold leading-snug">
+                The 5 rules
+              </span>
+              <span className="mt-1 block text-bedbug-body text-bedbug-ink/70">
+                The whole plan, distilled. On one screen.
+              </span>
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
-
-function Header({ onLogoTap }: { onLogoTap: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onLogoTap}
-      aria-label="Bed bug plan"
-      className="-mx-4 flex flex-col items-start gap-1 px-4 pb-2 pt-2 text-left focus:outline-none"
-    >
-      <span className="text-bedbug-ink/60 text-sm uppercase tracking-wider">Mom&apos;s plan</span>
-      <span className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">
-        Bed bug plan
-      </span>
-    </button>
-  );
-}
-
-function PreConfirmHome({ onLogoTap }: { onLogoTap: () => void }) {
-  return (
-    <div className="flex flex-col gap-6">
-      <Header onLogoTap={onLogoTap} />
-
-      <ConfirmCard />
-
-      <p className="text-bedbug-body text-bedbug-ink/70">
-        Karl will look at your photos and tell you what&apos;s next. You can rest. Don&apos;t throw
-        anything away today.
-      </p>
-    </div>
-  );
-}
-
-function ConfirmCard() {
-  // Default-priority card: take photos, send to Karl, wait
-  return (
-    <a
-      href="/bedbug/confirm"
-      className="flex w-full flex-col gap-2 rounded-xl bg-bedbug-sage px-6 py-6 text-left text-bedbug-cream shadow-sm focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
-      style={{ minHeight: 96 }}
-    >
-      <span className="text-bedbug-title font-semibold leading-tight">
-        Today&apos;s photo tasks
-      </span>
-      <span className="text-base opacity-90">
-        Send Karl a few pictures. Then rest.
-      </span>
-    </a>
-  );
-}
-

@@ -1,27 +1,17 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { PhotoSlot } from "./PhotoSlot";
 
 type Props = {
   eyebrow?: string;
   title: string;
   instruction?: string;
-  photoSlotId?: string;
   doneWhen?: string;
   children?: ReactNode;
   footer?: ReactNode;
 };
 
-export function StepCard({
-  eyebrow,
-  title,
-  instruction,
-  photoSlotId,
-  doneWhen,
-  children,
-  footer,
-}: Props) {
+export function StepCard({ eyebrow, title, instruction, doneWhen, children, footer }: Props) {
   return (
     <article className="mx-auto flex w-full max-w-xl flex-col gap-6 rounded-xl bg-bedbug-cream p-6 shadow-sm sm:p-8">
       {eyebrow ? (
@@ -30,15 +20,11 @@ export function StepCard({
         </div>
       ) : null}
 
-      <h1 className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">
-        {title}
-      </h1>
+      <h1 className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">{title}</h1>
 
       {instruction ? (
         <p className="text-bedbug-body leading-relaxed text-bedbug-ink">{instruction}</p>
       ) : null}
-
-      {photoSlotId ? <PhotoSlot id={photoSlotId} alt={title} /> : null}
 
       {children ? <div className="flex flex-col gap-4">{children}</div> : null}
 
