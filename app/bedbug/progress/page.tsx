@@ -28,7 +28,7 @@ export default function ProgressPage() {
     {
       label: "Last check-in",
       value: state.lastCheckInDate
-        ? `${state.lastCheckInDate} (${state.lastCheckInResult === "all_clear" ? "all clear" : "flagged for Karl"})`
+        ? `${state.lastCheckInDate} (${state.lastCheckInResult === "all_clear" ? "all clear" : "noted for Ben"})`
         : "None yet",
     },
   ];

@@ -13,7 +13,6 @@ export default function BedbugHome() {
   const { state } = useAppState();
   const router = useRouter();
 
-  // 5-tap-on-logo gate to /settings
   const tapsRef = useRef<number[]>([]);
   function onLogoTap() {
     const now = Date.now();
@@ -40,7 +39,7 @@ export default function BedbugHome() {
         <HomeCard
           href="/bedbug/check-in"
           title="Today's check-in"
-          subtitle="Three quick questions, then text Karl."
+          subtitle="Three quick questions."
           variant="primary"
         />
         <HomeCard
@@ -76,12 +75,6 @@ export default function BedbugHome() {
           title="The 5 rules"
           subtitle="The short list, on one screen."
         />
-        <HomeCard
-          href="/bedbug/stuck"
-          title="I'm stuck — call Karl"
-          subtitle="Tap here when nothing makes sense."
-          variant="danger"
-        />
       </div>
     </div>
   );
@@ -108,31 +101,23 @@ function PreConfirmHome({ onLogoTap }: { onLogoTap: () => void }) {
     <div className="flex flex-col gap-6">
       <Header onLogoTap={onLogoTap} />
 
-      <ConfirmCard />
+      <a
+        href="/bedbug/confirm"
+        className="flex w-full flex-col gap-2 rounded-xl bg-bedbug-sage px-6 py-6 text-left text-bedbug-cream shadow-sm focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
+        style={{ minHeight: 96 }}
+      >
+        <span className="text-bedbug-title font-semibold leading-tight">
+          Today&apos;s photo tasks
+        </span>
+        <span className="text-base opacity-90">
+          Send Ben a few pictures. Then rest.
+        </span>
+      </a>
 
       <p className="text-bedbug-body text-bedbug-ink/70">
-        Karl will look at your photos and tell you what&apos;s next. You can rest. Don&apos;t throw
+        Ben will look at your photos and tell you what&apos;s next. You can rest. Don&apos;t throw
         anything away today.
       </p>
     </div>
   );
 }
-
-function ConfirmCard() {
-  // Default-priority card: take photos, send to Karl, wait
-  return (
-    <a
-      href="/bedbug/confirm"
-      className="flex w-full flex-col gap-2 rounded-xl bg-bedbug-sage px-6 py-6 text-left text-bedbug-cream shadow-sm focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
-      style={{ minHeight: 96 }}
-    >
-      <span className="text-bedbug-title font-semibold leading-tight">
-        Today&apos;s photo tasks
-      </span>
-      <span className="text-base opacity-90">
-        Send Karl a few pictures. Then rest.
-      </span>
-    </a>
-  );
-}
-

@@ -1,12 +1,11 @@
 import { BigButton } from "../_components/BigButton";
 
-// Verbatim from docs/plan.md Section 9.
 const RULES = [
   "Bedroom = dirty. Living room = clean. Don't mix them up.",
   "Going into the bedroom? Special clothes + booties first.",
   "Coming out? Take them off, drop in the wall bag, shower, fresh clothes from a Ziploc.",
   "Dryer = HIGH HEAT, 45 minutes. Then straight into a Ziploc with today's date.",
-  "Every morning: Check the 4 cups. Text Karl “all clear” or send a picture.",
+  "Every morning: Check the 4 cups. Open today's check-in.",
 ];
 
 export default function RulesPage() {
@@ -36,7 +35,7 @@ export default function RulesPage() {
       </ol>
 
       <footer className="rounded-md bg-bedbug-cream-deeper p-4 text-bedbug-body italic text-bedbug-ink">
-        If confused — STOP — sit down — call Karl. He has the plan.
+        If confused — STOP — sit down — call Ben. He has the plan.
       </footer>
 
       <BigButton href="/bedbug" variant="ghost">

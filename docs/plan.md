@@ -6,7 +6,7 @@
 
 ## 0. STOP — DO WE EVEN HAVE BED BUGS?
 
-Before spending money on exterminators, encasements, or any of the rest: **confirm the diagnosis first.** Karl already suspects she may not actually have them, and that suspicion deserves a serious 24-hour investigation before treating this as a bed bug emergency.
+Before spending money on exterminators, encasements, or any of the rest: **confirm the diagnosis first.** Ben already suspects she may not actually have them, and that suspicion deserves a serious 24-hour investigation before treating this as a bed bug emergency.
 
 ### What "actually having bed bugs" looks like (per UMN Extension, EPA, Cornell IPM)
 
@@ -35,11 +35,11 @@ This is critical. Studies and dermatology literature consistently show that a hi
 
 **MOM-FACING:**
 
-> **Step 0-M-1.** Take your phone. Pull all the sheets and pillowcases off the current bed. Take a close-up photo of: the mattress seams (the piped edges), the corners of the box spring, and inside the bed frame joints. Send to Karl.
+> **Step 0-M-1.** Take your phone. Pull all the sheets and pillowcases off the current bed. Take a close-up photo of: the mattress seams (the piped edges), the corners of the box spring, and inside the bed frame joints. Send to Ben.
 >
-> **Step 0-M-2.** Take photos of any bites you have — close up, with good light, ideally near a coin or finger for size scale. Send to Karl.
+> **Step 0-M-2.** Take photos of any bites you have — close up, with good light, ideally near a coin or finger for size scale. Send to Ben.
 >
-> **Step 0-M-3.** When you wake up tomorrow, before getting up, look at the sheets — any small dark dots? Any tiny bug? Take pictures. Send to Karl.
+> **Step 0-M-3.** When you wake up tomorrow, before getting up, look at the sheets — any small dark dots? Any tiny bug? Take pictures. Send to Ben.
 
 **KARL'S 24-HOUR CHECKLIST:**
 
@@ -55,7 +55,7 @@ This is critical. Studies and dermatology literature consistently show that a hi
 
 ## 1. WHY THE $1,000 EXTERMINATOR IS PROBABLY THE WRONG SPEND
 
-Mom wants to spend $1,000 on an exterminator. **Karl is right that this is probably a bad call.** Here's why, in order of strength:
+Mom wants to spend $1,000 on an exterminator. **Ben is right that this is probably a bad call.** Here's why, in order of strength:
 
 ### 1.1 The exterminator treats rooms. He doesn't treat her stuff.
 
@@ -78,7 +78,7 @@ If after 6–8 weeks of monitoring she still has activity, *then* spend the $1,0
 
 ### 1.3 Senior-targeted pest control fraud is a real, documented thing
 
-Karl asked whether the exterminator might be lying to take her money. **Yes — this happens, and seniors are a known target.** AARP, the BBB, and state Attorneys General have warned about pest control scams targeting older homeowners and apartment-dwellers. Red flags to watch for:
+Ben asked whether the exterminator might be lying to take her money. **Yes — this happens, and seniors are a known target.** AARP, the BBB, and state Attorneys General have warned about pest control scams targeting older homeowners and apartment-dwellers. Red flags to watch for:
 
 - **Door-to-door "free inspection" offers.** Almost always followed by "we found something serious."
 - **Pressure to sign today / "today only" pricing.**
@@ -90,7 +90,7 @@ Karl asked whether the exterminator might be lying to take her money. **Yes — 
 - **Requests for cash or check made out to an individual** rather than a company.
 - **Recommending "preventive" treatment quarterly forever** — bed bug treatment is event-based, not subscription-based.
 
-If Mom got the $1,000 quote from someone who knocked on her door or who came up in conversation rather than a company she found through her own search of established local exterminators, the scam probability is meaningful. Karl should ask Mom: **"Where did you find this exterminator? Who recommended him? What's the company name? Can you look up reviews?"** Those four questions usually surface the truth fast.
+If Mom got the $1,000 quote from someone who knocked on her door or who came up in conversation rather than a company she found through her own search of established local exterminators, the scam probability is meaningful. Ben should ask Mom: **"Where did you find this exterminator? Who recommended him? What's the company name? Can you look up reviews?"** Those four questions usually surface the truth fast.
 
 ### 1.4 The legitimate exterminator scenarios
 
@@ -116,7 +116,7 @@ Otherwise: that's $1,000 better kept in her pocket — possibly toward something
 
 ## 2. THE TIMETABLE (anchored to actual dates)
 
-| Date | Day | What's happening | Mom's job | Karl's job |
+| Date | Day | What's happening | Mom's job | Ben's job |
 |---|---|---|---|---|
 | **Tue Apr 28** | Today | Investigation day | Take photos per Section 0. Wait. Don't trash anything irreversible yet. | Review photos. Call her doctor's office to schedule a derm/PCP visit if needed. Search local exterminators for a paid *inspection* (not treatment) if photos are inconclusive. |
 | **Wed Apr 29** | Tomorrow | Sheets arrive in the mail. Confirmation answer due. | Receive sheets — leave in original packaging, in the living room. Send morning sheet photos. | Make the call: real or not? If real → green-light Thursday plan. If unclear → book inspection or doctor before Thursday. |
@@ -124,9 +124,9 @@ Otherwise: that's $1,000 better kept in her pocket — possibly toward something
 | **Fri May 1** | Day 4 | First full laundry day | 1–2 dryer loads (Section 4). Shower, into clean clothes. | 9 AM check-in call. |
 | **Sat May 2** | Day 5 | Helper trash run | Continue laundry — 1–2 loads. | Helper takes all sealed bedroom-contents disposal bags to dumpster. |
 | **Sun May 3** | Day 6 | Rest / monitoring | Morning interceptor check. One easy load if she's up to it. | 9 AM check-in. |
-| **Mon May 4** | Day 7 | First weekly check-in | Send Karl a photo of all 4 cups. | Verify cup status. |
+| **Mon May 4** | Day 7 | First weekly check-in | Send Ben a photo of all 4 cups. | Verify cup status. |
 | **Weeks 2–4** | — | Active phase | One load/day max. Sealed totes for any keep-but-don't-wear items. | Weekly call. Re-evaluate exterminator question at the end of week 4. |
-| **6-week mark (~mid-June)** | — | First all-clear check | Mom + Karl review: any captures? Any bites? Any signs? | If yes → escalate to pro. If no → high confidence treatment is working. |
+| **6-week mark (~mid-June)** | — | First all-clear check | Mom + Ben review: any captures? Any bites? Any signs? | If yes → escalate to pro. If no → high confidence treatment is working. |
 | **18-month mark (~Oct 2027)** | — | Sealed bins released | Open bins outside, inspect each item. Encasements optional from this point. | — |
 
 ---
@@ -176,7 +176,7 @@ This is where Mom now lives full-time.
 
 This is the workhorse. Done properly, this is what kills the bed bugs in her things.
 
-### 4.1 The science (so Karl can verify)
+### 4.1 The science (so Ben can verify)
 
 - **30+ minutes on HIGH heat in a residential dryer** kills 100% of all bed bug life stages including eggs (sources: Cornell IPM, EPA, University of Minnesota Extension, Naylor & Boase research summarized by Virginia Tech entomology).
 - **Dry first, don't wash first.** Wet items take 3× longer to reach kill temperature; eggs survive a 104°F wash.
@@ -231,7 +231,7 @@ The photos show Mom has already gotten rid of most upholstered furniture and has
 - **Old/stained low-value clothing or pillows:** Toss. Bag, label "BED BUGS," outdoor trash.
 - **Cardboard boxes:** Always toss — bed bugs love cardboard. Replace with plastic bins if she needs storage.
 
-Everything else — regular clothing, bedding, towels, soft toys — goes in the dryer per Section 4.2. **When in doubt, toss it.** Karl's mom has shown she's willing to declutter aggressively, and that's the right instinct here.
+Everything else — regular clothing, bedding, towels, soft toys — goes in the dryer per Section 4.2. **When in doubt, toss it.** Ben's mom has shown she's willing to declutter aggressively, and that's the right instinct here.
 
 ---
 
@@ -364,11 +364,11 @@ Once she's set up in the living room with the new mattress:
 
 > **EVERY MORNING — 3 THINGS:**
 >
-> 1. Look at the 4 white cups under the bed legs. Anything in them? Photo to Karl.
-> 2. Look at the sheets. Any tiny dark dots? Any rusty stains? Photo to Karl if yes.
-> 3. Check arms and legs for new bites. Photo to Karl if yes.
+> 1. Look at the 4 white cups under the bed legs. Anything in them? Photo to Ben.
+> 2. Look at the sheets. Any tiny dark dots? Any rusty stains? Photo to Ben if yes.
+> 3. Check arms and legs for new bites. Photo to Ben if yes.
 >
-> **Text "all clear" to Karl when done.**
+> **Text "all clear" to Ben when done.**
 
 After 6 weeks of "all clear" → high confidence treatment is working. After 3 months → very high confidence. After 12–18 months → done.
 
@@ -380,9 +380,9 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 
 - **Daily 9 AM call.** Same time, same script: "Did you check the cups?" → "Are you in clean clothes?" → "What's next on your list?"
 - **Photo verification** for any visible step (encasement zipped, cups placed, bag sealed, dryer running).
-- **One-tap rescue button on the PWA:** "I'm stuck — call Karl."
+- **One-tap rescue button on the PWA:** "I'm stuck — call Ben."
 - **Helper's role is bounded:** heavy lifting only (mattress out, dresser out if disposed, trash runs to dumpster, one hardware store run if needed). Helper does not enter the bedroom unless gowned. Helper does not make triage decisions.
-- **Mom's mental state matters more than the bed bugs.** If she's confused, anxious, or fixated, that's a separate signal Karl should track. A doctor visit may be more important than any of this. The plan is designed to *not require* her to make many decisions — just follow steps.
+- **Mom's mental state matters more than the bed bugs.** If she's confused, anxious, or fixated, that's a separate signal Ben should track. A doctor visit may be more important than any of this. The plan is designed to *not require* her to make many decisions — just follow steps.
 
 ---
 
@@ -392,9 +392,9 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 > 2. **Going into the bedroom?** Special clothes + booties first.
 > 3. **Coming out?** Take them off, drop in the wall bag, shower, fresh clothes from a Ziploc.
 > 4. **Dryer = HIGH HEAT, 45 minutes.** Then straight into a Ziploc with today's date.
-> 5. **Every morning:** Check the 4 cups. Text Karl "all clear" or send a picture.
+> 5. **Every morning:** Check the 4 cups. Text Ben "all clear" or send a picture.
 >
-> **If confused — STOP — sit down — call Karl. He has the plan.**
+> **If confused — STOP — sit down — call Ben. He has the plan.**
 
 ---
 
@@ -416,7 +416,7 @@ Use this prompt to generate the interactive checklist app:
 Build a React PWA called `mom-bedbug-plan` using Vite + TypeScript + Tailwind.
 Repo: github.com/karlmarx/mom-bedbug-plan. Deploy: Vercel.
 
-Branch-first workflow per Karl's standard. Verify .gitignore excludes
+Branch-first workflow per Ben's standard. Verify .gitignore excludes
 node_modules and dist/ before any push. Run `git diff --stat` before commits.
 
 The app is a step-by-step interactive checklist for an elderly user (Mom)
@@ -430,29 +430,29 @@ DESIGN CONSTRAINTS — these are non-negotiable:
 - No technical vocabulary. "Encasement" → "white zip-up cover."
   "Interceptor cup" → "little white plastic cup."
 - Pictures over words. Each step should have a placeholder for a photo of
-  "what done looks like" — Karl will add these later.
+  "what done looks like" — Ben will add these later.
 - No countdown timers EXCEPT the dryer timer (45-min audible alert).
-- One-tap rescue button on EVERY screen: "I'm stuck — call Karl"
-  (tel: link to Karl's phone, configurable in env).
+- One-tap rescue button on EVERY screen: "I'm stuck — call Ben"
+  (tel: link to Ben's phone, configurable in env).
 - Daily checklist mode is the home screen — the morning routine
-  (Section 7), with one big "Send 'all clear' to Karl" button (sms: link
+  (Section 7), with one big "Send 'all clear' to Ben" button (sms: link
   with prefilled text).
 - Photo verification: for visible-result steps (encasement zipped, cups
-  placed, bag sealed), include "Take a photo and send to Karl" button.
+  placed, bag sealed), include "Take a photo and send to Ben" button.
 - Progress tracking: localStorage-backed, no auth. Show how many laundry
   runs done, days in clean zone, days since last interceptor capture.
 
 SECTIONS TO IMPLEMENT (each as a flow in the app):
-1. Section 0 confirmation flow — photos to Karl, "wait for go-ahead"
-   screen until Karl marks confirmed.
+1. Section 0 confirmation flow — photos to Ben, "wait for go-ahead"
+   screen until Ben marks confirmed.
 2. Bedroom entry/exit ritual card (Section 3.3) — always accessible from
    a footer button.
 3. Laundry run wizard (Section 4.2 — the 14 steps).
 4. Thursday mattress-day flow — encasement → interceptors → sheets, in
    order, helper-coordinated.
 5. Daily monitoring (Section 7) — home screen.
-6. "I'm stuck" panic screen — Karl call button + space for a recorded
-   reassurance audio file (placeholder for audio Karl will record).
+6. "I'm stuck" panic screen — Ben call button + space for a recorded
+   reassurance audio file (placeholder for audio Ben will record).
 7. The 5 rules (Section 9) — always accessible from a footer button.
 
 ACCESSIBILITY — WCAG AA minimum. Screen reader labels on every button.

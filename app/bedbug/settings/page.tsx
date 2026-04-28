@@ -3,7 +3,6 @@
 import { BigButton } from "../_components/BigButton";
 import { useSettings } from "../_hooks/useSettings";
 import { useAppState } from "../_hooks/useAppState";
-import { CONFIG } from "../_lib/config";
 
 export default function SettingsPage() {
   const { settings, patch } = useSettings();
@@ -13,7 +12,7 @@ export default function SettingsPage() {
     <article className="mx-auto flex w-full max-w-xl flex-col gap-6 rounded-xl bg-bedbug-cream p-6 shadow-sm sm:p-8">
       <header className="flex flex-col gap-2">
         <span className="text-bedbug-ink/60 text-sm font-semibold uppercase tracking-wider">
-          Settings (Karl)
+          Settings (Ben)
         </span>
         <h1 className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">
           Operator controls
@@ -37,19 +36,6 @@ export default function SettingsPage() {
       </section>
 
       <section className="flex flex-col gap-3 rounded-md bg-bedbug-cream-deeper p-4">
-        <h2 className="text-xl font-semibold text-bedbug-ink">Phones</h2>
-        <p className="text-base text-bedbug-ink/70">
-          Karl: <span className="font-mono">{CONFIG.KARL_PHONE}</span>
-          <br />
-          Helper: <span className="font-mono">{CONFIG.HELPER_PHONE || "(not set)"}</span>
-        </p>
-        <p className="text-sm text-bedbug-ink/60">
-          Set <code>NEXT_PUBLIC_KARL_PHONE</code> and{" "}
-          <code>NEXT_PUBLIC_HELPER_PHONE</code> in Vercel project env vars.
-        </p>
-      </section>
-
-      <section className="flex flex-col gap-3 rounded-md bg-bedbug-cream-deeper p-4">
         <h2 className="text-xl font-semibold text-bedbug-ink">State</h2>
         <p className="text-base text-bedbug-ink/70">
           Loads completed: {state.laundryRunsCompleted}
@@ -59,6 +45,11 @@ export default function SettingsPage() {
           Clean-zone start: {state.cleanZoneSetupDate ?? "—"}
           <br />
           Last interceptor capture: {state.lastInterceptorCaptureDate ?? "none"}
+          <br />
+          Last check-in:{" "}
+          {state.lastCheckInDate
+            ? `${state.lastCheckInDate} (${state.lastCheckInResult ?? "—"})`
+            : "none"}
         </p>
         <BigButton
           variant="ghost"

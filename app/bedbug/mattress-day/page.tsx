@@ -16,40 +16,22 @@ type AppStatePatch = {
   cleanZoneSetupDate?: string | null;
 };
 
-const STEPS: { text: string; photoId: string; patch?: AppStatePatch }[] = [
-  {
-    text: "Helper is here. Old mattress wrapped, marked, taken outside.",
-    photoId: "mattress-01-helper",
-  },
-  {
-    text: "New mattress is in the living room.",
-    photoId: "mattress-02-newmattress",
-  },
+const STEPS: { text: string; patch?: AppStatePatch }[] = [
+  { text: "Helper is here. Old mattress wrapped, marked, taken outside." },
+  { text: "New mattress is in the living room." },
   {
     text: "Put the white zip-up cover on the new mattress. Zip it all the way closed.",
-    photoId: "mattress-03-encasement",
     patch: { encasementOn: true },
   },
-  {
-    text: "Put the white box spring cover on the box spring. Zip it closed.",
-    photoId: "mattress-04-boxspring",
-  },
+  { text: "Put the white box spring cover on the box spring. Zip it closed." },
   {
     text: "Helper lifts each leg of the bed; you slide one little white plastic cup under each leg.",
-    photoId: "mattress-05-cups",
     patch: { interceptorsPlaced: true },
   },
-  {
-    text: "Pull the bed at least one hand-span away from any wall.",
-    photoId: "mattress-06-pullaway",
-  },
-  {
-    text: "Make the bed with sheets. Tuck them. Nothing should hang to the floor.",
-    photoId: "mattress-07-sheets",
-  },
+  { text: "Pull the bed at least one hand-span away from any wall." },
+  { text: "Make the bed with sheets. Tuck them. Nothing should hang to the floor." },
   {
     text: "You're done with mattress day. Go shower and put on clean clothes from a Ziploc. Sleep here tonight.",
-    photoId: "mattress-08-done",
   },
 ];
 
@@ -109,12 +91,10 @@ export default function MattressDayFlow() {
       <ProgressDots totalSteps={STEPS.length} currentStep={stepNumber} />
       <StepCount current={stepNumber} total={STEPS.length} />
 
-      <StepCard
-        eyebrow={`Step ${stepNumber} of ${STEPS.length}`}
-        title={step.text}
-        photoSlotId={step.photoId}
-      >
-        <BigButton onClick={advance}>{isLast ? "All done with mattress day" : "Done — next step"}</BigButton>
+      <StepCard eyebrow={`Step ${stepNumber} of ${STEPS.length}`} title={step.text}>
+        <BigButton onClick={advance}>
+          {isLast ? "All done with mattress day" : "Done — next step"}
+        </BigButton>
         {idx > 0 ? (
           <BigButton onClick={() => setIdx(idx - 1)} variant="ghost">
             Go back one step

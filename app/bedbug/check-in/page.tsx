@@ -4,29 +4,23 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { StepCard } from "../_components/StepCard";
 import { BigButton } from "../_components/BigButton";
-import { SmsKarlLink } from "../_components/SmsKarlLink";
-import { PhotoCaptureButton } from "../_components/PhotoCaptureButton";
 import { useAppState } from "../_hooks/useAppState";
 import { todayISO } from "../_lib/dates";
 
 type StepKey = "cups" | "sheets" | "skin";
 
-const QUESTIONS: Record<StepKey, { title: string; instruction: string; flagBody: string }> = {
+const QUESTIONS: Record<StepKey, { title: string; instruction: string }> = {
   cups: {
-    title: "Did you check the 4 little white plastic cups under the bed legs?",
-    instruction:
-      "Look under each leg of your bed. Is anything inside any of the 4 cups?",
-    flagBody: "Mom: I see something in one of the cups under the bed.",
+    title: "Anything inside the 4 little white plastic cups under the bed legs?",
+    instruction: "Look under each leg of your bed. Anything in any of the 4 cups?",
   },
   sheets: {
     title: "Look at your sheets. Any tiny dark dots or rusty stains?",
     instruction: "Pull the covers back. Check the sheets and pillowcase.",
-    flagBody: "Mom: I see dark dots or rusty stains on the sheets.",
   },
   skin: {
     title: "Look at your arms and legs. Any new bites?",
     instruction: "Check your skin. Any new red spots or bumps that weren't there yesterday?",
-    flagBody: "Mom: I see new bites on my skin.",
   },
 };
 
@@ -39,57 +33,48 @@ export default function CheckInFlow() {
   const [flagged, setFlagged] = useState<StepKey | null>(null);
 
   if (flagged) {
-    const q = QUESTIONS[flagged];
     return (
-      <div className="flex flex-col gap-4">
-        <StepCard
-          eyebrow="Send Karl a photo"
-          title="Take a photo and text Karl. Don't worry — he'll know what to do."
-          instruction={q.instruction}
+      <StepCard
+        eyebrow="Make a note"
+        title="Mention this to Ben next time you talk."
+        instruction="You don't have to do anything else right now. The plan is still working."
+      >
+        <BigButton
+          onClick={() => {
+            patch({ lastCheckInDate: todayISO(), lastCheckInResult: "flagged" });
+            router.push("/bedbug");
+          }}
         >
-          <PhotoCaptureButton smsBody={q.flagBody} />
-          <SmsKarlLink body={q.flagBody} label="Open Messages to Karl" variant="neutral" />
-          <BigButton
-            onClick={() => {
-              patch({ lastCheckInDate: todayISO(), lastCheckInResult: "flagged" });
-              router.push("/bedbug");
-            }}
-            variant="ghost"
-          >
-            Done. Back to home.
-          </BigButton>
-        </StepCard>
-      </div>
+          Got it. Back to home.
+        </BigButton>
+      </StepCard>
     );
   }
 
   if (stepIdx >= ORDER.length) {
-    const body = "Mom: all clear today.";
     return (
-      <div className="flex flex-col gap-4">
-        <StepCard
-          eyebrow="All clear"
-          title="Send Karl your 'all clear' message."
-          instruction="Three things checked. Nothing strange. Tap below to text Karl."
+      <StepCard
+        eyebrow="All clear"
+        title="Three things checked. Nothing strange."
+        instruction="That's today's check-in done."
+      >
+        <BigButton
+          onClick={() => {
+            patch({ lastCheckInDate: todayISO(), lastCheckInResult: "all_clear" });
+            router.push("/bedbug");
+          }}
         >
-          <SmsKarlLink
-            body={body}
-            label="Send 'all clear' to Karl"
-            onClick={() => {
-              patch({ lastCheckInDate: todayISO(), lastCheckInResult: "all_clear" });
-            }}
-          />
-          <BigButton href="/bedbug" variant="ghost">
-            Back to home
-          </BigButton>
-        </StepCard>
-      </div>
+          Mark today &ldquo;all clear&rdquo;
+        </BigButton>
+        <BigButton href="/bedbug" variant="ghost">
+          Back to home without saving
+        </BigButton>
+      </StepCard>
     );
   }
 
   const key = ORDER[stepIdx];
   const q = QUESTIONS[key];
-  // Two-screen pattern per step: confirm checked → answer found-anything?
   return (
     <CheckQuestion
       key={key}
