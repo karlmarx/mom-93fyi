@@ -5,7 +5,7 @@ const RULES = [
   "Going into the bedroom? Special clothes + booties first.",
   "Coming out? Take them off, drop in the wall bag, shower, fresh clothes from a Ziploc.",
   "Dryer = HIGH HEAT, 45 minutes. Then straight into a Ziploc with today's date.",
-  "Every morning: Check the 4 cups. Open today's check-in.",
+  "Every morning: Check the 6 cups under the bed legs. Tell Ben if anything's there.",
 ];
 
 export default function RulesPage() {
