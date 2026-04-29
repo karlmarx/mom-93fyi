@@ -28,7 +28,7 @@ const TIMETABLE: Entry[] = [
     date: "Thu Apr 30",
     iso: "2026-04-30",
     headline: "New mattress day. Set aside about an hour.",
-    body: "The Cozy City frame and mattress arrive. The frame needs assembly with the included Allen key — lay the parts out, count the screws, loose-attach everything before tightening anything (or the last holes won't line up). Build it in the corner where it will live; don't drag it across the room. Once the frame is together, put the new mattress on top and zip it into the white cover all the way closed. Same with the box spring cover. Lift one corner of the bed at a time and slide a little white plastic cup under each leg — there are six legs, and every single one needs a cup. Pull the bed at least a hand-span away from the wall. Make it up with the new sheets — nothing hangs to the floor. Sleep here tonight.",
+    body: "The Cozy City metal frame and the twin mattress arrive. The frame needs assembly with the included Allen key — lay the parts out, count the screws, loose-attach everything before tightening anything (or the last holes won't line up). Build it in the corner where it will live; don't drag it across the room. No box spring is needed — the frame is the platform. Once the frame is together, put the mattress on top and slip the SafeNest waterproof protector over it like a fitted sheet. Lift one corner of the bed at a time and slide one of the little black plastic interceptor cups under each leg — there are six legs, and every single one needs a cup. Pull the bed at least a hand-span away from the wall. Make it up with the new sheets — nothing hangs to the floor. Sleep here tonight.",
   },
   {
     date: "Fri May 1",
@@ -40,19 +40,19 @@ const TIMETABLE: Entry[] = [
     date: "Sat May 2",
     iso: "2026-05-02",
     headline: "Take the trash bags to the dumpster.",
-    body: "All the sealed black bags from the bedroom go out today. If a load is too heavy, ask a neighbor or apartment maintenance for a hand — don't lift anything that hurts. One or two more dryer loads if you're up to it.",
+    body: "All the sealed black bags from the bedroom go out to the dumpster today. Take them one at a time if that's easier. One or two more dryer loads if you're up to it.",
   },
   {
     date: "Sun May 3",
     iso: "2026-05-03",
     headline: "Rest.",
-    body: "Look at the six little plastic cups under the bed legs in the morning. One easy load if you want — but only if you want.",
+    body: "Look at the six little black plastic cups under the bed legs in the morning. One easy load if you want — but only if you want.",
   },
   {
     date: "Mon May 4",
     iso: "2026-05-04",
     headline: "First weekly check-in.",
-    body: "Look at all six cups. Look at the sheets. Look at your arms and legs for new bites. Tell Ben what you see.",
+    body: "Look at all six black cups under the bed legs. Look at the sheets. Look at your arms and legs for new bites. Tell Ben what you see.",
   },
   {
     date: "Weeks 2 — 4",

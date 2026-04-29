@@ -1,6 +1,6 @@
 # Operation Clean Slate: Mom's Bed Bug Plan
 
-**Built for solo execution. Mom does the work herself. For heavy lifting (old mattress out, dresser to the curb), she arranges paid help — TaskRabbit, apartment maintenance, or a neighbor — when she needs it. Ben coordinates from another state.**
+**Built for solo execution. Mom does the entire plan herself, including heavy lifting. Pace it across days as needed; nothing has to happen all at once. Ben coordinates from another state.**
 
 ---
 
@@ -119,11 +119,11 @@ Otherwise: that's $1,000 better kept in her pocket — possibly toward something
 |---|---|---|---|---|
 | **Tue Apr 28** | Today | Investigation day | Take photos per Section 0. Wait. Don't trash anything irreversible yet. | Review photos. Call her doctor's office to schedule a derm/PCP visit if needed. Search local exterminators for a paid *inspection* (not treatment) if photos are inconclusive. |
 | **Wed Apr 29** | Tomorrow | Sheets arrive in the mail. Confirmation answer due. | Receive sheets — leave in original packaging, in the living room. Send morning sheet photos. | Make the call: real or not? If real → green-light Thursday plan. If unclear → book inspection or doctor before Thursday. |
-| **Thu Apr 30** | Day 3 | Cozy City frame + new mattress arrive. ~1 hr solo assembly with the included Allen key. | Build frame in the living-room corner: lay parts out, count screws, loose-attach everything before tightening. Mattress on. Encasement zipped. 6 cups under the 6 legs. New sheets. Sleep in living room tonight. | Confirm delivery is to living room, not bedroom. Stay reachable on the phone in case parts are missing. |
+| **Thu Apr 30** | Day 3 | Cozy City metal frame + twin mattress arrive. ~1 hr solo assembly with the included Allen key. | Build frame in the living-room corner: lay parts out, count screws, loose-attach everything before tightening. Mattress on. SafeNest waterproof protector slipped on. 6 black interceptor cups under the 6 legs. New sheets. Sleep in living room tonight. | Confirm delivery is to living room, not bedroom. Stay reachable on the phone in case parts are missing. |
 | **Fri May 1** | Day 4 | First full laundry day | 1–2 dryer loads (Section 4). Shower, into clean clothes. | 9 AM check-in call. |
-| **Sat May 2** | Day 5 | Trash bags out | Take sealed bedroom-contents bags to the dumpster. Heavy ones → ask a neighbor or apartment maintenance. Continue laundry — 1–2 loads. | 9 AM check-in. |
+| **Sat May 2** | Day 5 | Trash bags out | Take sealed bedroom-contents bags to the dumpster, one at a time as needed. Continue laundry — 1–2 loads. | 9 AM check-in. |
 | **Sun May 3** | Day 6 | Rest / monitoring | Morning interceptor check. One easy load if she's up to it. | 9 AM check-in. |
-| **Mon May 4** | Day 7 | First weekly check-in | Send Ben a photo of all 6 cups. | Verify cup status. |
+| **Mon May 4** | Day 7 | First weekly check-in | Send Ben a photo of all 6 black cups under the bed legs. | Verify cup status. |
 | **Weeks 2–4** | — | Active phase | One load/day max. Sealed totes for any keep-but-don't-wear items. | Weekly call. Re-evaluate exterminator question at the end of week 4. |
 | **6-week mark (~mid-June)** | — | First all-clear check | Mom + Ben review: any captures? Any bites? Any signs? | If yes → escalate to pro. If no → high confidence treatment is working. |
 | **18-month mark (~Oct 2027)** | — | Sealed bins released | Open bins outside, inspect each item. Encasements optional from this point. | — |
@@ -146,8 +146,8 @@ The apartment splits into two zones with strict one-way flow.
 
 This is where Mom now lives full-time.
 
-- New mattress + box spring, both fully zipped into bed-bug encasements (Thursday).
-- Bed bug interceptor cups under all 4 legs.
+- New twin mattress on the Cozy City 14" metal platform frame (no box spring), with the SafeNest waterproof protector slipped on (Thursday).
+- Black bed-bug interceptor cups under all 6 frame legs.
 - Bed pulled at least one hand-span from any wall.
 - No bed skirt, no blankets touching the floor.
 - Nothing stored under the bed.
@@ -242,8 +242,8 @@ Mom has already triaged hard — the photos show she's gotten rid of upholstered
 
 Bag, label **"BED BUGS — DO NOT TAKE"** in big letters, outdoor trash:
 
-- Old mattress + box spring (Thursday — paid help if too heavy to move alone: TaskRabbit, apartment maintenance, or a neighbor)
-- Wood sleigh bed frame (paid help if too heavy)
+- Old mattress + box spring (Thursday)
+- Wood sleigh bed frame
 - White wood dresser — recommended (too many cracks/joints to reliably treat; salvage isn't worth the labor)
 - Any clothing she doesn't actively wear or want
 - Old/stained pillows, blankets
@@ -303,17 +303,17 @@ Heat is the most reliable bed bug killer that exists. A consumer steamer with 16
 - Run slowly along all carpet edges and the entire surface — about 12 inches per 30 seconds.
 - Repeat once a week for 3 weeks.
 
-**Cost: $30–130. Effort: 2–3 hours per session, physically demanding — pace it across multiple days, or hire it out for an afternoon (TaskRabbit "carpet cleaning," ~$50–100).**
+**Cost: $30–130. Effort: 2–3 hours per session, physically demanding — pace it across multiple days.**
 
 #### Option D: Carpet removal
 
-The nuclear option. Hire a one-day helper (TaskRabbit "junk removal" or apartment maintenance) to roll up the carpet + pad, bag them, mark "BED BUGS," and take to the dump.
+The nuclear option. Roll up the carpet + pad, bag them, mark "BED BUGS," and take to the dump (or arrange a junk-removal pickup).
 
 - Eliminates the harborage entirely — carpet was the last fabric surface, this ends the bedroom problem.
 - Apartment has subfloor underneath; can stay bare or get vinyl planks / new carpet later.
 - **If she's renting, get landlord permission first.** Many leases require it.
 
-**Cost: $200–500 (removal + replacement, or $0 if she leaves it bare). Effort: one paid afternoon. Time to all-clear: immediate.**
+**Cost: $200–500 (removal + replacement, or $0 if she leaves it bare). Effort: one afternoon. Time to all-clear: immediate.**
 
 Worth strongly considering if the lease is ending soon or she's moving — why pay to keep a carpet she's leaving anyway?
 
@@ -340,20 +340,33 @@ This pairs perfectly with the "don't pay $1,000 for the exterminator" argument: 
 
 ---
 
-## 6. WHAT TO ACTUALLY BUY (only if Section 0 confirms bed bugs)
+## 6. WHAT'S BEEN ORDERED
 
-Skip the long shopping list. The genuinely necessary items, in order of priority:
+Order #112-3773124-8950658, placed Apr 28 2026, total $142.75. Arriving over Wed–Thu.
 
-1. **Mattress encasement** (full or queen — measure the new mattress) — $40–70. Bed-bug-certified, fully zippered. Brands: Protect-A-Bed BugLock, SafeRest Premium.
-2. **Box spring encasement** — same brand, matching size — $30–50.
-3. **Bed bug interceptor cups** — ClimbUp Original 8-pack — $40–50. **Order 8 instead of 4** — 4 go under the new bed legs in the living room, 4 sit on the bedroom floor as passive monitors for the carpet exile strategy (Section 5.4 Option A).
-4. **Heavy-duty contractor trash bags** — 3-mil thick, black, 42-gallon — $25.
-5. **Large clear Ziploc storage bags** — 2-gallon, pack of 50+ — $30. For clean heat-treated clothes.
-6. **Permanent marker** — $3.
+**Arriving Wednesday:**
 
-That's it. **Total: ~$140–180.** Everything else (CimeXa dust, Nuvan strips, steam cleaner, mattress disposal bag) is optional and can be purchased only if the situation calls for it after the first two weeks.
+1. **Bed Bug Interceptors — 8 Pack (Bed Bug Blocker Pro, black plastic)** — Ximbeworks, $17.99. Six go under the six legs of the new platform frame; the remaining two sit on the bedroom floor as passive monitors.
+2. **SafeNest Waterproof Twin Mattress Protector** — $32.99. Note: this is a fitted waterproof protector with stretch corners, NOT a fully zippered bed-bug-certified encasement. It will keep stains out and gives bed bugs no easy harborage on the mattress surface, but the corners are open. If interceptor cups stay clean for the first six weeks, the practical risk is low. If captures appear, swap it for a true zippered encasement (Protect-A-Bed BugLock, SafeRest Premium — measure twin first; ~$30–50).
+3. **Commander 55-Gallon 3-mil Heavy Duty Contractor Bags with Flap Ties** (36" × 56", 10-pack) — Amazon, $61.78. Use these for sealing bedroom contents and bagging laundry runs.
 
-If Mom already has plenty of trash bags and Ziplocs at home, the actual new spend is ~$110 for encasements + interceptors. **Roughly one-tenth the cost of the exterminator, and it actually solves the problem.**
+**Arriving Thursday:**
+
+4. **Cozy City Twin Bed Frame, 14" Heavy Duty Metal Platform** — $59.99. No box spring needed. Six legs. Tool assembly required (Allen key included) — about an hour of solo work.
+
+**Already at home (verify before Thursday):**
+
+- Large clear Ziploc storage bags for clean heat-treated clothes
+- Permanent marker for dating Ziplocs
+
+**Optional / event-based (only if needed later):**
+
+- CimeXa silica gel dust (~$25) — only if interceptors keep capturing after week 6
+- Nuvan ProStrip — only for sealing the boombox / electronics if Mom keeps them
+- Steam cleaner — only if the bedroom carpet needs active treatment (Section 5.4 Option C)
+- True zippered mattress encasement — only if the SafeNest protector proves insufficient (see note above)
+
+**Total spend so far: $142.75.** Roughly one-seventh the cost of the exterminator quote, and it actually addresses the problem.
 
 ---
 
@@ -363,7 +376,7 @@ Once she's set up in the living room with the new mattress:
 
 > **EVERY MORNING — 3 THINGS:**
 >
-> 1. Look at the 6 white cups under the bed legs. Anything in them? Photo to Ben.
+> 1. Look at the 6 black cups under the bed legs. Anything in them? Photo to Ben.
 > 2. Look at the sheets. Any tiny dark dots? Any rusty stains? Photo to Ben if yes.
 > 3. Check arms and legs for new bites. Photo to Ben if yes.
 >
@@ -378,8 +391,8 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 ## 8. FOR BEN — REMOTE MANAGEMENT NOTES
 
 - **Daily 9 AM call.** Same time, same script: "Did you check the cups?" → "Are you in clean clothes?" → "What's next on your list?"
-- **Photo verification** for any visible step (encasement zipped, cups placed, bag sealed, dryer running).
-- **Paid help for heavy lifting.** When mattress + box spring + dresser need to go out, that's a one-hour TaskRabbit booking ($40–80, "furniture removal"), an apartment-maintenance favor (a $20 tip and a knock on the office door), or a neighbor. Mom doesn't lift anything that hurts.
+- **Photo verification** for any visible step (mattress protector on, cups placed, bag sealed, dryer running).
+- **No outside helpers.** Mom does the work, including heavy lifting. Pace it across days; nothing has to happen all at once.
 - **Mom's mental state matters more than the bed bugs.** If she's anxious or fixated, that's a separate signal Ben should track. A doctor visit may be more important than any of this. The plan is designed to *not require* her to make many decisions — just follow steps.
 
 ---
@@ -404,69 +417,7 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 4. **The bedroom carpet doesn't need treating — just exile.** Bed bugs without a host starve in 4–6 months. Close the door, wait 18 months, done. The cheapest, laziest option works because biology does the work.
 5. **No rush.** One load a day is fine. Six months is fine. The goal is sustainable execution, not heroic effort that burns her out by Saturday.
 
----
-
-## APPENDIX: PROMPT FOR CLAUDE CODE (for the React PWA)
-
-Use this prompt to generate the interactive checklist app:
-
-```
-Build a React PWA called `mom-bedbug-plan` using Vite + TypeScript + Tailwind.
-Repo: github.com/karlmarx/mom-bedbug-plan. Deploy: Vercel.
-
-Branch-first workflow per Ben's standard. Verify .gitignore excludes
-node_modules and dist/ before any push. Run `git diff --stat` before commits.
-
-The app is a step-by-step interactive checklist for an elderly user (Mom)
-executing the bed bug remediation plan in
-/mnt/user-data/outputs/mom-bedbug-plan.md. Read that file first as ground truth.
-
-DESIGN CONSTRAINTS — these are non-negotiable:
-- One step per screen. Big text (min 24px body, 32px+ for instructions).
-  Big buttons (min 64px tap target). Lots of whitespace. High contrast.
-- Each step has one binary "DONE" button that advances. No fuzzy criteria.
-- No technical vocabulary. "Encasement" → "white zip-up cover."
-  "Interceptor cup" → "little white plastic cup."
-- Pictures over words. Each step should have a placeholder for a photo of
-  "what done looks like" — Ben will add these later.
-- No countdown timers EXCEPT the dryer timer (45-min audible alert).
-- One-tap rescue button on EVERY screen: "I'm stuck — call Ben"
-  (tel: link to Ben's phone, configurable in env).
-- Daily checklist mode is the home screen — the morning routine
-  (Section 7), with one big "Send 'all clear' to Ben" button (sms: link
-  with prefilled text).
-- Photo verification: for visible-result steps (encasement zipped, cups
-  placed, bag sealed), include "Take a photo and send to Ben" button.
-- Progress tracking: localStorage-backed, no auth. Show how many laundry
-  runs done, days in clean zone, days since last interceptor capture.
-
-SECTIONS TO IMPLEMENT (each as a flow in the app):
-1. Section 0 confirmation flow — photos to Ben, "wait for go-ahead"
-   screen until Ben marks confirmed.
-2. Bedroom entry/exit ritual card (Section 3.3) — always accessible from
-   a footer button.
-3. Laundry run wizard (Section 4.2 — the 14 steps).
-4. Thursday mattress-day flow — encasement → interceptors → sheets, in
-   order, helper-coordinated.
-5. Daily monitoring (Section 7) — home screen.
-6. "I'm stuck" panic screen — Ben call button + space for a recorded
-   reassurance audio file (placeholder for audio Ben will record).
-7. The 5 rules (Section 9) — always accessible from a footer button.
-
-ACCESSIBILITY — WCAG AA minimum. Screen reader labels on every button.
-Larger-text mode toggle. Test with real iOS VoiceOver before pushing.
-
-PWA install prompt on first visit. Offline-first with service worker —
-Mom may not have reliable internet.
-
-NO LOGIN. NO ACCOUNTS. Single-user device.
-
-Voice/tone: plain, kind, never patronizing. Mom is a competent adult who
-is overwhelmed, not incapable.
-
-Verify deployed Vercel URL works on mobile before declaring done.
-```
 
 ---
 
-*This plan replaces the over-engineered prior version. The biggest change: confirm the diagnosis first, skip the exterminator unless evidence demands it, and recognize that the laundry workflow is 90% of the actual cure.*
+*The interactive checklist for this plan lives at `/bedbug` (also reachable at `bedbug.93.fyi`). See README.md for app details. This document is the source of truth for content; if the app and the plan disagree, edit both.*
