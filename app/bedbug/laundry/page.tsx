@@ -19,9 +19,11 @@ const STEPS: string[] = [
   "Open door. Go out. Close it.",
   "Walk straight to dryer. Don't put the bag on furniture along the way.",
   "Open dryer. Open bag at the dryer mouth. Tip clothes in. Don't reach in.",
-  "Set dryer: HIGH HEAT, 45 MIN. Press START.",
+  "Set dryer: HIGH HEAT, 45 MIN. Press START. (This first dry is what kills the bed bugs.)",
   "Take both empty bags straight to the outside trash NOW.",
-  "When dryer beeps: get a clear Ziploc. Tip hot clothes from dryer into Ziploc. Zip closed. Write today's date on it.",
+  "When dryer beeps: move the clothes from the dryer into the washer. Wash on hot.",
+  "When the washer is done: move the clothes back to the dryer. Set: HIGH HEAT, 45 MIN. Press START.",
+  "When dryer beeps: get a clear Ziploc. Tip the hot clothes from dryer into Ziploc. Zip closed. Write today's date on it.",
   "Carry Ziploc to the living room. Put on the “CLEAN” pile.",
 ];
 
@@ -39,7 +41,7 @@ export default function LaundryFlow() {
 
   const stepText = STEPS[idx];
   const stepNumber = idx + 1;
-  const isDryerStep = stepNumber === 11;
+  const isDryerStep = stepNumber === 11 || stepNumber === 14;
   const isLast = stepNumber === STEPS.length;
 
   return (

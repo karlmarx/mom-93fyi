@@ -74,7 +74,7 @@ export function DryerTimer({ onDone, durationMs = DURATION_MS }: Props) {
         notifiedRef.current = true;
         if ("Notification" in window && Notification.permission === "granted") {
           try {
-            new Notification("Dryer should be done", { body: "Go to Step 13." });
+            new Notification("Dryer should be done", { body: "Take the clothes out." });
           } catch {
             // some browsers throw
           }
@@ -140,7 +140,7 @@ export function DryerTimer({ onDone, durationMs = DURATION_MS }: Props) {
         <p className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">
           Dryer should be done.
         </p>
-        <p className="text-bedbug-body text-bedbug-ink">Go to Step 13.</p>
+        <p className="text-bedbug-body text-bedbug-ink">Take the clothes out.</p>
         <button
           type="button"
           onClick={silenceAndReset}

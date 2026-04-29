@@ -178,11 +178,11 @@ This is the workhorse. Done properly, this is what kills the bed bugs in her thi
 ### 4.1 The science (so Ben can verify)
 
 - **30+ minutes on HIGH heat in a residential dryer** kills 100% of all bed bug life stages including eggs (sources: Cornell IPM, EPA, University of Minnesota Extension, Naylor & Boase research summarized by Virginia Tech entomology).
-- **Dry first, don't wash first.** Wet items take 3× longer to reach kill temperature; eggs survive a 104°F wash.
+- **Dry first, then wash, then dry again.** The first dry is the kill step — items must be dry to reach kill temperature fast (wet items take 3× longer; eggs survive a 104°F wash). Once the bugs are dead, run the items through a normal hot wash for cleanliness, then dry again to finish them and seal them clean. The first dry is the only one that matters for *killing* bed bugs; the wash and second dry are for *clean clothes*.
 - **Drum no more than half full** so items tumble freely and reach core temperature.
 - 45 minutes is the recommended setting — gives a safety margin for thicker items (jeans, bedspreads).
 
-### 4.2 The 14-step routine (Mom-facing)
+### 4.2 The step-by-step routine (Mom-facing)
 
 > **LAUNDRY RUN — ONE LOAD AT A TIME**
 >
@@ -196,10 +196,12 @@ This is the workhorse. Done properly, this is what kills the bed bugs in her thi
 > 8. Open door. Go out. Close it.
 > 9. Walk straight to dryer. Don't put the bag on furniture along the way.
 > 10. Open dryer. Open bag at the dryer mouth. Tip clothes in. Don't reach in.
-> 11. Set dryer: HIGH HEAT, 45 MIN. Press START.
+> 11. Set dryer: HIGH HEAT, 45 MIN. Press START. (This first dry is what kills the bed bugs.)
 > 12. Take both empty bags straight to the outside trash NOW.
-> 13. When dryer beeps: get a clear Ziploc. Tip hot clothes from dryer into Ziploc. Zip closed. Write today's date on it.
-> 14. Carry Ziploc to the living room. Put on the "CLEAN" pile.
+> 13. When dryer beeps: move the clothes from the dryer into the washer. Wash on hot.
+> 14. When the washer is done: move the clothes back to the dryer. Set HIGH HEAT, 45 MIN. Press START.
+> 15. When dryer beeps: get a clear Ziploc. Tip the hot clothes from dryer into Ziploc. Zip closed. Write today's date on it.
+> 16. Carry Ziploc to the living room. Put on the "CLEAN" pile.
 >
 > **DONE when:** Sealed bag is on the clean pile and dryer is empty.
 >
@@ -402,7 +404,7 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 > 1. **Bedroom = dirty. Living room = clean. Don't mix them up.**
 > 2. **Going into the bedroom?** Special clothes + booties first.
 > 3. **Coming out?** Take them off, drop in the wall bag, shower, fresh clothes from a Ziploc.
-> 4. **Dryer = HIGH HEAT, 45 minutes.** Then straight into a Ziploc with today's date.
+> 4. **Dryer first (HIGH HEAT, 45 min) — that's what kills the bugs.** Then wash. Then dryer again. Then Ziploc with today's date.
 > 5. **Every morning:** Check the 6 cups. Text Ben "all clear" or send a picture.
 >
 > **If confused — STOP — sit down — call Ben. He has the plan.**

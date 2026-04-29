@@ -34,7 +34,7 @@ const TIMETABLE: Entry[] = [
     date: "Fri May 1",
     iso: "2026-05-01",
     headline: "First laundry day.",
-    body: "One or two loads. Hot dryer, 45 minutes each. Then shower and put on clean clothes from a Ziploc.",
+    body: "One or two loads. Each load goes through the dryer first (HIGH HEAT, 45 min — kills the bugs), then the washer, then the dryer again. Then shower and put on clean clothes from a Ziploc.",
   },
   {
     date: "Sat May 2",
@@ -57,7 +57,7 @@ const TIMETABLE: Entry[] = [
   {
     date: "Weeks 2 — 4",
     headline: "One load a day, max.",
-    body: "Don't try to do it all at once. Slow and steady. Check the cups every morning. Same as before: hot dryer, 45 minutes, sealed Ziploc with the date.",
+    body: "Don't try to do it all at once. Slow and steady. Check the cups every morning. Same as before: dryer, then wash, then dryer again, sealed Ziploc with the date.",
   },
   {
     date: "~Mid-June",
@@ -86,6 +86,22 @@ export default function BedbugHome() {
           Bed bug plan
         </h1>
       </header>
+
+      <Link
+        href="/bedbug/confirm"
+        className="block rounded-lg bg-bedbug-cream-deeper p-5 text-bedbug-ink hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
+      >
+        <span className="text-bedbug-sage text-sm font-semibold uppercase tracking-wider">
+          Step 0 — first
+        </span>
+        <span className="mt-1 block text-bedbug-title font-semibold leading-snug">
+          Wait — are we sure these are bed bugs?
+        </span>
+        <span className="mt-1 block text-bedbug-body text-bedbug-ink/70">
+          Photos to send Ben, the things that get mistaken for bed bugs, and what to do
+          if you&apos;re not sure.
+        </span>
+      </Link>
 
       <section className="flex flex-col gap-3">
         <h2 className="text-2xl font-semibold text-bedbug-ink">What we&apos;re doing</h2>
@@ -168,6 +184,19 @@ export default function BedbugHome() {
               </span>
               <span className="mt-1 block text-bedbug-body text-bedbug-ink/70">
                 Read this every time before you open the bedroom door.
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/bedbug/items"
+              className="block rounded-lg bg-bedbug-cream-deeper p-5 text-bedbug-ink hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
+            >
+              <span className="block text-bedbug-title font-semibold leading-snug">
+                What do I do with this thing?
+              </span>
+              <span className="mt-1 block text-bedbug-body text-bedbug-ink/70">
+                Shoes, books, electronics, things you love. The answer for each.
               </span>
             </Link>
           </li>

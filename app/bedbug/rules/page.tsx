@@ -4,7 +4,7 @@ const RULES = [
   "Bedroom = dirty. Living room = clean. Don't mix them up.",
   "Going into the bedroom? Special clothes + booties first.",
   "Coming out? Take them off, drop in the wall bag, shower, fresh clothes from a Ziploc.",
-  "Dryer = HIGH HEAT, 45 minutes. Then straight into a Ziploc with today's date.",
+  "Dryer first (HIGH HEAT, 45 min) — that's what kills the bugs. Then wash. Then dryer again. Then Ziploc with today's date.",
   "Every morning: Check the 6 black cups under the bed legs. Tell Ben if anything's there.",
 ];
 
