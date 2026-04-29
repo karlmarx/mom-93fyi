@@ -1,6 +1,6 @@
 # Operation Clean Slate: Mom's Bed Bug Plan
 
-**Built for solo execution from another state. Helper available only for heavy lifting (mattress out, dresser if disposed). Mom uses a walker/wheelchair so steps are paced for her capacity.**
+**Built for solo execution. Mom does the work herself. For heavy lifting (old mattress out, dresser to the curb), she arranges paid help — TaskRabbit, apartment maintenance, or a neighbor — when she needs it. Ben coordinates from another state.**
 
 ---
 
@@ -25,8 +25,7 @@ This is critical. Studies and dermatology literature consistently show that a hi
 - **Dry skin / xerosis** — extremely common in seniors, causes itchy red patches that look like bites.
 - **Scabies** — mites that burrow under skin; itching especially at night; needs prescription treatment, not pest control.
 - **Allergic reactions** — to detergent, fabric softener, a new lotion, or medication.
-- **Folliculitis or contact dermatitis** — from sitting/lying in the same position with mobility limitations.
-- **Pressure sores or friction marks** — from wheelchair or walker contact points.
+- **Folliculitis or contact dermatitis** — from skin friction, fabric, or detergent.
 - **Flea bites** — usually around ankles/lower legs; possible if she's had recent contact with any animal.
 - **Mosquito or other insect bites** — Florida and other warm states.
 - **Delusional parasitosis** — a real, treatable medical condition more common in seniors with anxiety or cognitive changes; the person genuinely *feels* bugs that aren't there. Not "making it up" — a true neurological symptom.
@@ -41,7 +40,7 @@ This is critical. Studies and dermatology literature consistently show that a hi
 >
 > **Step 0-M-3.** When you wake up tomorrow, before getting up, look at the sheets — any small dark dots? Any tiny bug? Take pictures. Send to Ben.
 
-**KARL'S 24-HOUR CHECKLIST:**
+**BEN'S 24-HOUR CHECKLIST:**
 
 1. Review the photos. Are there fecal spots? Cast skins? Live bugs? If yes → proceed with the plan below.
 2. Are bites in the classic "breakfast/lunch/dinner" linear pattern of 3 in a row, on exposed skin (arms, legs, neck)? Vs. random distribution / concentrated on lower legs (fleas) / between fingers and on wrists (scabies).
@@ -120,11 +119,11 @@ Otherwise: that's $1,000 better kept in her pocket — possibly toward something
 |---|---|---|---|---|
 | **Tue Apr 28** | Today | Investigation day | Take photos per Section 0. Wait. Don't trash anything irreversible yet. | Review photos. Call her doctor's office to schedule a derm/PCP visit if needed. Search local exterminators for a paid *inspection* (not treatment) if photos are inconclusive. |
 | **Wed Apr 29** | Tomorrow | Sheets arrive in the mail. Confirmation answer due. | Receive sheets — leave in original packaging, in the living room. Send morning sheet photos. | Make the call: real or not? If real → green-light Thursday plan. If unclear → book inspection or doctor before Thursday. |
-| **Thu Apr 30** | Day 3 | New mattress delivered to LIVING ROOM. Helper present. | Helper-led mattress swap. Mom does the encasement + interceptor steps. First sleep in living room tonight. | Confirm delivery is to living room, not bedroom. Confirm helper is on site. |
+| **Thu Apr 30** | Day 3 | Cozy City frame + new mattress arrive. ~1 hr solo assembly with the included Allen key. | Build frame in the living-room corner: lay parts out, count screws, loose-attach everything before tightening. Mattress on. Encasement zipped. 6 cups under the 6 legs. New sheets. Sleep in living room tonight. | Confirm delivery is to living room, not bedroom. Stay reachable on the phone in case parts are missing. |
 | **Fri May 1** | Day 4 | First full laundry day | 1–2 dryer loads (Section 4). Shower, into clean clothes. | 9 AM check-in call. |
-| **Sat May 2** | Day 5 | Helper trash run | Continue laundry — 1–2 loads. | Helper takes all sealed bedroom-contents disposal bags to dumpster. |
+| **Sat May 2** | Day 5 | Trash bags out | Take sealed bedroom-contents bags to the dumpster. Heavy ones → ask a neighbor or apartment maintenance. Continue laundry — 1–2 loads. | 9 AM check-in. |
 | **Sun May 3** | Day 6 | Rest / monitoring | Morning interceptor check. One easy load if she's up to it. | 9 AM check-in. |
-| **Mon May 4** | Day 7 | First weekly check-in | Send Ben a photo of all 4 cups. | Verify cup status. |
+| **Mon May 4** | Day 7 | First weekly check-in | Send Ben a photo of all 6 cups. | Verify cup status. |
 | **Weeks 2–4** | — | Active phase | One load/day max. Sealed totes for any keep-but-don't-wear items. | Weekly call. Re-evaluate exterminator question at the end of week 4. |
 | **6-week mark (~mid-June)** | — | First all-clear check | Mom + Ben review: any captures? Any bites? Any signs? | If yes → escalate to pro. If no → high confidence treatment is working. |
 | **18-month mark (~Oct 2027)** | — | Sealed bins released | Open bins outside, inspect each item. Encasements optional from this point. | — |
@@ -243,8 +242,8 @@ Mom has already triaged hard — the photos show she's gotten rid of upholstered
 
 Bag, label **"BED BUGS — DO NOT TAKE"** in big letters, outdoor trash:
 
-- Old mattress + box spring (helper, Thursday)
-- Wood sleigh bed frame (helper)
+- Old mattress + box spring (Thursday — paid help if too heavy to move alone: TaskRabbit, apartment maintenance, or a neighbor)
+- Wood sleigh bed frame (paid help if too heavy)
 - White wood dresser — recommended (too many cracks/joints to reliably treat; salvage isn't worth the labor)
 - Any clothing she doesn't actively wear or want
 - Old/stained pillows, blankets
@@ -282,7 +281,7 @@ The carpet is the one thing left. Here are the realistic options, in order of fi
 
 **Cost: $0 (interceptor cups already in the shopping list). Effort: zero physical labor on the carpet itself. Time to all-clear: ~18 months.**
 
-This is the option specifically designed for someone with mobility limits, no need for the room, and a remote helper. The laziest option works because biology does the work.
+This is the right option when there's no need for the room and the operator is remote. The laziest option works because biology does the work.
 
 #### Option B: Daily vacuum + desiccant dust
 
@@ -294,7 +293,7 @@ If Mom wants the bedroom usable sooner (4–8 weeks):
 
 **Cost: ~$25 (CimeXa). Effort: 15–30 min/day. Time to all-clear: 6–8 weeks.**
 
-Mom's mobility may make daily vacuuming hard. Helper could do this once a week instead, but weekly is less effective than daily.
+Daily for 4–8 weeks is real work; pace it. Weekly is a fallback if daily isn't sustainable, but less effective.
 
 #### Option C: Steam treatment
 
@@ -304,17 +303,17 @@ Heat is the most reliable bed bug killer that exists. A consumer steamer with 16
 - Run slowly along all carpet edges and the entire surface — about 12 inches per 30 seconds.
 - Repeat once a week for 3 weeks.
 
-**Cost: $30–130. Effort: 2–3 hours per session, physically demanding. Best done by helper, not Mom.**
+**Cost: $30–130. Effort: 2–3 hours per session, physically demanding — pace it across multiple days, or hire it out for an afternoon (TaskRabbit "carpet cleaning," ~$50–100).**
 
 #### Option D: Carpet removal
 
-The nuclear option. Helper rolls up carpet + pad, bags them, marks "BED BUGS," takes to the dump.
+The nuclear option. Hire a one-day helper (TaskRabbit "junk removal" or apartment maintenance) to roll up the carpet + pad, bag them, mark "BED BUGS," and take to the dump.
 
 - Eliminates the harborage entirely — carpet was the last fabric surface, this ends the bedroom problem.
 - Apartment has subfloor underneath; can stay bare or get vinyl planks / new carpet later.
 - **If she's renting, get landlord permission first.** Many leases require it.
 
-**Cost: $200–500 (removal + replacement, or $0 if she leaves it bare). Effort: one-day helper project. Time to all-clear: immediate.**
+**Cost: $200–500 (removal + replacement, or $0 if she leaves it bare). Effort: one paid afternoon. Time to all-clear: immediate.**
 
 Worth strongly considering if the lease is ending soon or she's moving — why pay to keep a carpet she's leaving anyway?
 
@@ -364,7 +363,7 @@ Once she's set up in the living room with the new mattress:
 
 > **EVERY MORNING — 3 THINGS:**
 >
-> 1. Look at the 4 white cups under the bed legs. Anything in them? Photo to Ben.
+> 1. Look at the 6 white cups under the bed legs. Anything in them? Photo to Ben.
 > 2. Look at the sheets. Any tiny dark dots? Any rusty stains? Photo to Ben if yes.
 > 3. Check arms and legs for new bites. Photo to Ben if yes.
 >
@@ -376,13 +375,12 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 
 ---
 
-## 8. FOR KARL — REMOTE MANAGEMENT NOTES
+## 8. FOR BEN — REMOTE MANAGEMENT NOTES
 
 - **Daily 9 AM call.** Same time, same script: "Did you check the cups?" → "Are you in clean clothes?" → "What's next on your list?"
 - **Photo verification** for any visible step (encasement zipped, cups placed, bag sealed, dryer running).
-- **One-tap rescue button on the PWA:** "I'm stuck — call Ben."
-- **Helper's role is bounded:** heavy lifting only (mattress out, dresser out if disposed, trash runs to dumpster, one hardware store run if needed). Helper does not enter the bedroom unless gowned. Helper does not make triage decisions.
-- **Mom's mental state matters more than the bed bugs.** If she's confused, anxious, or fixated, that's a separate signal Ben should track. A doctor visit may be more important than any of this. The plan is designed to *not require* her to make many decisions — just follow steps.
+- **Paid help for heavy lifting.** When mattress + box spring + dresser need to go out, that's a one-hour TaskRabbit booking ($40–80, "furniture removal"), an apartment-maintenance favor (a $20 tip and a knock on the office door), or a neighbor. Mom doesn't lift anything that hurts.
+- **Mom's mental state matters more than the bed bugs.** If she's anxious or fixated, that's a separate signal Ben should track. A doctor visit may be more important than any of this. The plan is designed to *not require* her to make many decisions — just follow steps.
 
 ---
 
@@ -392,7 +390,7 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 > 2. **Going into the bedroom?** Special clothes + booties first.
 > 3. **Coming out?** Take them off, drop in the wall bag, shower, fresh clothes from a Ziploc.
 > 4. **Dryer = HIGH HEAT, 45 minutes.** Then straight into a Ziploc with today's date.
-> 5. **Every morning:** Check the 4 cups. Text Ben "all clear" or send a picture.
+> 5. **Every morning:** Check the 6 cups. Text Ben "all clear" or send a picture.
 >
 > **If confused — STOP — sit down — call Ben. He has the plan.**
 
@@ -404,7 +402,7 @@ If captures appear in the cups: that's *good news* — the cups are doing their 
 2. **The exterminator solves at most 30% of the problem.** Mom does the laundry/heat-treatment work either way. Don't pay $1,000 for 30%.
 3. **Heat kills, plastic contains, time finishes.** Three principles handle ~95% of cases without chemicals.
 4. **The bedroom carpet doesn't need treating — just exile.** Bed bugs without a host starve in 4–6 months. Close the door, wait 18 months, done. The cheapest, laziest option works because biology does the work.
-5. **No rush.** Mom has mobility limits. One load a day is fine. Six months is fine. The goal is sustainable execution, not heroic effort that burns her out by Saturday.
+5. **No rush.** One load a day is fine. Six months is fine. The goal is sustainable execution, not heroic effort that burns her out by Saturday.
 
 ---
 
