@@ -1,5 +1,5 @@
 // Service worker for the bed bug PWA. Offline-first cache for /bedbug/*.
-const CACHE = "bedbug-v1";
+const CACHE = "bedbug-v2";
 const PRECACHE = ["/bedbug"];
 
 self.addEventListener("install", (event) => {

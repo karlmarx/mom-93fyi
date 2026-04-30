@@ -1,108 +1,141 @@
+"use client";
+
+import { useState } from "react";
+import { StepCard } from "../_components/StepCard";
 import { BigButton } from "../_components/BigButton";
+import { ProgressDots, StepCount } from "../_components/Wizard";
+import { PhotoCaptureButton } from "../_components/PhotoCaptureButton";
+import { SmsKarlLink } from "../_components/SmsKarlLink";
+import { PhotoSlot } from "../_components/PhotoSlot";
 
-const PHOTOS_TO_SEND = [
-  "The seams of the mattress (the piped edges).",
-  "The corners of the box spring.",
-  "The joints inside the bed frame.",
-  "Any bites you have, up close, with good light. Put a coin or your finger next to one for size.",
-  "Tomorrow morning, before getting up: look at the sheets. Any tiny dark dots? Any tiny bug? Take pictures.",
-];
+// Verbatim from docs/plan.md Section 0 (Mom-facing steps 0-M-1, 0-M-2, 0-M-3).
+const TASKS = [
+  {
+    photoId: "confirm-mattress-seam",
+    title:
+      "Pull the sheets and pillowcases off the bed. Take close-up photos of the mattress seams (the piped edges), the corners of the box spring, and inside the bed frame joints.",
+    instruction:
+      "Use good light. Get close. Send the photos to Ben.",
+    smsBody:
+      "Mom: photos of the mattress seams, box spring corners, and bed frame joints.",
+    photoLabel: "Take a photo of the mattress",
+  },
+  {
+    photoId: "confirm-bites",
+    title:
+      "Take photos of any bites you have — close up, with good light, with a coin or your finger next to one for size.",
+    instruction:
+      "One photo per bite area is fine. Send them to Ben.",
+    smsBody: "Mom: photos of the bites I have right now, with size scale.",
+    photoLabel: "Take a photo of a bite",
+  },
+  {
+    photoId: "confirm-sheets-morning",
+    title:
+      "Tomorrow morning, before getting up: look at the sheets. Any small dark dots? Any tiny bug? Take pictures.",
+    instruction:
+      "Send the morning photos to Ben. Then come back here and tap DONE.",
+    smsBody: "Mom: morning sheet photos before getting up.",
+    photoLabel: "Take a sheet photo",
+  },
+] as const;
 
-const NOT_BEDBUGS: ReadonlyArray<readonly [string, string]> = [
-  ["Dry skin.", "Very common. Worse in winter."],
-  [
-    "An allergic reaction.",
-    "To laundry detergent, fabric softener, a new lotion, or a medicine.",
-  ],
-  ["Mosquito bites.", ""],
-  ["Flea bites.", "Usually around the ankles or lower legs."],
-  [
-    "A skin condition.",
-    "A doctor can rule these out in ten minutes. Medicare covers it.",
-  ],
-];
+const STORAGE_KEY = "bedbug.confirm.taskDone";
 
-export default function ConfirmPage() {
+type Done = [boolean, boolean, boolean];
+
+function readDone(): Done {
+  if (typeof window === "undefined") return [false, false, false];
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [false, false, false];
+    const parsed = JSON.parse(raw) as unknown;
+    if (Array.isArray(parsed) && parsed.length === 3) {
+      return [Boolean(parsed[0]), Boolean(parsed[1]), Boolean(parsed[2])];
+    }
+  } catch {
+    // ignore
+  }
+  return [false, false, false];
+}
+
+function writeDone(done: Done) {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(done));
+  } catch {
+    // ignore
+  }
+}
+
+export default function ConfirmFlow() {
+  const [done, setDoneState] = useState<Done>(() => readDone());
+  const [idx, setIdx] = useState<number>(() => {
+    const d = readDone();
+    const next = d.findIndex((x) => !x);
+    return next === -1 ? TASKS.length : next;
+  });
+
+  function markDone(i: number) {
+    const next: Done = [...done] as Done;
+    next[i] = true;
+    setDoneState(next);
+    writeDone(next);
+    setIdx(i + 1);
+  }
+
+  if (idx >= TASKS.length) {
+    return (
+      <div className="flex flex-col gap-4">
+        <StepCard
+          eyebrow="All three sent"
+          title="Ben will look at the photos and tell you what's next."
+          instruction="You can rest. Don't throw anything away today."
+        >
+          <BigButton href="/bedbug" variant="ghost">
+            Back to home
+          </BigButton>
+          <BigButton
+            onClick={() => {
+              setDoneState([false, false, false]);
+              writeDone([false, false, false]);
+              setIdx(0);
+            }}
+            variant="ghost"
+          >
+            Start over
+          </BigButton>
+        </StepCard>
+      </div>
+    );
+  }
+
+  const t = TASKS[idx];
+  const stepNumber = idx + 1;
+
   return (
-    <article className="mx-auto flex w-full max-w-xl flex-col gap-6 rounded-xl bg-bedbug-cream p-6 shadow-sm sm:p-8">
-      <header className="flex flex-col gap-2">
-        <span className="text-bedbug-sage text-sm font-semibold uppercase tracking-wider">
-          Step 0 — first
-        </span>
-        <h1 className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">
-          Wait. Are these really bed bugs?
-        </h1>
-      </header>
+    <div className="flex flex-col gap-4">
+      <ProgressDots totalSteps={TASKS.length} currentStep={stepNumber} />
+      <StepCount current={stepNumber} total={TASKS.length} />
 
-      <p className="text-bedbug-body leading-relaxed text-bedbug-ink">
-        Before any of the rest of this plan, let&apos;s make sure. Bites alone are not
-        enough. Many other things look like bed bug bites and aren&apos;t.
-      </p>
-
-      <section className="flex flex-col gap-3 rounded-md bg-bedbug-cream-deeper p-4">
-        <h2 className="text-2xl font-semibold text-bedbug-ink">
-          Send Ben these photos first
-        </h2>
-        <ol className="flex flex-col gap-3">
-          {PHOTOS_TO_SEND.map((p, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <span
-                aria-hidden="true"
-                className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-bedbug-sage text-bedbug-cream font-semibold"
-              >
-                {i + 1}
-              </span>
-              <span className="text-bedbug-body leading-snug text-bedbug-ink">{p}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="flex flex-col gap-3">
-        <h2 className="text-2xl font-semibold text-bedbug-ink">
-          What sometimes looks like bed bugs but isn&apos;t
-        </h2>
-        <ul className="flex flex-col gap-3">
-          {NOT_BEDBUGS.map(([label, detail], i) => (
-            <li key={i} className="rounded-md bg-bedbug-cream-deeper p-4">
-              <span className="block text-bedbug-body font-semibold text-bedbug-ink">
-                {label}
-              </span>
-              {detail ? (
-                <span className="mt-1 block text-bedbug-body text-bedbug-ink/70">
-                  {detail}
-                </span>
-              ) : null}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="flex flex-col gap-3 rounded-md bg-bedbug-cream-deeper p-4">
-        <h2 className="text-2xl font-semibold text-bedbug-ink">
-          If you&apos;re still not sure
-        </h2>
-        <ul className="flex flex-col gap-3 text-bedbug-body leading-relaxed text-bedbug-ink">
-          <li>Send Ben the photos. He&apos;ll look.</li>
-          <li>
-            See your doctor. Medicare covers it. They can rule out other causes in ten
-            minutes.
-          </li>
-          <li>
-            Pay $75–$200 for a single inspection (not a treatment) from a real
-            exterminator company. Cheaper than guessing.
-          </li>
-        </ul>
-      </section>
-
-      <footer className="rounded-md bg-bedbug-cream-deeper p-4 text-bedbug-body italic text-bedbug-ink">
-        Don&apos;t spend $1,000 on an exterminator until we&apos;re sure. Don&apos;t throw
-        out anything you&apos;d miss until we&apos;re sure.
-      </footer>
-
-      <BigButton href="/bedbug" variant="ghost">
-        Back to home
-      </BigButton>
-    </article>
+      <StepCard
+        eyebrow={`Photo task ${stepNumber} of ${TASKS.length}`}
+        title={t.title}
+        instruction={t.instruction}
+      >
+        <PhotoSlot id={t.photoId} alt={t.title} />
+        <PhotoCaptureButton smsBody={t.smsBody} label={t.photoLabel} />
+        <SmsKarlLink body={t.smsBody} variant="ghost">
+          Text Ben without a photo
+        </SmsKarlLink>
+        <BigButton onClick={() => markDone(idx)}>
+          Done with this one
+        </BigButton>
+        {idx > 0 ? (
+          <BigButton onClick={() => setIdx(idx - 1)} variant="ghost">
+            Go back one
+          </BigButton>
+        ) : null}
+      </StepCard>
+    </div>
   );
 }
