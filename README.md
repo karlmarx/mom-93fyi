@@ -102,6 +102,63 @@ The `/bedbug/stuck` panic screen plays a recording of Ben's voice. To enable
 it, drop an MP3 at `/public/audio/karl-reassurance.mp3`. Until that file
 exists, the play button shows "Audio message — coming soon" and is disabled.
 
+### SMS Q&A loop (Twilio + GitHub)
+
+Mom can text questions and get answers without opening the app. Round-trip:
+
+```
+Mom (SMS) → Twilio number → /api/bedbug/sms-inbound (Vercel)
+                          → opens GitHub issue with `mom-question` label
+                          → answer agent posts comment
+                          → answer-mom.yml workflow fires
+                          → POSTs to /api/bedbug/sms-outbound
+                          → Twilio (or Resend email) → Mom
+```
+
+**Env vars (Vercel → Project → Settings → Environment Variables):**
+
+| Variable | Purpose |
+|---|---|
+| `TWILIO_ACCOUNT_SID` | Twilio Console → Account Info |
+| `TWILIO_AUTH_TOKEN` | Twilio Console → Account Info. Used to validate inbound webhook signatures AND for outbound auth. |
+| `TWILIO_FROM_NUMBER` | The Twilio number you bought, E.164 (e.g. `+17655550123`) |
+| `MOM_PHONE` | Mom's cell number, E.164. Hardcoded as the only outbound recipient and the only accepted inbound sender. |
+| `MOM_EMAIL` | Mom's email — used as a fallback when `SMS_LIVE=false` (during the A2P 10DLC waiting period) |
+| `INTAKE_SECRET` | Random 32-char string. Generate with `openssl rand -hex 32`. Shared between the outbound endpoint and the GitHub Action. |
+| `GITHUB_TOKEN_INTAKE` | Fine-grained PAT scoped to this repo with **Issues: write**. Used by the inbound webhook to open issues. |
+| `GITHUB_REPO` | Optional override — defaults to `karlmarx/mom-93fyi` |
+| `RESEND_API_KEY` | Optional — required only when `SMS_LIVE=false`. Free tier (100/day) is plenty. |
+| `RESEND_FROM` | Optional — defaults to `ben@bedbug.93.fyi`. Verify the sending domain in Resend. |
+| `SMS_LIVE` | `"true"` once A2P 10DLC is approved. Anything else (or unset) routes outbound through Resend email instead. |
+
+**GitHub Actions secrets (Repo → Settings → Secrets and variables → Actions):**
+
+| Secret | Value |
+|---|---|
+| `INTAKE_URL` | `https://bedbug.93.fyi/api/bedbug/sms-outbound` (or `https://mom.93.fyi/api/bedbug/sms-outbound`) |
+| `INTAKE_SECRET` | Same value as the Vercel env var |
+
+**Twilio Console setup:**
+
+1. Sign up + buy a US number (local long code or toll-free; toll-free has faster verification).
+2. Upgrade to **pay-as-you-go** with $20 starting balance.
+3. **Add Mom's number as a Verified Caller ID** (Console → Phone Numbers → Verified Caller IDs). Required during trial; useful as a sanity check post-trial.
+4. **Submit A2P 10DLC registration** (sole-proprietor tier) immediately. 1–3 business days for approval. Until approved, leave `SMS_LIVE=false` so outbound routes through email.
+5. Configure the inbound webhook on your Twilio number:
+   - Console → Phone Numbers → Active Numbers → click your number
+   - "A MESSAGE COMES IN": HTTP POST `https://bedbug.93.fyi/api/bedbug/sms-inbound`
+   - Save.
+6. Test: text the Twilio number from Mom's phone — a `mom-question` issue should open within seconds.
+
+**The `mom-question` label** is the gate. Make sure it exists in the repo
+(create it once at `https://github.com/karlmarx/mom-93fyi/labels`). The
+inbound webhook auto-applies it; the workflow only fires on issues that
+have it.
+
+**During the A2P 10DLC gap:** keep `SMS_LIVE` unset or `false`. Outbound
+answers will be emailed to `MOM_EMAIL` via Resend. Flip to `"true"` once
+10DLC is approved and confirm with a test message.
+
 ### Hosting on `bedbug.93.fyi`
 
 `proxy.ts` (Next.js 16 — what used to be `middleware.ts`) rewrites any host
