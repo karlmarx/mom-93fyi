@@ -6,6 +6,8 @@ import { StepCard } from "../_components/StepCard";
 import { BigButton } from "../_components/BigButton";
 import { ProgressDots, StepCount } from "../_components/Wizard";
 import { DryerTimer } from "../_components/DryerTimer";
+import { CallKarlLink } from "../_components/CallKarlLink";
+import { useAppState } from "../_hooks/useAppState";
 
 // Verbatim from docs/plan.md Section 4.2.
 const STEPS: string[] = [
@@ -29,13 +31,30 @@ const STEPS: string[] = [
 
 export default function LaundryFlow() {
   const router = useRouter();
+  const [, setState] = useAppState();
   const [idx, setIdx] = useState(0);
+  const [toast, setToast] = useState<string | null>(null);
 
   function advance() {
     if (idx < STEPS.length - 1) {
       setIdx(idx + 1);
     } else {
-      router.push("/bedbug");
+      // Increment loads done, then redirect home with a toast in sessionStorage
+      // so the home page can show it once.
+      setState((prev) => ({
+        laundryRunsCompleted: prev.laundryRunsCompleted + 1,
+      }));
+      try {
+        sessionStorage.setItem(
+          "bedbug.toast",
+          "Load done. Go shower and put on clean clothes.",
+        );
+      } catch {
+        // ignore
+      }
+      setToast("Load done.");
+      // Brief pause so Mom can read the toast, then home.
+      setTimeout(() => router.push("/bedbug"), 1200);
     }
   }
 
@@ -56,21 +75,35 @@ export default function LaundryFlow() {
       >
         {isDryerStep ? <DryerTimer /> : null}
 
-        <BigButton onClick={advance}>
+        <BigButton onClick={advance} disabled={toast !== null}>
           {isLast ? "Done with this load" : "Done — next step"}
         </BigButton>
 
-        {idx > 0 ? (
+        {idx > 0 && !toast ? (
           <BigButton onClick={() => setIdx(idx - 1)} variant="ghost">
             Go back one step
           </BigButton>
         ) : null}
+
+        <div className="pt-2">
+          <CallKarlLink variant="ghost">Stuck — call Ben</CallKarlLink>
+        </div>
       </StepCard>
 
       {isLast ? (
         <p className="text-center text-bedbug-body italic text-bedbug-ink/70">
           Then shower and put on clean clothes.
         </p>
+      ) : null}
+
+      {toast ? (
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-lg bg-bedbug-sage p-4 text-center text-bedbug-cream text-bedbug-body"
+        >
+          {toast}
+        </div>
       ) : null}
     </div>
   );
