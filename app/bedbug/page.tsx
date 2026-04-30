@@ -138,6 +138,13 @@ function OperationalCards({ showMattressCard }: { showMattressCard: boolean }) {
       </li>
       <li>
         <HomeCard
+          href="/bedbug/questions"
+          title="Things you've asked"
+          body="Your questions, answered. Search any word — freezer, dog, suitcase — to jump to it."
+        />
+      </li>
+      <li>
+        <HomeCard
           href="/bedbug/rules"
           title="The 5 rules"
           body="The whole plan, on one page."

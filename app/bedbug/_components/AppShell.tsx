@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { useSettings } from "../_hooks/useSettings";
 import { PanicButton } from "./PanicButton";
+import { UpdateChecker } from "./UpdateChecker";
 
 type Props = {
   children: ReactNode;
@@ -36,8 +37,12 @@ export function AppShell({ children }: Props) {
     };
   }, [settings.largeTextMode]);
 
+  const version = process.env.NEXT_PUBLIC_BUILD_VERSION ?? "dev";
+
   return (
     <div className="bedbug-app min-h-screen bg-bedbug-cream text-bedbug-ink">
+      <UpdateChecker />
+
       <header className="mx-auto flex w-full max-w-2xl items-center justify-between px-4 pt-4 text-sm sm:px-6">
         <Link
           href="/bedbug"
@@ -58,6 +63,15 @@ export function AppShell({ children }: Props) {
       <main className="mx-auto w-full max-w-2xl px-4 py-6 pb-32 sm:px-6">
         {children}
       </main>
+
+      <footer className="mx-auto w-full max-w-2xl px-4 pb-6 text-center sm:px-6">
+        <span
+          className="font-mono text-[10px] text-bedbug-ink/30"
+          aria-label={`Build version ${version}`}
+        >
+          v{version}
+        </span>
+      </footer>
 
       <PanicButton />
     </div>
