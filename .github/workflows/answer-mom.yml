@@ -1,0 +1,72 @@
+name: Answer Mom
+
+# Fires when any comment is posted on a 'mom-question' or 'karl-question'
+# labeled issue. Sends the comment body to the outbound SMS endpoint,
+# which routes by originator: "mom" → MOM_PHONE / MOM_EMAIL, "karl" →
+# KARL_EMAIL.
+#
+# The gate is the label, not the comment author — so any contributor's
+# answer can ship. If you want a manual approval gate later, change the
+# 'if' to require a 'send-to-mom' label and add a separate workflow that
+# adds that label after a review.
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  send:
+    if: >-
+      github.event.issue.state == 'open' &&
+      (contains(github.event.issue.labels.*.name, 'mom-question') ||
+       contains(github.event.issue.labels.*.name, 'karl-question')) &&
+      github.event.comment.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Send comment body to outbound endpoint
+        env:
+          INTAKE_URL: ${{ secrets.INTAKE_URL }}
+          INTAKE_SECRET: ${{ secrets.INTAKE_SECRET }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          LABELS: ${{ toJSON(github.event.issue.labels.*.name) }}
+        run: |
+          if [ -z "$INTAKE_URL" ] || [ -z "$INTAKE_SECRET" ]; then
+            echo "::error::INTAKE_URL or INTAKE_SECRET secret missing"
+            exit 1
+          fi
+          if echo "$LABELS" | jq -e 'index("karl-question")' > /dev/null; then
+            ORIGINATOR="karl"
+          else
+            ORIGINATOR="mom"
+          fi
+          payload=$(jq -nc \
+            --arg body "$COMMENT_BODY" \
+            --argjson issue "$ISSUE_NUMBER" \
+            --arg originator "$ORIGINATOR" \
+            '{body: $body, issue: $issue, originator: $originator}')
+          response=$(curl -sS -w "\n%{http_code}" \
+            -X POST "$INTAKE_URL" \
+            -H "Authorization: Bearer $INTAKE_SECRET" \
+            -H "Content-Type: application/json" \
+            --data "$payload")
+          body=$(echo "$response" | head -n -1)
+          status=$(echo "$response" | tail -n 1)
+          echo "Status: $status"
+          echo "Body: $body"
+          if [ "$status" != "200" ]; then
+            echo "::error::Outbound send failed ($status)"
+            exit 1
+          fi
+
+      - name: React on the comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket',
+            });

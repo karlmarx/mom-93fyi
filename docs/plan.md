@@ -119,7 +119,7 @@ Otherwise: that's $1,000 better kept in her pocket — possibly toward something
 |---|---|---|---|---|
 | **Tue Apr 28** | Today | Investigation day | Take photos per Section 0. Wait. Don't trash anything irreversible yet. | Review photos. Call her doctor's office to schedule a derm/PCP visit if needed. Search local exterminators for a paid *inspection* (not treatment) if photos are inconclusive. |
 | **Wed Apr 29** | Tomorrow | Sheets arrive in the mail. Confirmation answer due. | Receive sheets — leave in original packaging, in the living room. Send morning sheet photos. | Make the call: real or not? If real → green-light Thursday plan. If unclear → book inspection or doctor before Thursday. |
-| **Thu Apr 30** | Day 3 | Cozy City metal frame + twin mattress arrive. ~1 hr solo assembly with the included Allen key. | Build frame in the living-room corner: lay parts out, count screws, loose-attach everything before tightening. Mattress on. SafeNest waterproof protector slipped on. 6 black interceptor cups under the 6 legs. New sheets. Sleep in living room tonight. | Confirm delivery is to living room, not bedroom. Stay reachable on the phone in case parts are missing. |
+| **Thu Apr 30** | Day 3 | Cozy City metal frame + ZenDen twin mattress arrive. ~1 hr solo assembly with the included Allen key. | Build frame in the living-room corner: lay parts out, count screws, loose-attach everything before tightening. Mattress on. SafeRest waterproof protector slipped on. 6 black interceptor cups under the 6 legs. New sheets. Sleep in living room tonight. | Confirm delivery is to living room, not bedroom. Stay reachable on the phone in case parts are missing. |
 | **Fri May 1** | Day 4 | First full laundry day | 1–2 dryer loads (Section 4). Shower, into clean clothes. | 9 AM check-in call. |
 | **Sat May 2** | Day 5 | Trash bags out | Take sealed bedroom-contents bags to the dumpster, one at a time as needed. Continue laundry — 1–2 loads. | 9 AM check-in. |
 | **Sun May 3** | Day 6 | Rest / monitoring | Morning interceptor check. One easy load if she's up to it. | 9 AM check-in. |
@@ -146,7 +146,7 @@ The apartment splits into two zones with strict one-way flow.
 
 This is where Mom now lives full-time.
 
-- New twin mattress on the Cozy City 14" metal platform frame (no box spring), with the SafeNest waterproof protector slipped on (Thursday).
+- New ZenDen twin mattress on the Cozy City 14" metal platform frame (no box spring), with the SafeRest waterproof protector slipped on (Thursday).
 - Black bed-bug interceptor cups under all 6 frame legs.
 - Bed pulled at least one hand-span from any wall.
 - No bed skirt, no blankets touching the floor.
@@ -344,17 +344,42 @@ This pairs perfectly with the "don't pay $1,000 for the exterminator" argument: 
 
 ## 6. WHAT'S BEEN ORDERED
 
-Order #112-3773124-8950658, placed Apr 28 2026, total $142.75. Arriving over Wed–Thu.
+Six items, placed Apr 28 2026, total **$240.58**. Arriving Wed–Thu. The
+interactive `/bedbug/materials` page in the app shows each one with a
+photo and what to do with the packaging.
 
-**Arriving Wednesday:**
+**Delivered Wednesday Apr 29:**
 
-1. **Bed Bug Interceptors — 8 Pack (Bed Bug Blocker Pro, black plastic)** — Ximbeworks, $17.99. Six go under the six legs of the new platform frame; the remaining two sit on the bedroom floor as passive monitors.
-2. **SafeNest Waterproof Twin Mattress Protector** — $32.99. Note: this is a fitted waterproof protector with stretch corners, NOT a fully zippered bed-bug-certified encasement. It will keep stains out and gives bed bugs no easy harborage on the mattress surface, but the corners are open. If interceptor cups stay clean for the first six weeks, the practical risk is low. If captures appear, swap it for a true zippered encasement (Protect-A-Bed BugLock, SafeRest Premium — measure twin first; ~$30–50).
-3. **Commander 55-Gallon 3-mil Heavy Duty Contractor Bags with Flap Ties** (36" × 56", 10-pack) — Amazon, $61.78. Use these for sealing bedroom contents and bagging laundry runs.
+1. **Casa Platino 100% Cotton Sheets** — 3-piece twin sheet set, percale
+   weave, 15" deep pocket, white — $24.19. The new sheets for the new
+   mattress. Leave them sealed in the original packaging in the living
+   room until mattress day; sealed-in-plastic counts as already clean.
 
-**Arriving Thursday:**
+**Arriving Thursday Apr 30 (today):**
 
-4. **Cozy City Twin Bed Frame, 14" Heavy Duty Metal Platform** — $59.99. No box spring needed. Six legs. Tool assembly required (Allen key included) — about an hour of solo work.
+2. **Cozy City Twin Bed Frame, 14" Heavy Duty Metal Platform** (NieMopoty
+   seller, black) — $59.99. No box spring needed. Six legs. Tool
+   assembly required (Allen key included) — about an hour of solo work.
+3. **ZenDen 8" Twin Medium Firm Tight Top Memory Foam Mattress**
+   (EveryDayPure seller) — $82.98 (was $104.00). Goes on top of the
+   Cozy City frame; no box spring.
+
+**In the same Apr 28 order (delivery date pending):**
+
+4. **Bed Bug Interceptors — 8 Pack** (Rimbaworks seller, black plastic)
+   — $27.99. Six go under the six legs of the new platform frame; the
+   remaining two sit on the bedroom floor as passive monitors.
+5. **SafeRest Waterproof Twin Mattress Protector** (EverydayPure seller)
+   — $32.99. Note: this is a fitted waterproof protector with stretch
+   corners, NOT a fully zippered bed-bug-certified encasement. It will
+   keep stains out and gives bed bugs no easy harborage on the mattress
+   surface, but the corners are open. If interceptor cups stay clean for
+   the first six weeks, the practical risk is low. If captures appear,
+   swap it for a true zippered encasement (Protect-A-Bed BugLock,
+   SafeRest Premium zippered — measure twin first; ~$30–50).
+6. **Commander 55-Gallon 3-mil Heavy Duty Contractor Bags** (sold by
+   Amazon.com) — $12.44. Use these for sealing bedroom contents and
+   bagging laundry runs.
 
 **Already at home (verify before Thursday):**
 
@@ -366,9 +391,10 @@ Order #112-3773124-8950658, placed Apr 28 2026, total $142.75. Arriving over Wed
 - CimeXa silica gel dust (~$25) — only if interceptors keep capturing after week 6
 - Nuvan ProStrip — only for sealing the boombox / electronics if Mom keeps them
 - Steam cleaner — only if the bedroom carpet needs active treatment (Section 5.4 Option C)
-- True zippered mattress encasement — only if the SafeNest protector proves insufficient (see note above)
+- True zippered mattress encasement — only if the SafeRest protector proves insufficient (see note above)
 
-**Total spend so far: $142.75.** Roughly one-seventh the cost of the exterminator quote, and it actually addresses the problem.
+**Total spend so far: $240.58.** About a quarter the cost of the
+exterminator quote, and it actually addresses the problem.
 
 ---
 

@@ -7,7 +7,13 @@ export function proxy(request: NextRequest) {
   }
 
   const url = request.nextUrl.clone();
-  if (url.pathname === "/bedbug" || url.pathname.startsWith("/bedbug/")) {
+  if (
+    url.pathname === "/bedbug" ||
+    url.pathname.startsWith("/bedbug/") ||
+    url.pathname.startsWith("/api/")
+  ) {
+    // /api/* stays as-is so Twilio webhooks reach the canonical handler
+    // regardless of which host they came in on.
     return NextResponse.next();
   }
 
@@ -18,7 +24,7 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Run on every path except Next.js internals, the manifest, the service
-    // worker, the favicon, and obvious static assets.
-    "/((?!_next/|manifest\\.webmanifest$|bedbug-sw\\.js$|favicon\\.ico$|.*\\.(?:svg|png|jpg|jpeg|webp|gif|css|js|woff2?)$).*)",
+    // worker, the favicon, API routes, and obvious static assets.
+    "/((?!api/|_next/|manifest\\.webmanifest$|bedbug-sw\\.js$|favicon\\.ico$|.*\\.(?:svg|png|jpg|jpeg|webp|gif|css|js|woff2?)$).*)",
   ],
 };

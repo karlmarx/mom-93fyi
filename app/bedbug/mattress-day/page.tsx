@@ -13,7 +13,8 @@ import { CONFIG } from "../_lib/config";
 
 // Mattress day flow. Reflects docs/plan.md Section 2 (Thursday) and 3.2.
 // Mom does this solo with the Cozy City metal platform frame (no box spring),
-// the SafeNest waterproof protector, and 6 black interceptor cups.
+// the ZenDen twin mattress, the SafeRest waterproof protector, and 6 black
+// interceptor cups.
 type Step = {
   photoId?: string;
   title: string;
@@ -45,13 +46,13 @@ const STEPS: Step[] = [
   },
   {
     photoId: "mattress-on-frame",
-    title: "Put the new mattress on the frame.",
+    title: "Put the new ZenDen mattress on the frame.",
     doneWhen: "The mattress is on the frame, centered.",
   },
   {
-    photoId: "safenest-protector",
+    photoId: "saferest-protector",
     title:
-      "Slip the SafeNest waterproof cover over the mattress like a fitted sheet.",
+      "Slip the SafeRest waterproof cover over the mattress like a fitted sheet.",
     instruction:
       "Stretch the corners over each corner of the mattress. It hugs the top and sides; it doesn't zip.",
     doneWhen: "The cover is on, snug at all four corners.",
@@ -73,7 +74,7 @@ const STEPS: Step[] = [
   },
   {
     title:
-      "Make the bed with the new sheets. Tuck them. Nothing should hang to the floor.",
+      "Make the bed with the new Casa Platino sheets. Tuck them. Nothing should hang to the floor.",
     doneWhen: "Bed is made. Nothing hangs to the floor.",
   },
   {
