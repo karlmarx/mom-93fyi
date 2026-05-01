@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Forearm Flow — A Thumb-Safe Yoga Sequence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f4efe6;
+    --bg-card: #fbf8f1;
+    --ink: #1f1d18;
+    --ink-soft: #4a4640;
+    --ink-mute: #8a857c;
+    --rule: #d9d2c2;
+    --sage: #5d7a5e;
+    --sage-deep: #3e5640;
+    --clay: #b9542a;
+    --clay-soft: rgba(185, 84, 42, 0.08);
+    --warn: #8a4a1e;
+    --warn-bg: rgba(185, 84, 42, 0.07);
+    --shadow: 0 1px 2px rgba(31, 29, 24, 0.04), 0 8px 24px rgba(31, 29, 24, 0.05);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(93, 122, 94, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(185, 84, 42, 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+
+  /* Header */
+  .meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 24px;
+  }
+  .meta::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--ink-mute);
+    vertical-align: middle;
+    margin-right: 12px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 7vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    font-variation-settings: "opsz" 144;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--sage-deep);
+    font-weight: 300;
+  }
+  .lede {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-weight: 300;
+    max-width: 580px;
+    margin: 0 0 32px;
+  }
+
+  /* Constraints panel */
+  .constraints {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 26px;
+    margin: 32px 0 56px;
+    box-shadow: var(--shadow);
+  }
+  .constraints h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin: 0 0 14px;
+    font-weight: 600;
+  }
+  .constraints ul { margin: 0; padding-left: 18px; }
+  .constraints li { margin-bottom: 6px; font-size: 14px; color: var(--ink-soft); }
+  .constraints li strong { color: var(--ink); font-weight: 600; }
+
+  /* Section headers */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin: 56px 0 24px;
+  }
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0;
+    flex: 1;
+    padding: 0 16px;
+  }
+  .section-time {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  /* Pose cards */
+  .pose {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 24px 26px;
+    margin-bottom: 14px;
+    border: 1px solid var(--rule);
+    transition: transform 0.15s ease;
+  }
+  .pose:hover { transform: translateY(-1px); }
+  .pose-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .pose-name {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .pose-sanskrit {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-mute);
+    font-size: 15px;
+    display: block;
+    margin-top: 2px;
+  }
+  .pose-hold {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    background: rgba(93, 122, 94, 0.08);
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .pose-cue {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin: 10px 0 0;
+    line-height: 1.6;
+  }
+  .pose-mod {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--warn-bg);
+    border-left: 2px solid var(--clay);
+    border-radius: 0 4px 4px 0;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .pose-mod strong {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--warn);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  /* Outro */
+  .closing {
+    margin-top: 64px;
+    padding: 32px;
+    background: var(--bg-card);
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    text-align: center;
+  }
+  .closing p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .closing .sig {
+    margin-top: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-style: normal;
+  }
+
+  /* Glossary */
+  .glossary {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+  .glossary h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+  .glossary dl { margin: 0; }
+  .glossary dt {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 15px;
+    margin-top: 12px;
+  }
+  .glossary dd {
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 36px 20px 60px; }
+    .pose { padding: 20px 20px; }
+    .pose-head { flex-direction: column; gap: 8px; }
+    .pose-hold { align-self: flex-start; }
+    .section-head { flex-wrap: wrap; gap: 8px; }
+    .section-title { padding: 0; flex-basis: 100%; order: 2; }
+    .section-num { order: 1; }
+    .section-time { order: 3; flex-basis: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">A 50-Minute Sequence · Thumb-Safe</div>
+  <h1>Forearm <em>Flow</em></h1>
+  <p class="lede">A full-body practice built around forearm-based weight bearing, strap-assisted "grip" work, and quiet hands. Designed for a practitioner whose thumb cannot tolerate pressure or gripping.</p>
+
+  <div class="constraints">
+    <h2>The Three Rules</h2>
+    <ul>
+      <li><strong>No load through the palm.</strong> Anywhere a flat-handed pose appears (plank, chaturanga, down dog, cobra, side plank, wheel), drop to forearms or skip.</li>
+      <li><strong>No closed grip.</strong> Where a pose normally grasps the foot, ankle, or shin, use a strap looped around the foot and hold the strap against the body of the hand — fingers curled, thumb passive.</li>
+      <li><strong>Hands stay open and quiet.</strong> In standing poses, let the hands float or rest in a gentle prayer with very light contact. No pressing, no clamping.</li>
+    </ul>
+  </div>
+
+  <!-- ========== SECTION 1 ========== -->
+  <div class="section-head">
+    <span class="section-num">i.</span>
+    <h2 class="section-title">Arrival</h2>
+    <span class="section-time">~6 min</span>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Easy Seat on Bolster<span class="pose-sanskrit">Sukhāsana</span></h3>
+      </div>
+      <span class="pose-hold">2 min</span>
+    </div>
+    <p class="pose-cue">Sit cross-legged with hips elevated on a bolster or folded blanket. Hands rest palms-up on the thighs, fingers naturally curled. Settle the breath. Three rounds of slow inhale through the nose, soft sigh out through the mouth — then close the mouth and let the breath become quiet.</p>
+    <div class="pose-mod">
+      <strong>Hand note</strong>
+      Skip cin mudra (thumb-to-index) if any contact aggravates. Palms-up with relaxed fingers is fine; gravity does the work.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Alternate Nostril Breathing<span class="pose-sanskrit">Nāḍī Śodhana</span></h3>
+      </div>
+      <span class="pose-hold">3 min</span>
+    </div>
+    <p class="pose-cue">Use the right hand. Close the right nostril with the ring finger pad, inhale left. Switch and exhale right. Continue 8–12 rounds, even breath in and out.</p>
+    <div class="pose-mod">
+      <strong>Modification</strong>
+      Skip Vishnu mudra entirely — it loads the thumb closing the right nostril. Use the ring finger and pinky pads to close both nostrils alternately, leaving the thumb tucked passively into the palm. If even that's too much, do the breath visualization-only: imagine the airflow switching sides.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Cat–Cow on Forearms<span class="pose-sanskrit">Mārjaryāsana / Bitilāsana</span></h3>
+      </div>
+      <span class="pose-hold">8 cycles</span>
+    </div>
+    <p class="pose-cue">From a forearm plank stance — forearms parallel, elbows under shoulders — drop to knees so you're in a forearm tabletop. Inhale, drop the belly, lift the chest and tailbone (cow). Exhale, round high through the upper back (cat). Move with the breath.</p>
+    <div class="pose-mod">
+      <strong>Substitution</strong>
+      This replaces the standard hands-and-knees version. The forearm contact spreads load across the ulna; zero pressure on the palm or thumb.
+    </div>
+  </div>
+
+  <!-- ========== SECTION 2 ========== -->
+  <div class="section-head">
+    <span class="section-num">ii.</span>
+    <h2 class="section-title">Mobility</h2>
+    <span class="section-time">~8 min</span>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Seated Forward Fold<span class="pose-sanskrit">Paścimottānāsana</span></h3>
+      </div>
+      <span class="pose-hold">2 min</span>
+    </div>
+    <p class="pose-cue">Legs extended, sit bones rooted. Loop a strap around the soles of both feet. Inhale long through the spine; exhale fold forward from the hips. Use the strap to draw the chest toward the thighs without rounding through the lumbar.</p>
+    <div class="pose-mod">
+      <strong>Strap technique</strong>
+      Don't grip the strap with the fingers. Loop the strap once around the back of each hand so it sits against the wrist, then close the fingers loosely around it. The pull travels through the wrist and forearm — the thumb stays passive.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Seated Spinal Twist<span class="pose-sanskrit">Ardha Matsyendrāsana</span></h3>
+      </div>
+      <span class="pose-hold">90s each side</span>
+    </div>
+    <p class="pose-cue">Right leg crosses over the left, foot flat outside the left thigh. Left leg can extend or fold. Inhale lengthen, exhale twist right. Left elbow rests outside the right thigh; right hand floats just behind the hip — fingertips brushing the floor, no weight bearing.</p>
+    <div class="pose-mod">
+      <strong>Modification</strong>
+      Standard cue is "press the back hand into the floor." Don't. Hover the hand instead, or let the back of the hand rest on the floor with no load. The twist comes from the breath and the front-elbow lever.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Threading the Needle<span class="pose-sanskrit"></span></h3>
+      </div>
+      <span class="pose-hold">90s each side</span>
+    </div>
+    <p class="pose-cue">From forearm tabletop, slide the right forearm under the left, palm up. Right shoulder and temple settle to the floor. Left forearm extends overhead along the floor or props onto the bolster.</p>
+    <div class="pose-mod">
+      <strong>Hand note</strong>
+      Standard version threads through with a flat palm pressing down — this asks for thumb stability. The forearm version takes the same shoulder shape with zero hand load.
+    </div>
+  </div>
+
+  <!-- ========== SECTION 3 ========== -->
+  <div class="section-head">
+    <span class="section-num">iii.</span>
+    <h2 class="section-title">Standing</h2>
+    <span class="section-time">~14 min</span>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Mountain<span class="pose-sanskrit">Tāḍāsana</span></h3>
+      </div>
+      <span class="pose-hold">5 breaths</span>
+    </div>
+    <p class="pose-cue">Feet hip-width, weight even. Crown lifts, shoulders soften back. Arms long beside the body, palms facing forward, fingers spread without effort.</p>
+    <div class="pose-mod">
+      <strong>Hand note</strong>
+      No prayer at the chest — the standard anjali mudra creates light thumb pressure. Just let the arms hang.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Tree<span class="pose-sanskrit">Vṛkṣāsana</span></h3>
+      </div>
+      <span class="pose-hold">45s each side</span>
+    </div>
+    <p class="pose-cue">Shift to the standing leg, foot of the other leg to the calf or inner thigh (never the knee). Arms reach overhead, biceps frame the ears. Fingers spread.</p>
+    <div class="pose-mod">
+      <strong>Hand note</strong>
+      Skip the overhead palm-press. Keep the hands a few inches apart with fingers wide; the upward reach is what matters.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Warrior II<span class="pose-sanskrit">Vīrabhadrāsana II</span></h3>
+      </div>
+      <span class="pose-hold">5 breaths each side</span>
+    </div>
+    <p class="pose-cue">Wide stance, front foot turned out, back foot at 90. Front knee tracks over the second toe. Arms extend long parallel to the floor, palms down. Gaze over the front middle finger.</p>
+    <div class="pose-mod">
+      <strong>Hand note</strong>
+      Fingers stay long but soft — no spike-fingered tension. The arms work isometrically; the hands ride along.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Triangle<span class="pose-sanskrit">Trikoṇāsana</span></h3>
+      </div>
+      <span class="pose-hold">5 breaths each side</span>
+    </div>
+    <p class="pose-cue">From Warrior II, straighten the front leg. Reach the front arm long, then hinge at the hip and bring the front hand to a block stacked on its tallest setting outside the front shin. Top arm reaches up.</p>
+    <div class="pose-mod">
+      <strong>Block technique</strong>
+      Rest the back of the hand on the block, or set the heel of the hand on the block with the fingers raised — both unload the thumb. Don't reach for the floor and don't grip the block; let it support, not anchor.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">High Lunge<span class="pose-sanskrit">Aśva Sañcalanāsana</span></h3>
+      </div>
+      <span class="pose-hold">5 breaths each side</span>
+    </div>
+    <p class="pose-cue">Front knee over ankle, back leg long and strong. Arms reach overhead, framing the ears, ribs lifted away from the front hip crease.</p>
+    <div class="pose-mod">
+      <strong>Transition note</strong>
+      Enter and exit by stepping rather than flowing through a vinyasa. No down dog, no chaturanga.
+    </div>
+  </div>
+
+  <!-- ========== SECTION 4 ========== -->
+  <div class="section-head">
+    <span class="section-num">iv.</span>
+    <h2 class="section-title">Floor &amp; Backbends</h2>
+    <span class="section-time">~12 min</span>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Dolphin<span class="pose-sanskrit">Ardha Piñca Mayūrāsana</span></h3>
+      </div>
+      <span class="pose-hold">5 breaths × 2</span>
+    </div>
+    <p class="pose-cue">Forearms parallel on the mat, elbows under shoulders, hands soft. Tuck the toes and lift the hips toward the ceiling. Heels reach toward the floor; head hangs.</p>
+    <div class="pose-mod">
+      <strong>Substitution</strong>
+      This is your downward dog. Same posterior-chain stretch, same shoulder load, but the weight pours through the elbow and the meat of the forearm — not the wrist or thumb.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Sphinx<span class="pose-sanskrit">Sālamba Bhujaṅgāsana</span></h3>
+      </div>
+      <span class="pose-hold">8 breaths</span>
+    </div>
+    <p class="pose-cue">Lie prone. Forearms on the floor, elbows directly under the shoulders, palms down or palms together. Press the forearms down (not the hands), draw the chest forward and up. Glutes soft, low back long.</p>
+    <div class="pose-mod">
+      <strong>Substitution</strong>
+      Replaces cobra and upward dog. Hand orientation is your choice: palms-down with relaxed fingers, or one forearm crossed over the other so the hands rest with no load at all.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Forearm Plank<span class="pose-sanskrit"></span></h3>
+      </div>
+      <span class="pose-hold">30–45s × 2</span>
+    </div>
+    <p class="pose-cue">From sphinx, tuck toes and lift the knees. Body in one long line — heels reach back, crown reaches forward, navel draws toward the spine.</p>
+    <div class="pose-mod">
+      <strong>Hand note</strong>
+      Hands can rest palms-down with soft fingers, or interlace the fingers loosely (no thumb compression). The whole load is at the elbow and forearm.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Bridge<span class="pose-sanskrit">Setu Bandhāsana</span></h3>
+      </div>
+      <span class="pose-hold">8 breaths × 2</span>
+    </div>
+    <p class="pose-cue">Lie supine, knees bent, feet hip-width and parallel. Press through the heels, lift the hips. Arms stay long beside the body, palms-up or palms-down with soft fingers.</p>
+    <div class="pose-mod">
+      <strong>Modification</strong>
+      Skip the traditional interlaced-finger bind under the back. Instead, place a block under the sacrum on its medium height for a supported variation, or simply leave the arms long with no hand engagement.
+    </div>
+  </div>
+
+  <!-- ========== SECTION 5 ========== -->
+  <div class="section-head">
+    <span class="section-num">v.</span>
+    <h2 class="section-title">Inversion &amp; Close</h2>
+    <span class="section-time">~10 min</span>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Reclining Hand-to-Big-Toe<span class="pose-sanskrit">Supta Padāṅguṣṭhāsana</span></h3>
+      </div>
+      <span class="pose-hold">90s each side</span>
+    </div>
+    <p class="pose-cue">Supine. Loop a strap around the arch of the right foot, both ends in the right hand. Extend the leg toward the ceiling. Left leg long on the floor or knee bent. Repeat second variation: right leg opens out to the right side, strap stays in the right hand.</p>
+    <div class="pose-mod">
+      <strong>Strap technique</strong>
+      Same as the seated forward fold — wrap the strap once around the back of the hand so it bears against the wrist, fingers loose. No big-toe grasp, no clamped grip.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Legs Up the Wall<span class="pose-sanskrit">Viparīta Karaṇī</span></h3>
+      </div>
+      <span class="pose-hold">5 min</span>
+    </div>
+    <p class="pose-cue">Hips a few inches from the wall, legs vertical, sacrum on the floor or on a low bolster. Arms rest in a wide T or relaxed by the sides, palms up.</p>
+    <div class="pose-mod">
+      <strong>Inversion note</strong>
+      This replaces shoulder stand and headstand. Zero hand load, full inversion benefit, deeply restorative.
+    </div>
+  </div>
+
+  <div class="pose">
+    <div class="pose-head">
+      <div>
+        <h3 class="pose-name">Corpse<span class="pose-sanskrit">Śavāsana</span></h3>
+      </div>
+      <span class="pose-hold">5–7 min</span>
+    </div>
+    <p class="pose-cue">Lie supine, legs splayed naturally, arms a few inches from the body, palms turned up. Eyes close. Soften the jaw, soften the brow, soften the hands. Stay until the breath disappears into the body.</p>
+  </div>
+
+  <div class="closing">
+    <p>"The hand that does not grip can still hold everything."</p>
+    <div class="sig">— end of practice —</div>
+  </div>
+
+  <div class="glossary">
+    <h3>Quick Reference — Standard Pose → Thumb-Safe Swap</h3>
+    <dl>
+      <dt>Plank</dt>
+      <dd>Forearm plank.</dd>
+      <dt>Chaturanga</dt>
+      <dd>Skip. Use a knee-down forearm plank lower if a transition is wanted.</dd>
+      <dt>Downward Dog</dt>
+      <dd>Dolphin (forearms).</dd>
+      <dt>Cobra / Upward Dog</dt>
+      <dd>Sphinx.</dd>
+      <dt>Side Plank</dt>
+      <dd>Forearm side plank — bottom forearm to the floor, top hand on the hip (not pressed into the floor).</dd>
+      <dt>Cat-Cow on hands</dt>
+      <dd>Cat-cow on forearms.</dd>
+      <dt>Bound poses (Marichyasana, etc.)</dt>
+      <dd>Use a strap between the hands or skip the bind entirely; the twist still happens.</dd>
+      <dt>Hand-to-toe grasps</dt>
+      <dd>Strap looped around the foot, wrapped once around the back of the hand.</dd>
+      <dt>Wheel / Upward Bow</dt>
+      <dd>Bridge with a block under the sacrum, or skip.</dd>
+      <dt>Crow &amp; arm balances</dt>
+      <dd>Skip until the thumb is cleared. There's no safe substitute.</dd>
+    </dl>
+  </div>
+
+</div>
+</body>
+</html>
