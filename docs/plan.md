@@ -231,6 +231,16 @@ The photos show Mom has already gotten rid of most upholstered furniture and has
 - **Books, papers, photos** (only if essential): Sealed tote 18 months. Otherwise toss.
 - **Old/stained low-value clothing or pillows:** Toss. Bag, label "BED BUGS," outdoor trash.
 - **Cardboard boxes:** Always toss — bed bugs love cardboard. Replace with plastic bins if she needs storage.
+- **Suitcases (hard-shell):** Don't toss. Empty, then wipe inside and out with hot soapy water. Pay extra attention to zipper tracks and edge seams. Surface-only treatment is fine — bed bugs can't burrow into rigid plastic.
+- **Suitcases (fabric/canvas):** Empty. If small enough, dryer 45 min HIGH. Otherwise: seal the empty suitcase in a contractor bag and leave it in a hot sunny window or bathtub for 2 weeks.
+
+### 4.4.1 What to wipe hard surfaces with
+
+For the hard-surface wipe-down step (suitcases, plastic bins, nightstand top, dresser if she's keeping it):
+
+- **Hot soapy water (Dawn or any dish soap)** — fine for most surfaces. Mechanically displaces and drowns nymphs and adults.
+- **91% isopropyl alcohol** on a paper towel — kills on contact. Use this for zipper tracks, seams, cracks, and anywhere soap can't reach. Cheap at any drugstore.
+- **Avoid retail "bed-bug sprays"** — most are pyrethroid-based, expensive, and bed bugs in the U.S. are widely pyrethroid-resistant (Romero et al., *J. Med. Entomol.*, 2007). Soap and alcohol are sufficient when the goal is surface decontamination of items, not eliminating an active infestation.
 
 Everything else — regular clothing, bedding, towels, soft toys — goes in the dryer per Section 4.2. **When in doubt, toss it.** Ben's mom has shown she's willing to declutter aggressively, and that's the right instinct here.
 
