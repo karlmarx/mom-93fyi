@@ -1,0 +1,62 @@
+name: Auto-answer Mom (and Karl)
+
+# Fires when an issue with `mom-question` or `karl-question` opens.
+# Calls Claude Sonnet 4.6 with the full plan as context, posts the answer
+# as a real-user comment via GH_TOKEN_ANSWER (which triggers answer-mom.yml,
+# which ships it as SMS or email).
+#
+# The agent can escalate by responding with `ESCALATE: <reason>` — those
+# get posted as bot comments tagging Karl, so they don't auto-ship.
+#
+# Required GitHub Actions secrets:
+#   - ANTHROPIC_API_KEY: from console.anthropic.com
+#   - GH_TOKEN_ANSWER:   fine-grained PAT with Issues: write on this repo
+#                        (comment author must NOT be a Bot, hence not GITHUB_TOKEN)
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Issue number to (re)answer"
+        required: true
+        type: string
+
+jobs:
+  answer:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.issue.labels.*.name, 'mom-question') ||
+      contains(github.event.issue.labels.*.name, 'karl-question')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run auto-answer (issue event)
+        if: github.event_name == 'issues'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN_ANSWER: ${{ secrets.GH_TOKEN_ANSWER }}
+          GH_TOKEN_BOT: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ toJSON(github.event.issue.labels.*.name) }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node .github/scripts/answer-mom.mjs
+
+      - name: Run auto-answer (manual dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN_ANSWER: ${{ secrets.GH_TOKEN_ANSWER }}
+          GH_TOKEN_BOT: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node .github/scripts/answer-mom.mjs --issue ${{ inputs.issue_number }}

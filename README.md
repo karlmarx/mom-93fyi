@@ -144,6 +144,35 @@ Mom, or for asking a quick question on the road.
 |---|---|
 | `INTAKE_URL` | `https://bedbug.93.fyi/api/bedbug/sms-outbound` (or `https://mom.93.fyi/api/bedbug/sms-outbound`) |
 | `INTAKE_SECRET` | Same value as the Vercel env var |
+| `ANTHROPIC_API_KEY` | From console.anthropic.com — used by the auto-answer agent |
+| `GH_TOKEN_ANSWER` | Fine-grained PAT, repo `mom-93fyi`, **Issues: write**. The auto-answer agent posts comments under this identity (must NOT be a Bot — that's how `answer-mom.yml` distinguishes draft escalations from real answers). |
+
+### Auto-answer agent
+
+`.github/workflows/auto-answer.yml` fires on `issues.opened` for either
+label. It calls Claude Sonnet 4.6 with `docs/plan.md` + the bedbug page
+TSX as context, posts the answer as a real-user comment (via
+`GH_TOKEN_ANSWER`), and the existing `answer-mom.yml` ships it.
+
+If the agent decides the question needs a human, it responds with
+`ESCALATE: <reason>` and the script posts a Bot comment tagging
+`@karlmarx` instead — those don't auto-ship. Karl posts his own
+reply, and that triggers `answer-mom.yml`.
+
+**Run locally** (against any open issue, useful for testing or for
+re-answering an issue the agent already escalated):
+
+```bash
+export ANTHROPIC_API_KEY=sk-...   # or put it in .env
+scripts/answer-local.sh 14
+```
+
+The script uses `gh auth token` for GitHub auth, so no extra setup
+needed beyond `gh` being signed in.
+
+**Manually re-trigger in CI:** the workflow has a `workflow_dispatch`
+input — Actions tab → Auto-answer Mom → Run workflow → paste an issue
+number.
 
 **Twilio Console setup:**
 
