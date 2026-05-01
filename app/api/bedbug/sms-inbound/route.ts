@@ -42,6 +42,7 @@ function rebuildWebhookUrl(req: NextRequest): string {
 export async function POST(req: NextRequest) {
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const momPhone = process.env.MOM_PHONE;
+  const karlPhone = process.env.KARL_PHONE;
   const ghToken = process.env.GITHUB_TOKEN_INTAKE;
   const repo = process.env.GITHUB_REPO ?? "karlmarx/mom-93fyi";
   const signature = req.headers.get("x-twilio-signature");
@@ -69,9 +70,15 @@ export async function POST(req: NextRequest) {
   const from = (params.From ?? "").trim();
   const body = (params.Body ?? "").trim();
 
-  // Whitelist Mom's number only. Silent 200 OK on anything else so Twilio
-  // doesn't retry — a 4xx would.
-  if (from !== momPhone) {
+  // Whitelist: Mom OR (optionally) Karl. The label tells the outbound
+  // endpoint where to deliver the answer. Silent 200 on anything else so
+  // Twilio doesn't retry — a 4xx would.
+  let originator: "mom" | "karl";
+  if (from === momPhone) {
+    originator = "mom";
+  } else if (karlPhone && from === karlPhone) {
+    originator = "karl";
+  } else {
     console.warn(`sms-inbound: dropping message from non-whitelisted ${from}`);
     return new NextResponse("", { status: 200 });
   }
@@ -79,10 +86,12 @@ export async function POST(req: NextRequest) {
     return new NextResponse("", { status: 200 });
   }
 
-  // Open a GitHub issue with the question. The 'mom-question' label is the
-  // gate the answer-mom workflow listens on.
+  // Open a GitHub issue. The label is the routing key the answer-mom
+  // workflow uses to fire — and how outbound knows where to deliver.
   const truncated = body.length > 60 ? `${body.slice(0, 57)}…` : body;
-  const title = `Mom asked: ${truncated}`;
+  const titlePrefix = originator === "mom" ? "Mom asked" : "Karl asked";
+  const label = originator === "mom" ? "mom-question" : "karl-question";
+  const title = `${titlePrefix}: ${truncated}`;
   const issueBody = [
     `**From:** ${from}`,
     `**Received:** ${new Date().toISOString()}`,
@@ -106,7 +115,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           title,
           body: issueBody,
-          labels: ["mom-question"],
+          labels: [label],
         }),
       },
     );

@@ -27,6 +27,7 @@ const SMS_MAX = 1500;
 type IntakeBody = {
   body?: unknown;
   issue?: unknown; // optional — issue number for backlinking
+  originator?: unknown; // "mom" | "karl" — defaults to "mom"
 };
 
 async function sendSms(
@@ -67,6 +68,7 @@ async function sendSms(
 async function sendEmail(
   body: string,
   toEmail: string,
+  subject: string,
 ): Promise<{ ok: boolean; status: number; detail?: string }> {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM ?? "ben@bedbug.93.fyi";
@@ -81,9 +83,9 @@ async function sendEmail(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: `Ben <${from}>`,
+      from: `Bedbug Q&A <${from}>`,
       to: [toEmail],
-      subject: "From Ben",
+      subject,
       text: body,
     }),
   });
@@ -117,6 +119,7 @@ export async function POST(req: NextRequest) {
 
   const momPhone = process.env.MOM_PHONE;
   const momEmail = process.env.MOM_EMAIL;
+  const karlEmail = process.env.KARL_EMAIL;
   const smsLive = process.env.SMS_LIVE === "true";
 
   if (!momPhone) {
@@ -135,11 +138,35 @@ export async function POST(req: NextRequest) {
     return new NextResponse("Empty body", { status: 400 });
   }
 
-  // Strip markdown, cap length. Hard rule: only Mom is ever a recipient,
-  // regardless of any 'to' field a caller may try to pass.
+  // The label-derived originator decides where the answer lands. Defaults
+  // to "mom" so the workflow's old contract still works if originator is
+  // omitted. The recipient is *never* taken from the request payload.
+  const originator =
+    payload.originator === "karl" ? "karl" : "mom";
+
   const text = stripMarkdown(raw);
   const truncated =
     text.length > SMS_MAX ? `${text.slice(0, SMS_MAX - 3)}...` : text;
+
+  // Karl always gets email — he's only ever a sender for testing/admin,
+  // never a real SMS recipient.
+  if (originator === "karl") {
+    if (!karlEmail) {
+      return new NextResponse("KARL_EMAIL not set", { status: 500 });
+    }
+    const result = await sendEmail(
+      truncated,
+      karlEmail,
+      "Bedbug Q&A — your reply",
+    );
+    if (!result.ok) {
+      console.error(
+        `sms-outbound: Karl email failed ${result.status}: ${result.detail}`,
+      );
+      return new NextResponse("Send failed", { status: 502 });
+    }
+    return NextResponse.json({ channel: "email", to: "karl" });
+  }
 
   if (smsLive) {
     const result = await sendSms(truncated, momPhone);
@@ -149,7 +176,7 @@ export async function POST(req: NextRequest) {
       );
       return new NextResponse("Send failed", { status: 502 });
     }
-    return NextResponse.json({ channel: "sms" });
+    return NextResponse.json({ channel: "sms", to: "mom" });
   }
 
   // Gap mode — A2P 10DLC isn't approved yet. Email Mom directly.
@@ -159,12 +186,12 @@ export async function POST(req: NextRequest) {
       { status: 500 },
     );
   }
-  const result = await sendEmail(truncated, momEmail);
+  const result = await sendEmail(truncated, momEmail, "From Ben");
   if (!result.ok) {
     console.error(
       `sms-outbound: email send failed ${result.status}: ${result.detail}`,
     );
     return new NextResponse("Send failed", { status: 502 });
   }
-  return NextResponse.json({ channel: "email" });
+  return NextResponse.json({ channel: "email", to: "mom" });
 }

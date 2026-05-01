@@ -115,6 +115,11 @@ Mom (SMS) → Twilio number → /api/bedbug/sms-inbound (Vercel)
                           → Twilio (or Resend email) → Mom
 ```
 
+Karl can also text the same number (when `KARL_PHONE` is set). Those
+messages get the `karl-question` label and answers route to `KARL_EMAIL`
+— always email, never SMS. Useful for testing the loop without bothering
+Mom, or for asking a quick question on the road.
+
 **Env vars (Vercel → Project → Settings → Environment Variables):**
 
 | Variable | Purpose |
@@ -122,8 +127,10 @@ Mom (SMS) → Twilio number → /api/bedbug/sms-inbound (Vercel)
 | `TWILIO_ACCOUNT_SID` | Twilio Console → Account Info |
 | `TWILIO_AUTH_TOKEN` | Twilio Console → Account Info. Used to validate inbound webhook signatures AND for outbound auth. |
 | `TWILIO_FROM_NUMBER` | The Twilio number you bought, E.164 (e.g. `+17655550123`) |
-| `MOM_PHONE` | Mom's cell number, E.164. Hardcoded as the only outbound recipient and the only accepted inbound sender. |
-| `MOM_EMAIL` | Mom's email — used as a fallback when `SMS_LIVE=false` (during the A2P 10DLC waiting period) |
+| `MOM_PHONE` | Mom's cell number, E.164. Accepted inbound sender; SMS recipient when `SMS_LIVE=true`. |
+| `MOM_EMAIL` | Mom's email — used as the recipient when `SMS_LIVE=false` (during the A2P 10DLC gap) |
+| `KARL_PHONE` | Optional. Karl's cell, E.164. When set, Karl can text the Twilio number too. |
+| `KARL_EMAIL` | Optional. Where Karl's answers land (always email, never SMS). Required when `KARL_PHONE` is set. |
 | `INTAKE_SECRET` | Random 32-char string. Generate with `openssl rand -hex 32`. Shared between the outbound endpoint and the GitHub Action. |
 | `GITHUB_TOKEN_INTAKE` | Fine-grained PAT scoped to this repo with **Issues: write**. Used by the inbound webhook to open issues. |
 | `GITHUB_REPO` | Optional override — defaults to `karlmarx/mom-93fyi` |
@@ -150,10 +157,11 @@ Mom (SMS) → Twilio number → /api/bedbug/sms-inbound (Vercel)
    - Save.
 6. Test: text the Twilio number from Mom's phone — a `mom-question` issue should open within seconds.
 
-**The `mom-question` label** is the gate. Make sure it exists in the repo
-(create it once at `https://github.com/karlmarx/mom-93fyi/labels`). The
-inbound webhook auto-applies it; the workflow only fires on issues that
-have it.
+**The `mom-question` and `karl-question` labels** are the gates. Make
+sure both exist in the repo (create them once at
+`https://github.com/karlmarx/mom-93fyi/labels`). The inbound webhook
+auto-applies the right one based on sender; the workflow fires on
+either.
 
 **During the A2P 10DLC gap:** keep `SMS_LIVE` unset or `false`. Outbound
 answers will be emailed to `MOM_EMAIL` via Resend. Flip to `"true"` once
