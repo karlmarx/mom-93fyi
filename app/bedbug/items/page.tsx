@@ -45,6 +45,22 @@ const CATEGORIES: Category[] = [
       "Always toss. Bed bugs love cardboard. Use plastic bins instead if you need storage.",
   },
   {
+    what: "Suitcases (hard-shell, rolling plastic)",
+    answer:
+      "Don't toss. Empty them. Wipe inside and out with hot soapy water (Dawn or any dish soap). Pay extra attention to the zipper tracks and the seams along the edges. Let dry, then store in the living room.",
+  },
+  {
+    what: "Suitcases (fabric or canvas)",
+    answer:
+      "Don't toss. Empty them. If it fits in the dryer: 45 minutes on HIGH. If it doesn't: put the empty suitcase by itself inside a black contractor bag, seal it, leave it in a hot sunny window or bathtub for 2 weeks. Heat kills them.",
+  },
+  {
+    what: "Hard surfaces — what to wipe with",
+    examples: "Suitcases, plastic bins, nightstand top, dresser drawers if you're keeping it.",
+    answer:
+      "Hot soapy water (just Dawn or any dish soap) is fine for most things. For zippers, seams, and cracks where soap won't reach: 91% isopropyl alcohol on a paper towel — kills on contact. Don't waste money on bed-bug sprays.",
+  },
+  {
     what: "Old or stained clothes you don't really wear",
     answer:
       'Toss. Bag, label "BED BUGS" in big letters, take to the outdoor trash.',

@@ -7,6 +7,39 @@ const RIGHT_NOW = [
   "The bedroom can wait. So can everything else.",
 ];
 
+type Fact = {
+  fear: string;
+  truth: string;
+};
+
+const FACTS: Fact[] = [
+  {
+    fear: "If I sleep on the new mattress, the bugs will come find me there.",
+    truth:
+      "The black plastic cups under the bed legs are little moats. Bed bugs can climb wood and fabric, but they cannot climb the smooth plastic walls — they fall in and can't get out. As long as the bed isn't touching the wall and the sheets don't touch the floor, the new bed is a safe island. That's the whole engineering trick.",
+  },
+  {
+    fear: "I have to live out of contractor bags for months.",
+    truth:
+      "No. The bags are for two specific things: soft stuff you don't need for daily life (extra sheets, off-season clothes, blankets) and clothes you've already heat-killed in the dryer. Your everyday clothes, toiletries, kitchen, all your normal life — stays accessible. Living out of trash bags is not the plan and never was.",
+  },
+  {
+    fear: "They are all over this apartment by now.",
+    truth:
+      "Maybe, maybe not — and the cups will tell you. Once they're under the new bed legs, anything in the bedroom that walks toward the bed falls into a cup. After a week of empty cups, you have your answer. If something does turn up in a cup, take a picture and text Ben — that's information, not bad news.",
+  },
+  {
+    fear: "They travel between apartments to find me.",
+    truth:
+      "More like a slow drift than a daily commute. Bed bugs prefer to stay within 5 to 20 feet of where they last fed. They don't seek out new bodies in other apartments unless an existing population gets very crowded. The neighbors aren't relevant to your treatment.",
+  },
+  {
+    fear: "They multiply too fast to keep up with.",
+    truth:
+      "They multiply, but slowly — a female lays a few eggs a day, eggs hatch in a week. They can survive a long time between meals (that's why the cups stay under the bed for 3 months) but they can't multiply if they can't reach you. The cups are how we make sure they can't.",
+  },
+];
+
 export default function OverwhelmedPage() {
   return (
     <article className="mx-auto flex w-full max-w-xl flex-col gap-6 rounded-xl bg-bedbug-cream p-6 shadow-sm sm:p-8">
@@ -50,6 +83,27 @@ export default function OverwhelmedPage() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="text-2xl font-semibold text-bedbug-ink">
+          When you&apos;re ready — five things that might help
+        </h2>
+        <p className="text-bedbug-body leading-relaxed text-bedbug-ink/80">
+          Read these slowly. Skip any that don&apos;t apply.
+        </p>
+        <ul className="flex flex-col gap-4">
+          {FACTS.map((fact, i) => (
+            <li key={i} className="rounded-md bg-bedbug-cream-deeper p-5">
+              <p className="text-bedbug-body font-semibold italic text-bedbug-ink/70">
+                &ldquo;{fact.fear}&rdquo;
+              </p>
+              <p className="mt-3 text-bedbug-body leading-relaxed text-bedbug-ink">
+                {fact.truth}
+              </p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="flex flex-col gap-3 rounded-md bg-bedbug-cream-deeper p-5">
