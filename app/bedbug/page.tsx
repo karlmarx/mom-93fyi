@@ -1,9 +1,39 @@
+"use client";
+
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
 import { HomeCard } from "./_components/HomeCard";
 
+const TAP_WINDOW_MS = 3000;
+const TAP_TARGET = 5;
+
 export default function BedbugHome() {
+  const router = useRouter();
+  const tapsRef = useRef<number[]>([]);
+
+  function handleLogoTap() {
+    const now = Date.now();
+    const recent = tapsRef.current.filter((t) => now - t < TAP_WINDOW_MS);
+    recent.push(now);
+    tapsRef.current = recent;
+    if (recent.length >= TAP_TARGET) {
+      tapsRef.current = [];
+      router.push("/bedbug/settings");
+    }
+  }
+
   return (
     <div className="flex flex-col gap-8">
-      <header className="flex flex-col gap-2">
+      <header
+        className="flex select-none flex-col gap-2"
+        onClick={handleLogoTap}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleLogoTap();
+        }}
+        tabIndex={0}
+        role="button"
+        aria-label="Mom's bed bug plan"
+      >
         <span className="text-bedbug-ink/60 text-sm uppercase tracking-wider">
           Mom&apos;s plan
         </span>
@@ -11,7 +41,7 @@ export default function BedbugHome() {
           Bed bug plan
         </h1>
         <p className="text-bedbug-body leading-relaxed text-bedbug-ink/80">
-          Four short pages. Read whichever one you need.
+          Read whichever page you need.
         </p>
       </header>
 
@@ -35,6 +65,13 @@ export default function BedbugHome() {
             href="/bedbug/laundry"
             title="How to do a load of laundry"
             body="Step by step. Dryer first, then wash, then dryer again."
+          />
+        </li>
+        <li>
+          <HomeCard
+            href="/bedbug/mattress-day"
+            title="🛏️ The new bed"
+            body="How the frame, mattress, cover, and 6 black cups go together."
           />
         </li>
         <li>

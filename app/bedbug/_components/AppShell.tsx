@@ -4,12 +4,15 @@ import Link from "next/link";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { UpdateChecker } from "./UpdateChecker";
+import { useLargeText } from "../_hooks/useLargeText";
 
 type Props = {
   children: ReactNode;
 };
 
 export function AppShell({ children }: Props) {
+  const [largeText] = useLargeText();
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!("serviceWorker" in navigator)) return;
@@ -17,6 +20,15 @@ export function AppShell({ children }: Props) {
       .register("/bedbug-sw.js", { scope: "/bedbug/" })
       .catch(() => undefined);
   }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const cls = "bedbug-large-text";
+    document.body.classList.toggle(cls, largeText);
+    return () => {
+      document.body.classList.remove(cls);
+    };
+  }, [largeText]);
 
   const version = process.env.NEXT_PUBLIC_BUILD_VERSION ?? "dev";
 
