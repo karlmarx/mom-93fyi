@@ -37,7 +37,68 @@
       radial-gradient(circle at 80% 90%, rgba(185, 84, 42, 0.04) 0%, transparent 50%);
     background-attachment: fixed;
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 28px 80px; }
+
+  /* Sticky TOC */
+  .toc-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(244, 239, 230, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 28px;
+  }
+  .toc-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+    flex-wrap: wrap;
+  }
+  .toc-link {
+    color: var(--ink-mute);
+    text-decoration: none;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+  .toc-link:hover, .toc-link.active { color: var(--sage-deep); }
+  .toc-link.active::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--sage-deep);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .practice-cta {
+    margin-left: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    background: var(--sage-deep);
+    color: var(--bg);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+  .practice-cta:hover { background: #2c4030; }
+
+  .top-spacer { height: 28px; }
 
   /* Header */
   .meta {
@@ -111,6 +172,7 @@
     border-bottom: 1px solid var(--rule);
     padding-bottom: 12px;
     margin: 56px 0 24px;
+    scroll-margin-top: 80px;
   }
   .section-num {
     font-family: 'Fraunces', serif;
@@ -145,6 +207,7 @@
     margin-bottom: 14px;
     border: 1px solid var(--rule);
     transition: transform 0.15s ease;
+    scroll-margin-top: 80px;
   }
   .pose:hover { transform: translateY(-1px); }
   .pose-head {
@@ -152,8 +215,25 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
+  .pose-body {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+    gap: 22px;
+    align-items: start;
+  }
+  .pose-text { min-width: 0; }
+  .pose-diagram {
+    width: 110px;
+    height: 110px;
+    color: var(--sage-deep);
+    background: rgba(93, 122, 94, 0.05);
+    border-radius: 8px;
+    padding: 10px;
+    align-self: start;
+  }
+  .pose-diagram svg { width: 100%; height: 100%; display: block; }
   .pose-name {
     font-family: 'Fraunces', serif;
     font-size: 21px;
@@ -187,7 +267,7 @@
   .pose-cue {
     font-size: 14.5px;
     color: var(--ink-soft);
-    margin: 10px 0 0;
+    margin: 0;
     line-height: 1.6;
   }
   .pose-mod {
@@ -209,6 +289,272 @@
     color: var(--warn);
     margin-bottom: 4px;
     font-weight: 600;
+  }
+
+  /* Pose library */
+  .library-head {
+    margin-top: 72px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    scroll-margin-top: 80px;
+  }
+  .library-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .library-head p {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin: 0;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+  .library-grid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .library-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 12px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    display: block;
+  }
+  .library-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--sage);
+    background: #fefcf6;
+  }
+  .lib-diagram {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 10px;
+    color: var(--sage-deep);
+  }
+  .lib-diagram svg { width: 100%; height: 100%; display: block; }
+  .lib-name {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .lib-sanskrit {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-mute);
+    font-size: 11px;
+    margin-top: 3px;
+    line-height: 1.2;
+  }
+  .lib-hold {
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* Practice mode overlay */
+  .practice-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 50% 100%, rgba(93, 122, 94, 0.05) 0%, transparent 60%);
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    padding: 18px 28px 24px;
+    overflow-y: auto;
+  }
+  .practice-overlay[data-open="true"] { display: flex; }
+  .practice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .practice-progress {
+    flex: 1;
+    height: 2px;
+    background: var(--rule);
+    border-radius: 999px;
+    overflow: hidden;
+    max-width: 320px;
+  }
+  .practice-progress-bar {
+    height: 100%;
+    background: var(--sage-deep);
+    width: 0;
+    transition: width 0.35s ease;
+  }
+  .practice-exit {
+    background: none;
+    border: none;
+    color: var(--ink-mute);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    font-weight: inherit;
+    padding: 4px 8px;
+  }
+  .practice-exit:hover { color: var(--ink); }
+  .practice-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 0;
+    width: 100%;
+  }
+  .practice-section-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+  .practice-diagram {
+    width: clamp(140px, 26vw, 220px);
+    height: clamp(140px, 26vw, 220px);
+    color: var(--sage-deep);
+    margin-bottom: 16px;
+    background: rgba(93, 122, 94, 0.05);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .practice-diagram svg { width: 100%; height: 100%; display: block; }
+  .practice-pose-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 4.5vw, 36px);
+    font-weight: 500;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .practice-pose-sanskrit {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 16px;
+    margin: 0 0 14px;
+    min-height: 1.2em;
+  }
+  .practice-pose-cue {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.55;
+    max-width: 480px;
+    margin: 0 0 16px;
+  }
+  .practice-thumb-rule {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clay);
+    background: var(--clay-soft);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+  .practice-timer-block {
+    margin: 0 0 22px;
+  }
+  .practice-timer-display {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 9vw, 76px);
+    font-weight: 300;
+    color: var(--sage-deep);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .practice-timer-display.done {
+    color: var(--clay);
+  }
+  .practice-hold-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+  .practice-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .practice-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 11px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: var(--bg-card);
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    min-width: 84px;
+  }
+  .practice-btn:hover { background: var(--bg); border-color: var(--ink-mute); }
+  .practice-btn.primary {
+    background: var(--sage-deep);
+    color: var(--bg);
+    border-color: var(--sage-deep);
+  }
+  .practice-btn.primary:hover { background: #2c4030; }
+  .practice-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .practice-keys {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 18px;
+    opacity: 0.7;
   }
 
   /* Outro */
@@ -268,8 +614,31 @@
     color: var(--ink-soft);
   }
 
+  /* Footer note about controls */
+  .foot-note {
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-align: center;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  @media (max-width: 720px) {
+    .pose-body { grid-template-columns: 1fr; }
+    .pose-diagram {
+      width: 90px;
+      height: 90px;
+      margin: 0 0 4px;
+      align-self: center;
+      justify-self: start;
+    }
+    .toc-bar { padding: 10px 18px; }
+    .toc-inner { gap: 12px; font-size: 10px; letter-spacing: 0.08em; }
+    .practice-cta { font-size: 10px; padding: 7px 12px; }
+  }
   @media (max-width: 600px) {
-    .wrap { padding: 36px 20px 60px; }
+    .wrap { padding: 0 18px 60px; }
     .pose { padding: 20px 20px; }
     .pose-head { flex-direction: column; gap: 8px; }
     .pose-hold { align-self: flex-start; }
@@ -277,11 +646,247 @@
     .section-title { padding: 0; flex-basis: 100%; order: 2; }
     .section-num { order: 1; }
     .section-time { order: 3; flex-basis: 100%; }
+    .practice-overlay { padding: 14px 18px 20px; }
+    .library-grid { grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); gap: 10px; }
+  }
+
+  /* Print */
+  @media print {
+    body {
+      background: white;
+      color: black;
+      background-image: none;
+      font-size: 10.5pt;
+      line-height: 1.45;
+    }
+    .toc-bar, .practice-overlay, .closing, .top-spacer, .foot-note { display: none !important; }
+    .wrap { max-width: 100%; padding: 0; margin: 0; }
+    h1 { font-size: 22pt; margin-bottom: 8pt; }
+    .lede { font-size: 11pt; }
+    .meta { color: #555; }
+    .constraints { background: #f8f8f8; border: 1px solid #999; box-shadow: none; padding: 12pt; }
+    .section-head { page-break-after: avoid; margin: 22pt 0 10pt; }
+    .section-title { font-size: 14pt; }
+    .pose {
+      box-shadow: none;
+      page-break-inside: avoid;
+      border: 1px solid #bbb;
+      padding: 10pt;
+      margin-bottom: 6pt;
+      background: white;
+    }
+    .pose-body { grid-template-columns: 1fr 70px; }
+    .pose-diagram { width: 70px; height: 70px; padding: 4pt; background: #f4f4f4; }
+    .pose-name { font-size: 12pt; }
+    .pose-sanskrit { font-size: 10pt; }
+    .pose-cue { font-size: 10pt; }
+    .pose-mod { background: #f4f4f4; border-left-color: #999; font-size: 9.5pt; }
+    .library-head, .library-grid { display: none; }
+    .glossary { page-break-before: always; }
+    a { color: black; text-decoration: none; }
   }
 </style>
 </head>
 <body>
+
+<!-- ========== SVG SYMBOL LIBRARY ========== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="pose-easyseat" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="86" rx="32" ry="3" fill="currentColor" opacity="0.12"/>
+      <path d="M 25 80 Q 50 74 75 80" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M 33 78 Q 50 72 67 78" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="50" y1="68" x2="50" y2="38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="42" x2="35" y2="65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="50" y1="42" x2="65" y2="65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="50" cy="30" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-breathing" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="86" rx="32" ry="3" fill="currentColor" opacity="0.12"/>
+      <path d="M 25 80 Q 50 74 75 80" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="50" y1="68" x2="50" y2="38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="42" x2="38" y2="65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 50 42 L 65 50 L 58 33" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="50" cy="30" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="44" cy="20" r="0.8" fill="currentColor" opacity="0.5"/>
+      <circle cx="40" cy="14" r="0.8" fill="currentColor" opacity="0.5"/>
+    </symbol>
+
+    <symbol id="pose-catcow" viewBox="0 0 100 100">
+      <line x1="10" y1="88" x2="90" y2="88" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <path d="M 22 60 Q 50 50 78 65" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="60" x2="24" y2="85" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="24" y1="85" x2="38" y2="85" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="78" y1="65" x2="80" y2="85" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="80" y1="85" x2="68" y2="85" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="56" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-forwardfold" viewBox="0 0 100 100">
+      <line x1="10" y1="88" x2="90" y2="88" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="28" y1="78" x2="88" y2="78" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 28 78 Q 32 60 50 60 Q 68 60 76 76" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="60" x2="80" y2="74" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="60" cy="62" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+      <line x1="56" y1="66" x2="84" y2="76" stroke="currentColor" stroke-width="0.9" stroke-dasharray="2.5 2" opacity="0.55"/>
+    </symbol>
+
+    <symbol id="pose-twist" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="86" rx="30" ry="3" fill="currentColor" opacity="0.12"/>
+      <path d="M 28 80 Q 42 76 52 70" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="52" y1="70" x2="74" y2="80" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="46" y1="68" x2="50" y2="38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 50 42 Q 38 50 40 68" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="50" y1="42" x2="68" y2="56" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="56" cy="30" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-threading" viewBox="0 0 100 100">
+      <line x1="10" y1="88" x2="90" y2="88" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <path d="M 22 76 Q 52 80 78 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="38" y1="76" x2="62" y2="86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="44" y1="74" x2="20" y2="86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="78" y1="64" x2="82" y2="85" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="82" y1="85" x2="70" y2="85" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="26" cy="80" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-mountain" viewBox="0 0 100 100">
+      <line x1="38" y1="92" x2="62" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="46" y1="50" x2="46" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="54" y1="50" x2="54" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="50" x2="50" y2="25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="46" y1="30" x2="38" y2="58" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="54" y1="30" x2="62" y2="58" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="50" cy="18" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-tree" viewBox="0 0 100 100">
+      <line x1="40" y1="92" x2="60" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="50" y1="52" x2="50" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 50 56 L 34 68 L 49 72" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="52" x2="50" y2="28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="32" x2="42" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="50" y1="32" x2="58" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="50" cy="22" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-warrior2" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <path d="M 50 55 L 28 70 L 28 92" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="55" x2="78" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="55" x2="50" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="36" x2="14" y2="36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="50" y1="36" x2="86" y2="36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="50" cy="25" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-triangle" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="58" y1="56" x2="22" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="58" y1="56" x2="80" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="58" y1="56" x2="32" y2="58" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="38" y1="58" x2="40" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="38" y1="58" x2="32" y2="80" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <rect x="25" y="78" width="14" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+      <circle cx="26" cy="56" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-highlunge" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <path d="M 50 56 L 36 76 L 36 92" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="56" x2="86" y2="90" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="56" x2="50" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="36" x2="42" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="50" y1="36" x2="58" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="50" cy="25" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-dolphin" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="14" y1="92" x2="32" y2="60" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="14" y1="92" x2="36" y2="92" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="32" y1="60" x2="58" y2="20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="58" y1="20" x2="80" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="22" cy="56" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-sphinx" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="42" y1="86" x2="92" y2="86" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 18 60 Q 30 70 46 82" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="18" y1="60" x2="20" y2="86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="20" y1="86" x2="36" y2="86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="14" cy="55" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-plank" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="22" y1="58" x2="86" y2="80" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="58" x2="24" y2="86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="24" y1="86" x2="38" y2="86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="86" y1="80" x2="90" y2="92" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="54" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-bridge" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <path d="M 20 88 Q 50 48 76 70" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="76" y1="70" x2="78" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="78" y1="92" x2="68" y2="92" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="22" y1="88" x2="42" y2="92" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="86" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-reclining" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="16" y1="88" x2="58" y2="88" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="58" y1="88" x2="62" y2="20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="58" y1="88" x2="92" y2="92" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 28 86 Q 38 60 56 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="52" y1="36" x2="62" y2="22" stroke="currentColor" stroke-width="0.9" stroke-dasharray="2.5 2" opacity="0.6"/>
+      <circle cx="14" cy="84" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-legsupwall" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="68" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="68" y1="10" x2="68" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="20" y1="88" x2="60" y2="88" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="56" y1="88" x2="60" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="60" y1="88" x2="64" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="34" y1="88" x2="34" y2="78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="34" y1="88" x2="34" y2="98" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="86" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="pose-corpse" viewBox="0 0 100 100">
+      <line x1="10" y1="92" x2="90" y2="92" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="20" y1="80" x2="86" y2="80" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="86" y1="80" x2="92" y2="74" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="86" y1="80" x2="92" y2="86" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="42" y1="80" x2="36" y2="70" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="42" y1="80" x2="36" y2="90" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="14" cy="78" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ========== STICKY TOC ========== -->
+<nav class="toc-bar" aria-label="Sequence sections">
+  <div class="toc-inner">
+    <a class="toc-link" href="#section-arrival" data-toc-target="arrival">i. Arrival</a>
+    <a class="toc-link" href="#section-mobility" data-toc-target="mobility">ii. Mobility</a>
+    <a class="toc-link" href="#section-standing" data-toc-target="standing">iii. Standing</a>
+    <a class="toc-link" href="#section-floor" data-toc-target="floor">iv. Floor</a>
+    <a class="toc-link" href="#section-close" data-toc-target="close">v. Close</a>
+    <a class="toc-link" href="#library" data-toc-target="library">Library</a>
+    <button type="button" class="practice-cta" data-practice-start>▶ Practice Mode</button>
+  </div>
+</nav>
+
 <div class="wrap">
+<div class="top-spacer"></div>
 
   <div class="meta">A 50-Minute Sequence · Thumb-Safe</div>
   <h1>Forearm <em>Flow</em></h1>
@@ -297,292 +902,389 @@
   </div>
 
   <!-- ========== SECTION 1 ========== -->
-  <div class="section-head">
+  <div class="section-head" id="section-arrival" data-section-id="arrival">
     <span class="section-num">i.</span>
     <h2 class="section-title">Arrival</h2>
     <span class="section-time">~6 min</span>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-easyseat-card" data-diagram="pose-easyseat" data-section="i. Arrival">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Easy Seat on Bolster<span class="pose-sanskrit">Sukhāsana</span></h3>
       </div>
       <span class="pose-hold">2 min</span>
     </div>
-    <p class="pose-cue">Sit cross-legged with hips elevated on a bolster or folded blanket. Hands rest palms-up on the thighs, fingers naturally curled. Settle the breath. Three rounds of slow inhale through the nose, soft sigh out through the mouth — then close the mouth and let the breath become quiet.</p>
-    <div class="pose-mod">
-      <strong>Hand note</strong>
-      Skip cin mudra (thumb-to-index) if any contact aggravates. Palms-up with relaxed fingers is fine; gravity does the work.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Sit cross-legged with hips elevated on a bolster or folded blanket. Hands rest palms-up on the thighs, fingers naturally curled. Settle the breath. Three rounds of slow inhale through the nose, soft sigh out through the mouth — then close the mouth and let the breath become quiet.</p>
+        <div class="pose-mod">
+          <strong>Hand note</strong>
+          Skip cin mudra (thumb-to-index) if any contact aggravates. Palms-up with relaxed fingers is fine; gravity does the work.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-easyseat"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-breathing-card" data-diagram="pose-breathing" data-section="i. Arrival">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Alternate Nostril Breathing<span class="pose-sanskrit">Nāḍī Śodhana</span></h3>
       </div>
       <span class="pose-hold">3 min</span>
     </div>
-    <p class="pose-cue">Use the right hand. Close the right nostril with the ring finger pad, inhale left. Switch and exhale right. Continue 8–12 rounds, even breath in and out.</p>
-    <div class="pose-mod">
-      <strong>Modification</strong>
-      Skip Vishnu mudra entirely — it loads the thumb closing the right nostril. Use the ring finger and pinky pads to close both nostrils alternately, leaving the thumb tucked passively into the palm. If even that's too much, do the breath visualization-only: imagine the airflow switching sides.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Use the right hand. Close the right nostril with the ring finger pad, inhale left. Switch and exhale right. Continue 8–12 rounds, even breath in and out.</p>
+        <div class="pose-mod">
+          <strong>Modification</strong>
+          Skip Vishnu mudra entirely — it loads the thumb closing the right nostril. Use the ring finger and pinky pads to close both nostrils alternately, leaving the thumb tucked passively into the palm. If even that's too much, do the breath visualization-only: imagine the airflow switching sides.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-breathing"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-catcow-card" data-diagram="pose-catcow" data-section="i. Arrival">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Cat–Cow on Forearms<span class="pose-sanskrit">Mārjaryāsana / Bitilāsana</span></h3>
       </div>
       <span class="pose-hold">8 cycles</span>
     </div>
-    <p class="pose-cue">From a forearm plank stance — forearms parallel, elbows under shoulders — drop to knees so you're in a forearm tabletop. Inhale, drop the belly, lift the chest and tailbone (cow). Exhale, round high through the upper back (cat). Move with the breath.</p>
-    <div class="pose-mod">
-      <strong>Substitution</strong>
-      This replaces the standard hands-and-knees version. The forearm contact spreads load across the ulna; zero pressure on the palm or thumb.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">From a forearm plank stance — forearms parallel, elbows under shoulders — drop to knees so you're in a forearm tabletop. Inhale, drop the belly, lift the chest and tailbone (cow). Exhale, round high through the upper back (cat). Move with the breath.</p>
+        <div class="pose-mod">
+          <strong>Substitution</strong>
+          This replaces the standard hands-and-knees version. The forearm contact spreads load across the ulna; zero pressure on the palm or thumb.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-catcow"/></svg></div>
     </div>
   </div>
 
   <!-- ========== SECTION 2 ========== -->
-  <div class="section-head">
+  <div class="section-head" id="section-mobility" data-section-id="mobility">
     <span class="section-num">ii.</span>
     <h2 class="section-title">Mobility</h2>
     <span class="section-time">~8 min</span>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-forwardfold-card" data-diagram="pose-forwardfold" data-section="ii. Mobility">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Seated Forward Fold<span class="pose-sanskrit">Paścimottānāsana</span></h3>
       </div>
       <span class="pose-hold">2 min</span>
     </div>
-    <p class="pose-cue">Legs extended, sit bones rooted. Loop a strap around the soles of both feet. Inhale long through the spine; exhale fold forward from the hips. Use the strap to draw the chest toward the thighs without rounding through the lumbar.</p>
-    <div class="pose-mod">
-      <strong>Strap technique</strong>
-      Don't grip the strap with the fingers. Loop the strap once around the back of each hand so it sits against the wrist, then close the fingers loosely around it. The pull travels through the wrist and forearm — the thumb stays passive.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Legs extended, sit bones rooted. Loop a strap around the soles of both feet. Inhale long through the spine; exhale fold forward from the hips. Use the strap to draw the chest toward the thighs without rounding through the lumbar.</p>
+        <div class="pose-mod">
+          <strong>Strap technique</strong>
+          Don't grip the strap with the fingers. Loop the strap once around the back of each hand so it sits against the wrist, then close the fingers loosely around it. The pull travels through the wrist and forearm — the thumb stays passive.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-forwardfold"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-twist-card" data-diagram="pose-twist" data-section="ii. Mobility">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Seated Spinal Twist<span class="pose-sanskrit">Ardha Matsyendrāsana</span></h3>
       </div>
       <span class="pose-hold">90s each side</span>
     </div>
-    <p class="pose-cue">Right leg crosses over the left, foot flat outside the left thigh. Left leg can extend or fold. Inhale lengthen, exhale twist right. Left elbow rests outside the right thigh; right hand floats just behind the hip — fingertips brushing the floor, no weight bearing.</p>
-    <div class="pose-mod">
-      <strong>Modification</strong>
-      Standard cue is "press the back hand into the floor." Don't. Hover the hand instead, or let the back of the hand rest on the floor with no load. The twist comes from the breath and the front-elbow lever.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Right leg crosses over the left, foot flat outside the left thigh. Left leg can extend or fold. Inhale lengthen, exhale twist right. Left elbow rests outside the right thigh; right hand floats just behind the hip — fingertips brushing the floor, no weight bearing.</p>
+        <div class="pose-mod">
+          <strong>Modification</strong>
+          Standard cue is "press the back hand into the floor." Don't. Hover the hand instead, or let the back of the hand rest on the floor with no load. The twist comes from the breath and the front-elbow lever.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-twist"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-threading-card" data-diagram="pose-threading" data-section="ii. Mobility">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Threading the Needle<span class="pose-sanskrit"></span></h3>
       </div>
       <span class="pose-hold">90s each side</span>
     </div>
-    <p class="pose-cue">From forearm tabletop, slide the right forearm under the left, palm up. Right shoulder and temple settle to the floor. Left forearm extends overhead along the floor or props onto the bolster.</p>
-    <div class="pose-mod">
-      <strong>Hand note</strong>
-      Standard version threads through with a flat palm pressing down — this asks for thumb stability. The forearm version takes the same shoulder shape with zero hand load.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">From forearm tabletop, slide the right forearm under the left, palm up. Right shoulder and temple settle to the floor. Left forearm extends overhead along the floor or props onto the bolster.</p>
+        <div class="pose-mod">
+          <strong>Hand note</strong>
+          Standard version threads through with a flat palm pressing down — this asks for thumb stability. The forearm version takes the same shoulder shape with zero hand load.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-threading"/></svg></div>
     </div>
   </div>
 
   <!-- ========== SECTION 3 ========== -->
-  <div class="section-head">
+  <div class="section-head" id="section-standing" data-section-id="standing">
     <span class="section-num">iii.</span>
     <h2 class="section-title">Standing</h2>
     <span class="section-time">~14 min</span>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-mountain-card" data-diagram="pose-mountain" data-section="iii. Standing">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Mountain<span class="pose-sanskrit">Tāḍāsana</span></h3>
       </div>
       <span class="pose-hold">5 breaths</span>
     </div>
-    <p class="pose-cue">Feet hip-width, weight even. Crown lifts, shoulders soften back. Arms long beside the body, palms facing forward, fingers spread without effort.</p>
-    <div class="pose-mod">
-      <strong>Hand note</strong>
-      No prayer at the chest — the standard anjali mudra creates light thumb pressure. Just let the arms hang.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Feet hip-width, weight even. Crown lifts, shoulders soften back. Arms long beside the body, palms facing forward, fingers spread without effort.</p>
+        <div class="pose-mod">
+          <strong>Hand note</strong>
+          No prayer at the chest — the standard anjali mudra creates light thumb pressure. Just let the arms hang.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-mountain"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-tree-card" data-diagram="pose-tree" data-section="iii. Standing">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Tree<span class="pose-sanskrit">Vṛkṣāsana</span></h3>
       </div>
       <span class="pose-hold">45s each side</span>
     </div>
-    <p class="pose-cue">Shift to the standing leg, foot of the other leg to the calf or inner thigh (never the knee). Arms reach overhead, biceps frame the ears. Fingers spread.</p>
-    <div class="pose-mod">
-      <strong>Hand note</strong>
-      Skip the overhead palm-press. Keep the hands a few inches apart with fingers wide; the upward reach is what matters.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Shift to the standing leg, foot of the other leg to the calf or inner thigh (never the knee). Arms reach overhead, biceps frame the ears. Fingers spread.</p>
+        <div class="pose-mod">
+          <strong>Hand note</strong>
+          Skip the overhead palm-press. Keep the hands a few inches apart with fingers wide; the upward reach is what matters.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-tree"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-warrior2-card" data-diagram="pose-warrior2" data-section="iii. Standing">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Warrior II<span class="pose-sanskrit">Vīrabhadrāsana II</span></h3>
       </div>
       <span class="pose-hold">5 breaths each side</span>
     </div>
-    <p class="pose-cue">Wide stance, front foot turned out, back foot at 90. Front knee tracks over the second toe. Arms extend long parallel to the floor, palms down. Gaze over the front middle finger.</p>
-    <div class="pose-mod">
-      <strong>Hand note</strong>
-      Fingers stay long but soft — no spike-fingered tension. The arms work isometrically; the hands ride along.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Wide stance, front foot turned out, back foot at 90. Front knee tracks over the second toe. Arms extend long parallel to the floor, palms down. Gaze over the front middle finger.</p>
+        <div class="pose-mod">
+          <strong>Hand note</strong>
+          Fingers stay long but soft — no spike-fingered tension. The arms work isometrically; the hands ride along.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-warrior2"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-triangle-card" data-diagram="pose-triangle" data-section="iii. Standing">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Triangle<span class="pose-sanskrit">Trikoṇāsana</span></h3>
       </div>
       <span class="pose-hold">5 breaths each side</span>
     </div>
-    <p class="pose-cue">From Warrior II, straighten the front leg. Reach the front arm long, then hinge at the hip and bring the front hand to a block stacked on its tallest setting outside the front shin. Top arm reaches up.</p>
-    <div class="pose-mod">
-      <strong>Block technique</strong>
-      Rest the back of the hand on the block, or set the heel of the hand on the block with the fingers raised — both unload the thumb. Don't reach for the floor and don't grip the block; let it support, not anchor.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">From Warrior II, straighten the front leg. Reach the front arm long, then hinge at the hip and bring the front hand to a block stacked on its tallest setting outside the front shin. Top arm reaches up.</p>
+        <div class="pose-mod">
+          <strong>Block technique</strong>
+          Rest the back of the hand on the block, or set the heel of the hand on the block with the fingers raised — both unload the thumb. Don't reach for the floor and don't grip the block; let it support, not anchor.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-triangle"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-highlunge-card" data-diagram="pose-highlunge" data-section="iii. Standing">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">High Lunge<span class="pose-sanskrit">Aśva Sañcalanāsana</span></h3>
       </div>
       <span class="pose-hold">5 breaths each side</span>
     </div>
-    <p class="pose-cue">Front knee over ankle, back leg long and strong. Arms reach overhead, framing the ears, ribs lifted away from the front hip crease.</p>
-    <div class="pose-mod">
-      <strong>Transition note</strong>
-      Enter and exit by stepping rather than flowing through a vinyasa. No down dog, no chaturanga.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Front knee over ankle, back leg long and strong. Arms reach overhead, framing the ears, ribs lifted away from the front hip crease.</p>
+        <div class="pose-mod">
+          <strong>Transition note</strong>
+          Enter and exit by stepping rather than flowing through a vinyasa. No down dog, no chaturanga.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-highlunge"/></svg></div>
     </div>
   </div>
 
   <!-- ========== SECTION 4 ========== -->
-  <div class="section-head">
+  <div class="section-head" id="section-floor" data-section-id="floor">
     <span class="section-num">iv.</span>
     <h2 class="section-title">Floor &amp; Backbends</h2>
     <span class="section-time">~12 min</span>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-dolphin-card" data-diagram="pose-dolphin" data-section="iv. Floor &amp; Backbends">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Dolphin<span class="pose-sanskrit">Ardha Piñca Mayūrāsana</span></h3>
       </div>
       <span class="pose-hold">5 breaths × 2</span>
     </div>
-    <p class="pose-cue">Forearms parallel on the mat, elbows under shoulders, hands soft. Tuck the toes and lift the hips toward the ceiling. Heels reach toward the floor; head hangs.</p>
-    <div class="pose-mod">
-      <strong>Substitution</strong>
-      This is your downward dog. Same posterior-chain stretch, same shoulder load, but the weight pours through the elbow and the meat of the forearm — not the wrist or thumb.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Forearms parallel on the mat, elbows under shoulders, hands soft. Tuck the toes and lift the hips toward the ceiling. Heels reach toward the floor; head hangs.</p>
+        <div class="pose-mod">
+          <strong>Substitution</strong>
+          This is your downward dog. Same posterior-chain stretch, same shoulder load, but the weight pours through the elbow and the meat of the forearm — not the wrist or thumb.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-dolphin"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-sphinx-card" data-diagram="pose-sphinx" data-section="iv. Floor &amp; Backbends">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Sphinx<span class="pose-sanskrit">Sālamba Bhujaṅgāsana</span></h3>
       </div>
       <span class="pose-hold">8 breaths</span>
     </div>
-    <p class="pose-cue">Lie prone. Forearms on the floor, elbows directly under the shoulders, palms down or palms together. Press the forearms down (not the hands), draw the chest forward and up. Glutes soft, low back long.</p>
-    <div class="pose-mod">
-      <strong>Substitution</strong>
-      Replaces cobra and upward dog. Hand orientation is your choice: palms-down with relaxed fingers, or one forearm crossed over the other so the hands rest with no load at all.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Lie prone. Forearms on the floor, elbows directly under the shoulders, palms down or palms together. Press the forearms down (not the hands), draw the chest forward and up. Glutes soft, low back long.</p>
+        <div class="pose-mod">
+          <strong>Substitution</strong>
+          Replaces cobra and upward dog. Hand orientation is your choice: palms-down with relaxed fingers, or one forearm crossed over the other so the hands rest with no load at all.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-sphinx"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-plank-card" data-diagram="pose-plank" data-section="iv. Floor &amp; Backbends">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Forearm Plank<span class="pose-sanskrit"></span></h3>
       </div>
       <span class="pose-hold">30–45s × 2</span>
     </div>
-    <p class="pose-cue">From sphinx, tuck toes and lift the knees. Body in one long line — heels reach back, crown reaches forward, navel draws toward the spine.</p>
-    <div class="pose-mod">
-      <strong>Hand note</strong>
-      Hands can rest palms-down with soft fingers, or interlace the fingers loosely (no thumb compression). The whole load is at the elbow and forearm.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">From sphinx, tuck toes and lift the knees. Body in one long line — heels reach back, crown reaches forward, navel draws toward the spine.</p>
+        <div class="pose-mod">
+          <strong>Hand note</strong>
+          Hands can rest palms-down with soft fingers, or interlace the fingers loosely (no thumb compression). The whole load is at the elbow and forearm.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-plank"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-bridge-card" data-diagram="pose-bridge" data-section="iv. Floor &amp; Backbends">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Bridge<span class="pose-sanskrit">Setu Bandhāsana</span></h3>
       </div>
       <span class="pose-hold">8 breaths × 2</span>
     </div>
-    <p class="pose-cue">Lie supine, knees bent, feet hip-width and parallel. Press through the heels, lift the hips. Arms stay long beside the body, palms-up or palms-down with soft fingers.</p>
-    <div class="pose-mod">
-      <strong>Modification</strong>
-      Skip the traditional interlaced-finger bind under the back. Instead, place a block under the sacrum on its medium height for a supported variation, or simply leave the arms long with no hand engagement.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Lie supine, knees bent, feet hip-width and parallel. Press through the heels, lift the hips. Arms stay long beside the body, palms-up or palms-down with soft fingers.</p>
+        <div class="pose-mod">
+          <strong>Modification</strong>
+          Skip the traditional interlaced-finger bind under the back. Instead, place a block under the sacrum on its medium height for a supported variation, or simply leave the arms long with no hand engagement.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-bridge"/></svg></div>
     </div>
   </div>
 
   <!-- ========== SECTION 5 ========== -->
-  <div class="section-head">
+  <div class="section-head" id="section-close" data-section-id="close">
     <span class="section-num">v.</span>
     <h2 class="section-title">Inversion &amp; Close</h2>
     <span class="section-time">~10 min</span>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-reclining-card" data-diagram="pose-reclining" data-section="v. Inversion &amp; Close">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Reclining Hand-to-Big-Toe<span class="pose-sanskrit">Supta Padāṅguṣṭhāsana</span></h3>
       </div>
       <span class="pose-hold">90s each side</span>
     </div>
-    <p class="pose-cue">Supine. Loop a strap around the arch of the right foot, both ends in the right hand. Extend the leg toward the ceiling. Left leg long on the floor or knee bent. Repeat second variation: right leg opens out to the right side, strap stays in the right hand.</p>
-    <div class="pose-mod">
-      <strong>Strap technique</strong>
-      Same as the seated forward fold — wrap the strap once around the back of the hand so it bears against the wrist, fingers loose. No big-toe grasp, no clamped grip.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Supine. Loop a strap around the arch of the right foot, both ends in the right hand. Extend the leg toward the ceiling. Left leg long on the floor or knee bent. Repeat second variation: right leg opens out to the right side, strap stays in the right hand.</p>
+        <div class="pose-mod">
+          <strong>Strap technique</strong>
+          Same as the seated forward fold — wrap the strap once around the back of the hand so it bears against the wrist, fingers loose. No big-toe grasp, no clamped grip.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-reclining"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-legsupwall-card" data-diagram="pose-legsupwall" data-section="v. Inversion &amp; Close">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Legs Up the Wall<span class="pose-sanskrit">Viparīta Karaṇī</span></h3>
       </div>
       <span class="pose-hold">5 min</span>
     </div>
-    <p class="pose-cue">Hips a few inches from the wall, legs vertical, sacrum on the floor or on a low bolster. Arms rest in a wide T or relaxed by the sides, palms up.</p>
-    <div class="pose-mod">
-      <strong>Inversion note</strong>
-      This replaces shoulder stand and headstand. Zero hand load, full inversion benefit, deeply restorative.
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Hips a few inches from the wall, legs vertical, sacrum on the floor or on a low bolster. Arms rest in a wide T or relaxed by the sides, palms up.</p>
+        <div class="pose-mod">
+          <strong>Inversion note</strong>
+          This replaces shoulder stand and headstand. Zero hand load, full inversion benefit, deeply restorative.
+        </div>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-legsupwall"/></svg></div>
     </div>
   </div>
 
-  <div class="pose">
+  <div class="pose" id="pose-corpse-card" data-diagram="pose-corpse" data-section="v. Inversion &amp; Close">
     <div class="pose-head">
       <div>
         <h3 class="pose-name">Corpse<span class="pose-sanskrit">Śavāsana</span></h3>
       </div>
       <span class="pose-hold">5–7 min</span>
     </div>
-    <p class="pose-cue">Lie supine, legs splayed naturally, arms a few inches from the body, palms turned up. Eyes close. Soften the jaw, soften the brow, soften the hands. Stay until the breath disappears into the body.</p>
+    <div class="pose-body">
+      <div class="pose-text">
+        <p class="pose-cue">Lie supine, legs splayed naturally, arms a few inches from the body, palms turned up. Eyes close. Soften the jaw, soften the brow, soften the hands. Stay until the breath disappears into the body.</p>
+      </div>
+      <div class="pose-diagram"><svg><use href="#pose-corpse"/></svg></div>
+    </div>
   </div>
 
   <div class="closing">
     <p>"The hand that does not grip can still hold everything."</p>
     <div class="sig">— end of practice —</div>
   </div>
+
+  <!-- ========== POSE LIBRARY ========== -->
+  <div class="library-head" id="library" data-section-id="library">
+    <h2>Pose Library</h2>
+    <p>Tap any pose to jump to its full cue.</p>
+  </div>
+  <div class="library-grid" id="library-grid"></div>
 
   <div class="glossary">
     <h3>Quick Reference — Standard Pose → Thumb-Safe Swap</h3>
@@ -610,6 +1312,230 @@
     </dl>
   </div>
 
+  <p class="foot-note">Practice Mode keys: <strong>Space</strong> start/pause timer · <strong>← →</strong> navigate · <strong>Esc</strong> exit</p>
+
 </div>
+
+<!-- ========== PRACTICE MODE OVERLAY ========== -->
+<div class="practice-overlay" id="practice-overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Practice mode">
+  <div class="practice-header">
+    <span id="practice-progress-label">1 of 18</span>
+    <div class="practice-progress"><div class="practice-progress-bar" id="practice-progress-bar"></div></div>
+    <button type="button" class="practice-exit" id="practice-exit" aria-label="Exit practice mode">Esc — Exit</button>
+  </div>
+  <div class="practice-stage" id="practice-stage">
+    <div class="practice-section-tag" id="practice-section-tag"></div>
+    <div class="practice-diagram" id="practice-diagram"></div>
+    <h2 class="practice-pose-name" id="practice-pose-name"></h2>
+    <div class="practice-pose-sanskrit" id="practice-pose-sanskrit"></div>
+    <p class="practice-pose-cue" id="practice-pose-cue"></p>
+    <div class="practice-thumb-rule">Thumb passive · fingers loose</div>
+    <div class="practice-timer-block">
+      <div class="practice-timer-display" id="practice-timer-display">0:00</div>
+      <div class="practice-hold-label" id="practice-hold-label"></div>
+    </div>
+    <div class="practice-controls">
+      <button type="button" class="practice-btn" id="practice-prev">← Prev</button>
+      <button type="button" class="practice-btn primary" id="practice-timer-toggle">▶ Start timer</button>
+      <button type="button" class="practice-btn" id="practice-next">Next →</button>
+    </div>
+    <div class="practice-keys">Space: timer · Arrows: navigate · Esc: exit</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // ---------- Build library grid from .pose cards ----------
+  var libraryGrid = document.getElementById('library-grid');
+  var poseEls = Array.prototype.slice.call(document.querySelectorAll('.pose'));
+
+  function poseData(el) {
+    var nameNode = el.querySelector('.pose-name');
+    var name = '';
+    if (nameNode && nameNode.firstChild) {
+      name = (nameNode.firstChild.textContent || '').trim();
+    }
+    var sanskritEl = el.querySelector('.pose-sanskrit');
+    var sanskrit = sanskritEl ? sanskritEl.textContent.trim() : '';
+    var hold = (el.querySelector('.pose-hold') || {}).textContent;
+    var cueEl = el.querySelector('.pose-cue');
+    var cue = cueEl ? cueEl.textContent.trim() : '';
+    return {
+      id: el.id,
+      name: name,
+      sanskrit: sanskrit,
+      hold: hold ? hold.trim() : '',
+      cue: cue,
+      diagram: el.dataset.diagram || '',
+      section: el.dataset.section || ''
+    };
+  }
+
+  var poses = poseEls.map(poseData);
+
+  poses.forEach(function(p) {
+    var a = document.createElement('a');
+    a.className = 'library-card';
+    a.href = '#' + p.id;
+    a.innerHTML =
+      '<div class="lib-diagram"><svg><use href="#' + p.diagram + '"/></svg></div>' +
+      '<div class="lib-name">' + escapeHtml(p.name) + '</div>' +
+      (p.sanskrit ? '<div class="lib-sanskrit">' + escapeHtml(p.sanskrit) + '</div>' : '<div class="lib-sanskrit">&nbsp;</div>') +
+      '<div class="lib-hold">' + escapeHtml(p.hold) + '</div>';
+    libraryGrid.appendChild(a);
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // ---------- Practice mode ----------
+  var overlay = document.getElementById('practice-overlay');
+  var diagramEl = document.getElementById('practice-diagram');
+  var nameEl = document.getElementById('practice-pose-name');
+  var sanskritEl = document.getElementById('practice-pose-sanskrit');
+  var cueEl = document.getElementById('practice-pose-cue');
+  var sectionTagEl = document.getElementById('practice-section-tag');
+  var timerEl = document.getElementById('practice-timer-display');
+  var holdLabelEl = document.getElementById('practice-hold-label');
+  var progressBar = document.getElementById('practice-progress-bar');
+  var progressLabel = document.getElementById('practice-progress-label');
+  var btnPrev = document.getElementById('practice-prev');
+  var btnNext = document.getElementById('practice-next');
+  var btnTimer = document.getElementById('practice-timer-toggle');
+  var btnExit = document.getElementById('practice-exit');
+  var startBtns = document.querySelectorAll('[data-practice-start]');
+
+  var idx = 0;
+  var seconds = 0;
+  var timerHandle = null;
+
+  function parseHold(h) {
+    if (!h) return 60;
+    var m;
+    if ((m = h.match(/(\d+)\s*min/i))) return parseInt(m[1], 10) * 60;
+    if ((m = h.match(/(\d+)(?:[–-](\d+))?\s*s/i))) return parseInt(m[2] || m[1], 10);
+    if ((m = h.match(/(\d+)\s*breath/i))) return parseInt(m[1], 10) * 5;
+    if ((m = h.match(/(\d+)\s*cycle/i))) return parseInt(m[1], 10) * 8;
+    return 60;
+  }
+
+  function fmt(s) {
+    if (s < 0) s = 0;
+    var m = Math.floor(s / 60);
+    var r = s % 60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  function stopTimer() {
+    if (timerHandle) {
+      clearInterval(timerHandle);
+      timerHandle = null;
+    }
+    if (seconds <= 0) {
+      btnTimer.textContent = '↻ Reset';
+    } else {
+      btnTimer.textContent = '▶ Resume';
+    }
+  }
+
+  function startTimer() {
+    if (timerHandle) return;
+    if (seconds <= 0) {
+      seconds = parseHold(poses[idx].hold);
+      timerEl.textContent = fmt(seconds);
+      timerEl.classList.remove('done');
+    }
+    btnTimer.textContent = '⏸ Pause';
+    timerHandle = setInterval(function() {
+      seconds--;
+      timerEl.textContent = fmt(seconds);
+      if (seconds <= 0) {
+        clearInterval(timerHandle);
+        timerHandle = null;
+        timerEl.classList.add('done');
+        btnTimer.textContent = '↻ Reset';
+        if (navigator.vibrate) try { navigator.vibrate(120); } catch (e) {}
+      }
+    }, 1000);
+  }
+
+  function render() {
+    var p = poses[idx];
+    seconds = parseHold(p.hold);
+    timerEl.classList.remove('done');
+    if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+
+    diagramEl.innerHTML = p.diagram ? '<svg><use href="#' + p.diagram + '"/></svg>' : '';
+    nameEl.textContent = p.name;
+    sanskritEl.textContent = p.sanskrit || '';
+    cueEl.textContent = p.cue;
+    timerEl.textContent = fmt(seconds);
+    holdLabelEl.textContent = p.hold;
+    sectionTagEl.textContent = p.section || '';
+    btnTimer.textContent = '▶ Start timer';
+
+    progressBar.style.width = ((idx + 1) / poses.length * 100) + '%';
+    progressLabel.textContent = (idx + 1) + ' of ' + poses.length;
+    btnPrev.disabled = idx === 0;
+    btnNext.disabled = idx === poses.length - 1;
+  }
+
+  function open(startIdx) {
+    idx = startIdx || 0;
+    overlay.dataset.open = 'true';
+    document.body.style.overflow = 'hidden';
+    render();
+  }
+
+  function close() {
+    overlay.dataset.open = 'false';
+    document.body.style.overflow = '';
+    if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+  }
+
+  startBtns.forEach(function(b) { b.addEventListener('click', function() { open(0); }); });
+  btnExit.addEventListener('click', close);
+  btnPrev.addEventListener('click', function() { if (idx > 0) { idx--; render(); } });
+  btnNext.addEventListener('click', function() { if (idx < poses.length - 1) { idx++; render(); } });
+  btnTimer.addEventListener('click', function() {
+    if (timerHandle) { stopTimer(); }
+    else if (seconds <= 0) {
+      seconds = parseHold(poses[idx].hold);
+      timerEl.textContent = fmt(seconds);
+      timerEl.classList.remove('done');
+      startTimer();
+    } else { startTimer(); }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (overlay.dataset.open !== 'true') return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowRight') { e.preventDefault(); btnNext.click(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); btnPrev.click(); }
+    if (e.key === ' ') { e.preventDefault(); btnTimer.click(); }
+  });
+
+  // ---------- TOC active section ----------
+  var tocLinks = document.querySelectorAll('.toc-link');
+  var sections = document.querySelectorAll('[data-section-id]');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var id = e.target.dataset.sectionId;
+          tocLinks.forEach(function(l) {
+            l.classList.toggle('active', l.dataset.tocTarget === id);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -65% 0px' });
+    sections.forEach(function(s) { obs.observe(s); });
+  }
+})();
+</script>
+
 </body>
 </html>
