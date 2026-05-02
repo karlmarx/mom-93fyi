@@ -1,15 +1,5 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { StepCard } from "../_components/StepCard";
 import { BigButton } from "../_components/BigButton";
-import { ProgressDots, StepCount } from "../_components/Wizard";
-import { DryerTimer } from "../_components/DryerTimer";
-import { CallKarlLink } from "../_components/CallKarlLink";
-import { useAppState } from "../_hooks/useAppState";
 
-// Verbatim from docs/plan.md Section 4.2.
 const STEPS: string[] = [
   "Get TWO new black trash bags.",
   "Put on bedroom outfit + booties (door card).",
@@ -29,82 +19,49 @@ const STEPS: string[] = [
   "Carry Ziploc to the living room. Put on the “CLEAN” pile.",
 ];
 
-export default function LaundryFlow() {
-  const router = useRouter();
-  const [, setState] = useAppState();
-  const [idx, setIdx] = useState(0);
-  const [toast, setToast] = useState<string | null>(null);
-
-  function advance() {
-    if (idx < STEPS.length - 1) {
-      setIdx(idx + 1);
-    } else {
-      // Increment loads done, then redirect home with a toast in sessionStorage
-      // so the home page can show it once.
-      setState((prev) => ({
-        laundryRunsCompleted: prev.laundryRunsCompleted + 1,
-      }));
-      try {
-        sessionStorage.setItem(
-          "bedbug.toast",
-          "Load done. Go shower and put on clean clothes.",
-        );
-      } catch {
-        // ignore
-      }
-      setToast("Load done.");
-      // Brief pause so Mom can read the toast, then home.
-      setTimeout(() => router.push("/bedbug"), 1200);
-    }
-  }
-
-  const stepText = STEPS[idx];
-  const stepNumber = idx + 1;
-  const isDryerStep = stepNumber === 11 || stepNumber === 14;
-  const isLast = stepNumber === STEPS.length;
-
+export default function LaundryPage() {
   return (
-    <div className="flex flex-col gap-4">
-      <ProgressDots totalSteps={STEPS.length} currentStep={stepNumber} />
-      <StepCount current={stepNumber} total={STEPS.length} />
+    <article className="mx-auto flex w-full max-w-xl flex-col gap-6 rounded-xl bg-bedbug-cream p-6 shadow-sm sm:p-8">
+      <header className="flex flex-col gap-2">
+        <span className="text-bedbug-sage text-sm font-semibold uppercase tracking-wider">
+          One load of laundry
+        </span>
+        <h1 className="text-bedbug-title font-semibold leading-tight text-bedbug-ink">
+          Dryer first. Then wash. Then dryer again.
+        </h1>
+      </header>
 
-      <StepCard
-        eyebrow={`Step ${stepNumber} of ${STEPS.length}`}
-        title={stepText}
-        doneWhen={isLast ? "Sealed bag is on the clean pile and dryer is empty." : undefined}
-      >
-        {isDryerStep ? <DryerTimer /> : null}
+      <p className="text-bedbug-body leading-relaxed text-bedbug-ink">
+        One bag at a time. The first 45 minutes in the dryer on HIGH is what
+        kills the bed bugs — that&apos;s why the dryer comes before the wash.
+      </p>
 
-        <BigButton onClick={advance} disabled={toast !== null}>
-          {isLast ? "Done with this load" : "Done — next step"}
-        </BigButton>
+      <ol className="flex flex-col gap-3">
+        {STEPS.map((step, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-4 rounded-md bg-bedbug-cream-deeper p-4"
+          >
+            <span
+              aria-hidden="true"
+              className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-bedbug-sage text-bedbug-cream font-semibold"
+            >
+              {i + 1}
+            </span>
+            <span className="text-bedbug-body leading-snug text-bedbug-ink">
+              {step}
+            </span>
+          </li>
+        ))}
+      </ol>
 
-        {idx > 0 && !toast ? (
-          <BigButton onClick={() => setIdx(idx - 1)} variant="ghost">
-            Go back one step
-          </BigButton>
-        ) : null}
+      <footer className="rounded-md bg-bedbug-cream-deeper p-4 text-bedbug-body italic text-bedbug-ink">
+        Then shower and put on clean clothes from a Ziploc.
+      </footer>
 
-        <div className="pt-2">
-          <CallKarlLink variant="ghost">Stuck — call Ben</CallKarlLink>
-        </div>
-      </StepCard>
-
-      {isLast ? (
-        <p className="text-center text-bedbug-body italic text-bedbug-ink/70">
-          Then shower and put on clean clothes.
-        </p>
-      ) : null}
-
-      {toast ? (
-        <div
-          role="status"
-          aria-live="polite"
-          className="rounded-lg bg-bedbug-sage p-4 text-center text-bedbug-cream text-bedbug-body"
-        >
-          {toast}
-        </div>
-      ) : null}
-    </div>
+      <BigButton href="/bedbug" variant="ghost">
+        Back to home
+      </BigButton>
+    </article>
   );
 }

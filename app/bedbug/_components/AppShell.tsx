@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
-import { useSettings } from "../_hooks/useSettings";
-import { PanicButton } from "./PanicButton";
 import { UpdateChecker } from "./UpdateChecker";
+import { useLargeText } from "../_hooks/useLargeText";
 
 type Props = {
   children: ReactNode;
 };
 
 export function AppShell({ children }: Props) {
-  const [settings] = useSettings();
+  const [largeText] = useLargeText();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -22,20 +21,14 @@ export function AppShell({ children }: Props) {
       .catch(() => undefined);
   }, []);
 
-  // Apply / remove the large-text body class. Bedbug-specific so it doesn't
-  // affect the mom.93.fyi landing page if the user navigates back to it.
   useEffect(() => {
     if (typeof document === "undefined") return;
     const cls = "bedbug-large-text";
-    if (settings.largeTextMode) {
-      document.body.classList.add(cls);
-    } else {
-      document.body.classList.remove(cls);
-    }
+    document.body.classList.toggle(cls, largeText);
     return () => {
       document.body.classList.remove(cls);
     };
-  }, [settings.largeTextMode]);
+  }, [largeText]);
 
   const version = process.env.NEXT_PUBLIC_BUILD_VERSION ?? "dev";
 
@@ -60,7 +53,7 @@ export function AppShell({ children }: Props) {
         </Link>
       </header>
 
-      <main className="mx-auto w-full max-w-2xl px-4 py-6 pb-32 sm:px-6">
+      <main className="mx-auto w-full max-w-2xl px-4 py-6 pb-16 sm:px-6">
         {children}
       </main>
 
@@ -72,8 +65,6 @@ export function AppShell({ children }: Props) {
           v{version}
         </span>
       </footer>
-
-      <PanicButton />
     </div>
   );
 }
