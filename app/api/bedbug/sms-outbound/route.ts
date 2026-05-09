@@ -35,13 +35,14 @@ async function sendSms(
   toPhone: string,
 ): Promise<{ ok: boolean; status: number; detail?: string }> {
   const sid = process.env.TWILIO_ACCOUNT_SID;
-  const token = process.env.TWILIO_AUTH_TOKEN;
+  const keySid = process.env.TWILIO_API_KEY_SID;
+  const keySecret = process.env.TWILIO_API_KEY_SECRET;
   const from = process.env.TWILIO_FROM_NUMBER;
-  if (!sid || !token || !from) {
+  if (!sid || !keySid || !keySecret || !from) {
     return { ok: false, status: 500, detail: "Twilio env not configured" };
   }
 
-  const auth = Buffer.from(`${sid}:${token}`).toString("base64");
+  const auth = Buffer.from(`${keySid}:${keySecret}`).toString("base64");
   const form = new URLSearchParams();
   form.set("From", from);
   form.set("To", toPhone);
