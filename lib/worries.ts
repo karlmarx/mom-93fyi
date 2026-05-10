@@ -16,9 +16,20 @@ export const worries: Worry[] = [
     shortAnswer:
       "Almost certainly not. What you're seeing is probably just ads or notifications \u2014 which are annoying, but not dangerous.",
     fullAnswer:
-      "Here's the truth, Mom: phones getting actually hacked is very rare, and when it happens, the signs are specific \u2014 your battery dies in hours, your bill shows charges you didn't make, or your accounts send messages you didn't write. Random ads popping up, strange notifications, or apps you don't remember installing are almost always one of three things: (1) an app you installed that's showing ads, (2) a website you visited asking to send notifications, or (3) a bookmarked promotion. None of those mean someone is watching you. If you're ever unsure, just restart your phone \u2014 that clears most of the noise. And if an app is annoying you, you can delete it in two taps.",
+      "Here's the truth, Mom: phones getting actually hacked is very rare, and when it happens, the signs are specific \u2014 your battery dies in hours, your bill shows charges you didn't make, or your accounts send messages you didn't write. Random ads popping up, strange notifications, or apps you don't remember installing are almost always one of three things: (1) an app you installed that's showing ads, (2) a website you visited asking to send notifications, or (3) a bookmarked promotion. None of those mean someone is watching you. If you're ever unsure, just restart your phone \u2014 that clears most of the noise. And if an app is annoying you, you can delete it in two taps.\n\n### OR is this a real prompt my phone makes?\n\nSometimes your phone asks for things that look scary but are actually safe:\n\u2022 **iOS update:** Safe, but plug in and connect to Wi-Fi first.\n\u2022 **App permission requests:** Only say yes if you actually just opened that app and it needs the camera or location.\n\u2022 **Terms of Service:** Safe to tap 'I agree'; companies update these all the time.\n\u2022 **Storage full:** This is real, but I can fix it for you. Don't delete anything in a panic.\n\u2022 **Touch ID / Face ID:** This is just your phone's way of verifying it's really you.\n\nWhen in doubt: don't tap. Take a screenshot and send it to me.",
     stillWorried:
       "If you want to be extra sure, go to Settings \u2192 Apps \u2192 and uninstall anything you don't recognize.",
+  },
+  {
+    id: "am-i-texting-too-much",
+    category: "Everyday",
+    question: "Am I texting Ben too much?",
+    shortAnswer:
+      "No. I built this site so you'd have somewhere to ask, and I'm happy to help you work through this.",
+    fullAnswer:
+      "When you text me, it's the site that's working \u2014 not you being a burden. I want you to feel calm and informed, and if that takes fifty questions, then that's what it takes. If I'm in a meeting or sleeping, I just won't answer right away. I'll get back to you when I'm free. You never have to apologize for asking a question or feeling overwhelmed.",
+    stillWorried:
+      "If you're feeling guilty, remember: I'd much rather get ten texts from you than have you sitting there worrying alone.",
   },
   {
     id: "vw-id4-ac",
@@ -54,6 +65,26 @@ export const worries: Worry[] = [
       "Scammers are lazy and they all use the same tricks. Red flags: (1) urgency ('your account will be closed in 24 hours!'), (2) a link you weren't expecting, (3) asks for a code or password, (4) offers something free. Real companies let you log in through their official app or website \u2014 they never send you a link to click. When in doubt, don't reply, don't click. Just delete. If you're worried the message might be real, open the real app yourself (not the link) and check.",
     stillWorried:
       "Forward suspicious texts to 7726 (SPAM) \u2014 it reports them to your carrier free.",
+  },
+  {
+    id: "where-is-ben",
+    category: "Travel",
+    question: "Where is Ben going? When?",
+    shortAnswer:
+      "Ben is currently in Oakland Park, FL. His next trip is to Orlando on May 15.",
+    fullAnswer:
+      "I'm keeping my travel schedule here so you can always check without having to remember the details. I'm always reachable by text even when I'm traveling.\n\n\u2022 **Orlando, FL:** May 15 \u2013 May 19 (Visiting family)\n\u2022 **Miami, FL:** May 29 (Day trip)\n\nI'll be reachable by text the whole time. If you need to verify dates for a visit, this is the best place to look.",
+  },
+  {
+    id: "did-i-do-something-wrong",
+    category: "Everyday",
+    question: "Did I just do something wrong?",
+    shortAnswer:
+      "Almost certainly not. And even if you did, it's probably easy to fix.",
+    fullAnswer:
+      "Mom, computers and phones are built to be used. You can't break them by tapping the wrong thing or forgetting a step. If something looks different than it did before, or if a message popped up that you didn't expect, it's just the machine doing its thing. It doesn't mean you made a mistake. If you're worried about the bedbug plan specifically, remember: the plan is built to handle small slip-ups. One missed day or one forgotten glove doesn't break the outcome.",
+    stillWorried:
+      "If you're really worried you broke something, just tell me. I can usually fix it in thirty seconds.",
   },
   {
     id: "general-reassurance",
