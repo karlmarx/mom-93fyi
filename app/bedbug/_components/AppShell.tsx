@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { UpdateChecker } from "./UpdateChecker";
 import { useLargeText } from "../_hooks/useLargeText";
+import { sms } from "./SmsLink";
 
 type Props = {
   children: ReactNode;
@@ -53,9 +54,23 @@ export function AppShell({ children }: Props) {
         </Link>
       </header>
 
-      <main className="mx-auto w-full max-w-2xl px-4 py-6 pb-16 sm:px-6">
+      <main className="mx-auto w-full max-w-2xl px-4 py-6 pb-8 sm:px-6">
         {children}
       </main>
+
+      <div className="mx-auto w-full max-w-2xl px-4 pb-4 sm:px-6">
+        <a
+          href={sms.href}
+          className="flex w-full items-center justify-center gap-3 rounded-lg bg-bedbug-sage px-6 py-4 text-bedbug-button font-semibold text-bedbug-cream shadow-sm transition-[filter] hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-bedbug-sage/40"
+        >
+          <span aria-hidden="true">💬</span>
+          <span>Text Ben a question</span>
+        </a>
+        <p className="mt-2 text-center text-sm text-bedbug-ink/60">
+          Tap to open your messages app. The number is{" "}
+          <span className="whitespace-nowrap">{sms.display}</span>.
+        </p>
+      </div>
 
       <footer className="mx-auto w-full max-w-2xl px-4 pb-6 text-center sm:px-6">
         <span
