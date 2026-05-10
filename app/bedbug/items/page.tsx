@@ -66,6 +66,37 @@ const CATEGORIES: Category[] = [
       'Toss. Bag, label "BED BUGS" in big letters, take to the outdoor trash.',
   },
   {
+    what: "Curtains",
+    answer:
+      "Take them down. If they fit in the dryer, dryer first 45 min on HIGH, then wash, then dryer again — same as clothes. If they're too big, fold them into a sealed contractor bag and keep them in the closed bedroom for eighteen months. Then put them back up.",
+  },
+  {
+    what: "Wall art and picture frames",
+    examples: "Photos, paintings, framed needlework on the bedroom wall.",
+    answer:
+      "Take them off the wall. Wipe the front and back of each frame with a hot wet cloth. Pay attention to the corners and the back where dust collects. They can move to the living room or stay leaning against the wall in the bedroom — they're hard plastic/wood/glass and not a hiding spot once wiped.",
+  },
+  {
+    what: "Stuffed animals and soft toys",
+    answer:
+      "Dryer 45 minutes on HIGH, just like clothes. If a toy is fragile or too big for the dryer, seal in a plastic bin for eighteen months. Don't keep one that you can't bear to either heat or seal.",
+  },
+  {
+    what: "Houseplants",
+    answer:
+      "Bed bugs do not live on or in houseplants. Move them out of the bedroom into the living room and water them like normal. The dirt is fine. The leaves are fine. Skip them entirely.",
+  },
+  {
+    what: "Lamps, cords, and chargers",
+    answer:
+      "Wipe the lamp body, the bulb (cool, please), the cord, and the plug with a hot wet cloth. They go to the living room. Don't seal cords in plastic — they overheat. Wiping is enough.",
+  },
+  {
+    what: "Kitchen things — pots, pans, dishes, cookware",
+    answer:
+      "Don't worry about them. Bed bugs don't live in kitchens (no soft places to hide, no body to feed on). The kitchen does not need any special treatment. Keep cooking and eating as usual.",
+  },
+  {
     what: "Something you love that can't go in the dryer",
     answer: "Sealed plastic bin. Eighteen months. Date the bin. Open it then.",
   },
