@@ -133,6 +133,13 @@ export default function BedbugHome() {
         <ul className="flex flex-col gap-4">
           <li>
             <HomeCard
+              href="/bedbug/story"
+              title="The story"
+              body="Operation Clean Slate. The plain-language reasons and narrative behind this plan."
+            />
+          </li>
+          <li>
+            <HomeCard
               href="/bedbug/rules"
               title="The 5 rules"
               body="The whole plan, on one page."
