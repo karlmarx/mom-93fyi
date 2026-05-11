@@ -1,0 +1,65 @@
+name: Auto-answer Mom (and Karl)
+
+# Fires when an issue labeled `mom-question` or `karl-question` opens.
+# The script tries Haiku 4.5 first, escalates to Sonnet 4.6 if Haiku
+# flags ESCALATE, and labels `needs-human` for NEEDS-HUMAN (or if the
+# daily cost cap has been reached).
+#
+# Required GitHub Actions secrets:
+#   - ANTHROPIC_API_KEY  console.anthropic.com (Plans & Billing enabled)
+#   - GH_TOKEN_ANSWER    fine-grained PAT on mom-93fyi, Issues: write.
+#                        MUST NOT be GITHUB_TOKEN — answer-mom.yml filters
+#                        out Bot comments, so we need a user-type author
+#                        for the answer to fire that workflow.
+#
+# Optional repo variable (Settings → Variables → Actions):
+#   - COST_CAP_DAILY_USD  default 0.25 — hard kill switch in USD/day.
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Issue number to (re)answer"
+        required: true
+        type: string
+
+jobs:
+  answer:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.issue.labels.*.name, 'mom-question') ||
+      contains(github.event.issue.labels.*.name, 'karl-question')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run auto-answer (issue event)
+        if: github.event_name == 'issues'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN_ANSWER: ${{ secrets.GH_TOKEN_ANSWER }}
+          GH_TOKEN_BOT: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ toJSON(github.event.issue.labels.*.name) }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.25' }}
+        run: node .github/scripts/answer-mom.mjs
+
+      - name: Run auto-answer (manual dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN_ANSWER: ${{ secrets.GH_TOKEN_ANSWER }}
+          GH_TOKEN_BOT: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.25' }}
+        run: node .github/scripts/answer-mom.mjs --issue ${{ inputs.issue_number }}
