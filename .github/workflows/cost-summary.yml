@@ -10,7 +10,7 @@ name: Daily cost summary
 #
 # Optional repo variables:
 #   - RESEND_FROM           default ben@bedbug.93.fyi
-#   - COST_CAP_DAILY_USD    default 0.25
+#   - COST_CAP_DAILY_USD    default 0.10
 
 on:
   schedule:
@@ -34,6 +34,6 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           KARL_EMAIL: ${{ secrets.KARL_EMAIL }}
           RESEND_FROM: ${{ vars.RESEND_FROM || 'ben@bedbug.93.fyi' }}
-          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.25' }}
+          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.10' }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: node .github/scripts/cost-summary.mjs

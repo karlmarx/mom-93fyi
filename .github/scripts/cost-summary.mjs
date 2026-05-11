@@ -18,7 +18,7 @@ const KARL_EMAIL = requiredEnv("KARL_EMAIL");
 const RESEND_FROM = process.env.RESEND_FROM ?? "ben@bedbug.93.fyi";
 const REPO = process.env.GITHUB_REPOSITORY ?? "karlmarx/mom-93fyi";
 const COST_CAP_DAILY_USD = Number.parseFloat(
-  process.env.COST_CAP_DAILY_USD ?? "0.25",
+  process.env.COST_CAP_DAILY_USD ?? "0.10",
 );
 
 // Window: previous full UTC day [yesterday 00:00, today 00:00).

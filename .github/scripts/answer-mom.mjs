@@ -8,7 +8,7 @@
 //
 // Hard daily cost cap: before any API call, sums today's <!-- cost:{...} -->
 // bot comments and aborts to needs-human if today's USD spend is at or above
-// COST_CAP_DAILY_USD (default $0.25). After each call, posts a bot cost
+// COST_CAP_DAILY_USD (default $0.10). After each call, posts a bot cost
 // comment for the daily summary cron to read.
 
 import { readFile } from "node:fs/promises";
@@ -29,7 +29,7 @@ const GH_TOKEN_BOT = process.env.GH_TOKEN_BOT ?? GH_TOKEN_ANSWER;
 const REPO = process.env.GITHUB_REPOSITORY ?? "karlmarx/mom-93fyi";
 
 const COST_CAP_DAILY_USD = Number.parseFloat(
-  process.env.COST_CAP_DAILY_USD ?? "0.25",
+  process.env.COST_CAP_DAILY_USD ?? "0.10",
 );
 
 const MODEL_HAIKU = "claude-haiku-4-5-20251001";

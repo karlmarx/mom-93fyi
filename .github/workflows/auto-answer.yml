@@ -13,7 +13,7 @@ name: Auto-answer Mom (and Karl)
 #                        for the answer to fire that workflow.
 #
 # Optional repo variable (Settings → Variables → Actions):
-#   - COST_CAP_DAILY_USD  default 0.25 — hard kill switch in USD/day.
+#   - COST_CAP_DAILY_USD  default 0.10 — hard kill switch in USD/day.
 
 on:
   issues:
@@ -51,7 +51,7 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_LABELS: ${{ toJSON(github.event.issue.labels.*.name) }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.25' }}
+          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.10' }}
         run: node .github/scripts/answer-mom.mjs
 
       - name: Run auto-answer (manual dispatch)
@@ -61,5 +61,5 @@ jobs:
           GH_TOKEN_ANSWER: ${{ secrets.GH_TOKEN_ANSWER }}
           GH_TOKEN_BOT: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.25' }}
+          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.10' }}
         run: node .github/scripts/answer-mom.mjs --issue ${{ inputs.issue_number }}

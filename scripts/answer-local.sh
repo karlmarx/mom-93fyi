@@ -34,7 +34,7 @@ export GH_TOKEN_ANSWER
 export GH_TOKEN_BOT=$GH_TOKEN_ANSWER
 export GITHUB_REPOSITORY=karlmarx/mom-93fyi
 export ANTHROPIC_API_KEY
-export COST_CAP_DAILY_USD="${COST_CAP_DAILY_USD:-0.25}"
+export COST_CAP_DAILY_USD="${COST_CAP_DAILY_USD:-0.10}"
 
 # Pick whatever node is on PATH; fall back to Windows-side node.exe under WSL.
 if command -v node >/dev/null 2>&1; then
