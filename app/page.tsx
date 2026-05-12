@@ -51,6 +51,14 @@ export default function Home() {
       {/* Minimal footer */}
       <footer className="max-w-3xl mx-auto px-6 py-10 text-center border-t border-rose/20">
         <p className="font-hand text-xl text-ink-soft">mom.93.fyi</p>
+        <p className="mt-3 text-xs text-ink-soft/70">
+          Operated by Karl Marx-Levi ·{" "}
+          <span>
+            <span>k</span>
+            <span>@</span>
+            <span>93.fyi</span>
+          </span>
+        </p>
       </footer>
     </div>
   );
