@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { UpdateChecker } from "./UpdateChecker";
 import { useLargeText } from "../_hooks/useLargeText";
-import { sms } from "./SmsLink";
 
 type Props = {
   children: ReactNode;
