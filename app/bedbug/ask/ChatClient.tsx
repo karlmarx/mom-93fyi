@@ -90,21 +90,21 @@ export default function ChatClient({
   };
 
   return (
-    <main className="mx-auto max-w-lg px-5 py-10 text-ink/90">
+    <div className="text-bedbug-ink">
       <div className="mb-1 flex items-baseline justify-between">
-        <h1 className="font-display text-3xl italic">Ask Ben</h1>
+        <h1 className="text-3xl font-semibold">Ask Ben</h1>
         <form action={signOutAction}>
           <button
             type="submit"
-            className="text-xs text-ink-soft underline hover:text-ink"
+            className="text-xs text-bedbug-ink/60 underline hover:text-bedbug-ink"
           >
             sign out
           </button>
         </form>
       </div>
-      <p className="mb-6 text-sm text-ink-soft">
+      <p className="mb-6 text-sm text-bedbug-ink/70">
         {role === "mom"
-          ? "Type a question. Ben will see it and answer here. You can come back to read it anytime."
+          ? "Type a question — about anything in the plan, or about Ben's life, or just to say hi. Ben will see it and so will you, right here. Come back anytime to re-read."
           : `Signed in as ${name ?? "Karl"} (admin).`}
       </p>
 
@@ -115,7 +115,7 @@ export default function ChatClient({
           onKeyDown={onKey}
           rows={3}
           maxLength={2000}
-          className="w-full rounded border border-ink/30 bg-white px-3 py-3 text-base focus:outline-none focus:ring-2 focus:ring-rose/40"
+          className="w-full rounded-lg border border-bedbug-ink/20 bg-white px-3 py-3 text-base focus:outline-none focus:ring-2 focus:ring-bedbug-sage/40"
           placeholder="What do you want to know?"
           disabled={pending}
           aria-label="Your question"
@@ -125,17 +125,17 @@ export default function ChatClient({
             type="button"
             onClick={submit}
             disabled={pending || !draft.trim()}
-            className="rounded bg-ink px-4 py-2 text-paper hover:bg-ink-soft disabled:opacity-50"
+            className="rounded-lg bg-bedbug-sage px-5 py-3 font-semibold text-bedbug-cream shadow-sm transition-[filter] hover:brightness-95 disabled:opacity-50"
           >
             {pending ? "Sending…" : "Ask"}
           </button>
           {draft.length > 0 ? (
-            <span className="text-xs text-ink-soft">
+            <span className="text-xs text-bedbug-ink/50">
               {draft.length} / 2000
             </span>
           ) : null}
           {error ? (
-            <span className="text-sm text-rose" role="status">
+            <span className="text-sm text-bedbug-red" role="status">
               {error}
             </span>
           ) : null}
@@ -144,43 +144,43 @@ export default function ChatClient({
 
       <section className="space-y-4">
         {!loaded ? (
-          <p className="text-sm text-ink-soft italic">Loading…</p>
+          <p className="text-sm italic text-bedbug-ink/60">Loading…</p>
         ) : questions.length === 0 ? (
-          <p className="text-sm text-ink-soft italic">
+          <p className="text-sm italic text-bedbug-ink/60">
             No questions yet. Type one above to get started.
           </p>
         ) : null}
         {questions.map((q) => (
           <article
             key={q.issue_number}
-            className="rounded border border-ink/15 bg-paper-aged/30 p-4"
+            className="rounded-lg border border-bedbug-ink/15 bg-bedbug-cream-deeper/50 p-4"
           >
-            <p className="text-base font-semibold leading-snug whitespace-pre-wrap">
+            <p className="whitespace-pre-wrap text-base font-semibold leading-snug">
               {q.question}
             </p>
-            <p className="mt-1 text-xs text-ink-soft">
+            <p className="mt-1 text-xs text-bedbug-ink/55">
               {formatRelative(q.asked_at)}
             </p>
             {q.answer ? (
-              <div className="mt-3 border-t border-ink/10 pt-3">
+              <div className="mt-3 border-t border-bedbug-ink/10 pt-3">
                 <p className="whitespace-pre-wrap text-base leading-relaxed">
                   {q.answer}
                 </p>
                 {q.answer_at ? (
-                  <p className="mt-2 text-xs text-ink-soft">
+                  <p className="mt-2 text-xs text-bedbug-ink/55">
                     Ben · {formatRelative(q.answer_at)}
                   </p>
                 ) : null}
               </div>
             ) : (
-              <p className="mt-3 text-sm italic text-ink-soft">
+              <p className="mt-3 text-sm italic text-bedbug-ink/60">
                 Ben is thinking… answer will appear here.
               </p>
             )}
           </article>
         ))}
       </section>
-    </main>
+    </div>
   );
 }
 
