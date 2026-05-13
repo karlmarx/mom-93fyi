@@ -82,11 +82,12 @@ export default function MorningPage() {
           When you&apos;re done.
         </h2>
         <p className="text-bedbug-body leading-relaxed text-bedbug-ink">
-          Text Ben &ldquo;all clear&rdquo; — or send him a picture if anything
-          caught your eye. That&apos;s the whole morning routine.
+          Tell Ben &ldquo;all clear&rdquo; in the &ldquo;Ask Ben&rdquo; chat at
+          the bottom of this page. If anything caught your eye, email him a
+          picture at k@93.fyi. That&apos;s the whole morning routine.
         </p>
         <p className="text-bedbug-body leading-relaxed text-bedbug-ink/80">
-          Three checks. One text. The rest of your day is yours.
+          Three checks. One note. The rest of your day is yours.
         </p>
       </section>
 
