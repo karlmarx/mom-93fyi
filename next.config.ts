@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BUILD_VERSION: buildVersion,
   },
+  // Ensure the /api/ask serverless function ships with the plan content
+  // it reads at runtime via fs (docs/plan.md plus the bedbug page sources
+  // — fed into the LLM's system prompt for grounded answers).
+  outputFileTracingIncludes: {
+    "/api/ask": ["./docs/plan.md", "./app/bedbug/**/page.tsx"],
+  },
 };
 
 export default nextConfig;
