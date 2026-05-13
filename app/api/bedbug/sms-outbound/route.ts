@@ -49,8 +49,9 @@ async function sendSms(
   form.set("To", toPhone);
   form.set("Body", body);
 
+  const twilioBase = process.env.TWILIO_API_BASE ?? "https://api.twilio.com";
   const res = await fetch(
-    `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`,
+    `${twilioBase}/2010-04-01/Accounts/${sid}/Messages.json`,
     {
       method: "POST",
       headers: {
@@ -100,7 +101,8 @@ async function sendEmail(
   };
   if (replyTo) payload.reply_to = replyTo;
 
-  const res = await fetch("https://api.resend.com/emails", {
+  const resendBase = process.env.RESEND_API_BASE ?? "https://api.resend.com";
+  const res = await fetch(`${resendBase}/emails`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${key}`,

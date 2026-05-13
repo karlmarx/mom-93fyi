@@ -122,8 +122,9 @@ export async function POST(req: NextRequest) {
     return new NextResponse("GitHub token not configured", { status: 500 });
   }
 
+  const ghBase = process.env.GITHUB_API_BASE ?? "https://api.github.com";
   const ghRes = await fetch(
-    `https://api.github.com/repos/${repo}/issues/${issueNumber}/comments`,
+    `${ghBase}/repos/${repo}/issues/${issueNumber}/comments`,
     {
       method: "POST",
       headers: {

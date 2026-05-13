@@ -102,8 +102,9 @@ export async function POST(req: NextRequest) {
   ].join("\n");
 
   try {
+    const ghBase = process.env.GITHUB_API_BASE ?? "https://api.github.com";
     const ghRes = await fetch(
-      `https://api.github.com/repos/${repo}/issues`,
+      `${ghBase}/repos/${repo}/issues`,
       {
         method: "POST",
         headers: {
