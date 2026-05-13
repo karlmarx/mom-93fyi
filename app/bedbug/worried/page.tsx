@@ -8,11 +8,11 @@ type Worry = {
 const WORRIES: Worry[] = [
   {
     q: "I think I just saw a bug.",
-    a: "Take a deep breath. Don't squash it — the picture is more useful than the dead bug. Take a phone photo, as close as you can get without blurring. If it's on something you can move, move it inside a Ziploc and seal it. Then email the picture to Ben at k@93.fyi. He'll tell you what it is.",
+    a: "Take a deep breath. Don't squash it. If it's on something you can move, move it inside a Ziploc and seal it — Ben can look at it next time he visits. Open the \"Ask Ben\" chat at the bottom of the page and describe what you saw: color, size, where it was, what it was doing. Ben will tell you what's most likely.",
   },
   {
     q: "I have new bites — at least I think they're bites.",
-    a: "Most skin marks turn out not to be bed bugs, especially in Florida. Pull up your sleeve, take a clear close-up picture in good light with a coin or a fingernail in the frame for size. Email Ben the picture at k@93.fyi. Don't scratch them. There's a separate “Bites and skin” page that shows what bed bug bites usually look like vs. what doesn't — read that next.",
+    a: "Most skin marks turn out not to be bed bugs, especially in Florida. Don't scratch them. Open the \"Ask Ben\" chat at the bottom of the page and describe them — where on your body, how many, color, whether they're in a line or scattered. There's a separate “Bites and skin” page that shows what bed bug bites usually look like vs. what doesn't — read that next.",
   },
   {
     q: "I touched something from the bedroom and forgot the gloves and outfit.",
