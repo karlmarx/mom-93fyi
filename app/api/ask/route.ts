@@ -12,8 +12,13 @@ const REPO = process.env.GITHUB_REPO ?? "karlmarx/mom-93fyi";
 // Per-day cap on mom-question issues counted against GitHub. Belt-and-suspenders
 // alongside the org-level Anthropic spend cap Karl sets in the Anthropic console.
 const MOM_DAILY_LIMIT = 50;
-// Swap to "claude-haiku-4-5" for ~5x lower per-question cost (~$0.008 vs ~$0.04 with cache).
-const MODEL = "claude-opus-4-7";
+// Cost-tiered model selection. First N questions/day use Sonnet (~$0.07/q cached,
+// ~$0.18 uncached), capping the Sonnet spend at ~$0.50/day. Subsequent questions
+// fall back to Haiku (~$0.02/q cached). The N below is calibrated to stay
+// within the $0.50 Sonnet budget even under cache-write pressure.
+const SONNET_DAILY_BUDGET_COUNT = 5;
+const SONNET_MODEL = "claude-sonnet-4-6";
+const HAIKU_MODEL = "claude-haiku-4-5";
 const MAX_ANSWER_TOKENS = 4000;
 
 // ─────────────────────────────────────────────────────── Plan context
@@ -138,14 +143,17 @@ async function countMomQuestionsToday(): Promise<number> {
   return data.total_count ?? 0;
 }
 
-async function answerWithLLM(question: string): Promise<string | null> {
+async function answerWithLLM(args: {
+  question: string;
+  model: string;
+}): Promise<{ answer: string; usage: Anthropic.Messages.Usage } | null> {
   if (!process.env.ANTHROPIC_API_KEY) {
     console.warn("ask: LLM skipped — ANTHROPIC_API_KEY not set");
     return null;
   }
   try {
     const response = await anthropic.messages.create({
-      model: MODEL,
+      model: args.model,
       max_tokens: MAX_ANSWER_TOKENS,
       thinking: { type: "adaptive" },
       system: [
@@ -155,10 +163,12 @@ async function answerWithLLM(question: string): Promise<string | null> {
           cache_control: { type: "ephemeral" },
         },
       ],
-      messages: [{ role: "user", content: question }],
+      messages: [{ role: "user", content: args.question }],
     });
     for (const block of response.content) {
-      if (block.type === "text") return block.text;
+      if (block.type === "text") {
+        return { answer: block.text, usage: response.usage };
+      }
     }
     return null;
   } catch (err) {
@@ -191,6 +201,8 @@ async function emailKarl(args: {
   question: string;
   answer: string | null;
   issueUrl: string;
+  model: string;
+  usage: Anthropic.Messages.Usage | null;
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
@@ -218,6 +230,10 @@ async function emailKarl(args: {
         subject: `[Mom asked] ${preview}`,
         text: [
           `From: ${args.fromEmail} (web)`,
+          `Model: ${args.model}`,
+          args.usage
+            ? `Tokens: in=${args.usage.input_tokens} out=${args.usage.output_tokens} cache_read=${args.usage.cache_read_input_tokens ?? 0} cache_create=${args.usage.cache_creation_input_tokens ?? 0}`
+            : `Tokens: n/a`,
           ``,
           `Question:`,
           args.question,
@@ -266,30 +282,35 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  if (originator === "mom") {
-    const count = await countMomQuestionsToday();
-    if (count >= MOM_DAILY_LIMIT) {
-      return NextResponse.json(
-        {
-          error: "daily_limit_reached",
-          message: `You've sent ${count} questions today. Take a breath — text Ben directly if it can't wait, otherwise try again tomorrow.`,
-        },
-        { status: 429 },
-      );
-    }
+  const askedToday = await countMomQuestionsToday();
+  if (originator === "mom" && askedToday >= MOM_DAILY_LIMIT) {
+    return NextResponse.json(
+      {
+        error: "daily_limit_reached",
+        message: `You've sent ${askedToday} questions today. Take a breath — text Ben directly if it can't wait, otherwise try again tomorrow.`,
+      },
+      { status: 429 },
+    );
   }
+
+  // Cost-tiered model selection: first N go to Sonnet (~$0.50/day cap),
+  // the rest of the day go to Haiku.
+  const model =
+    askedToday < SONNET_DAILY_BUDGET_COUNT ? SONNET_MODEL : HAIKU_MODEL;
 
   const truncated =
     question.length > 60 ? `${question.slice(0, 57)}…` : question;
   const titlePrefix = originator === "mom" ? "Mom asked" : "Karl asked";
   const label = originator === "mom" ? "mom-question" : "karl-question";
+  const modelLabel =
+    model === SONNET_MODEL ? "model:sonnet" : "model:haiku";
 
   const ghRes = await ghApi(`/repos/${REPO}/issues`, {
     method: "POST",
     body: JSON.stringify({
       title: `${titlePrefix}: ${truncated}`,
       body: buildIssueBody({ from: email, question }),
-      labels: [label, "web"],
+      labels: [label, "web", modelLabel],
     }),
   });
   if (!ghRes.ok) {
@@ -307,7 +328,8 @@ export async function POST(req: NextRequest) {
 
   // Direct LLM answer (best-effort). Failures fall through to the
   // scheduled agent, which will pick up the issue on its next cron tick.
-  const answer = await answerWithLLM(question);
+  const llmResult = await answerWithLLM({ question, model });
+  const answer = llmResult?.answer ?? null;
   if (answer) {
     await postIssueComment(issue.number, answer);
   }
@@ -317,12 +339,15 @@ export async function POST(req: NextRequest) {
     question,
     answer,
     issueUrl: issue.html_url,
+    model,
+    usage: llmResult?.usage ?? null,
   });
 
   return NextResponse.json({
     issue_number: issue.number,
     issue_url: issue.html_url,
     answer,
+    model,
     status: "received",
   });
 }
