@@ -43,7 +43,8 @@ function checkAuth(req: NextRequest): boolean {
 async function ghApi(path: string, init: RequestInit = {}): Promise<Response> {
   const token = process.env.GITHUB_TOKEN_INTAKE;
   if (!token) throw new Error("GITHUB_TOKEN_INTAKE not set");
-  return fetch(`https://api.github.com${path}`, {
+  const base = process.env.GITHUB_API_BASE ?? "https://api.github.com";
+  return fetch(`${base}${path}`, {
     ...init,
     headers: {
       ...(init.headers ?? {}),
