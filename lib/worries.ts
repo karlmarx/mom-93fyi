@@ -10,6 +10,19 @@ export interface Worry {
 
 export const worries: Worry[] = [
   {
+    id: "phone-hot",
+    category: "Phone & Computer",
+    question: "Why is my phone getting hot?",
+    shortAnswer:
+      "Because you're using it, and that's normal. A warm phone is a working phone, not a broken one. It's also under warranty, so please don't spend a dime.",
+    fullAnswer:
+      "Phones get warm when you use them, especially with an app like Snapshot that follows your location for the insurance discount. That warmth is the trade for the lower bill, and it's normal. Your phone is smart: if it ever truly got too hot, it would turn itself off on its own to stay safe, so it can't hurt itself. Please don't buy a new phone or go to a repair store. This phone is less than a year old, which means it's under warranty, so if anything is ever truly wrong, Google fixes it for free. I made you a full walkthrough, including how to get a real Google expert to call you for free, day or night. Tap below.",
+    actionLink: {
+      text: "Open the warm phone walkthrough",
+      url: "/hotphone",
+    },
+  },
+  {
     id: "phone-hacked",
     category: "Phone & Computer",
     question: "Is my phone hacked?",
