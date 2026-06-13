@@ -39,6 +39,13 @@ const steps: { title: string; body: string }[] = [
   },
 ];
 
+const relax: string[] = [
+  "Set the phone down. It is okay to walk away from it for a while. Nothing bad happens.",
+  "Take ten slow breaths. In through your nose, out through your mouth. Let your shoulders drop.",
+  "Go for a swim. You always feel better after the pool, and the phone will be right where you left it.",
+  "Make a cup of tea and let the phone just sit there. It can wait for you.",
+];
+
 export default function HotPhonePage() {
   return (
     <div className="min-h-screen">
@@ -46,7 +53,7 @@ export default function HotPhonePage() {
         {/* Hero */}
         <header className="mb-12">
           <span className="font-hand text-base text-rose uppercase tracking-wider">
-            A note from Ben
+            A quick guide for you
           </span>
           <h1 className="font-display text-5xl md:text-6xl font-bold italic text-ink leading-tight mt-2 mb-6">
             Your phone is okay.
@@ -95,6 +102,18 @@ export default function HotPhonePage() {
           </ul>
         </section>
 
+        {/* Sign in first */}
+        <section className="bg-rose-soft/40 border-l-4 border-rose rounded-r-2xl p-6 md:p-8 mb-8">
+          <h2 className="font-display text-xl md:text-2xl font-bold text-ink leading-snug mb-2">
+            Before you start: sign in.
+          </h2>
+          <p className="font-body text-lg text-ink leading-relaxed">
+            Make sure you are signed into your Google account on the phone
+            first. If you need the password, it is in the email I sent you. Open
+            your email and it is right there.
+          </p>
+        </section>
+
         {/* Steps */}
         <section className="mb-8">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight mb-3">
@@ -102,7 +121,8 @@ export default function HotPhonePage() {
           </h2>
           <p className="font-body text-lg text-ink-soft leading-relaxed mb-8">
             You can do this yourself, any time, day or night. It is free. Just
-            follow these five steps on your phone.
+            follow these five steps on your phone. I also sent you a little
+            video in your email that shows the whole thing.
           </p>
 
           <ol className="space-y-4">
@@ -128,7 +148,7 @@ export default function HotPhonePage() {
         </section>
 
         {/* Speaker tip */}
-        <section className="bg-sage-soft/50 border-2 border-sage rounded-2xl p-8 mb-12">
+        <section className="bg-sage-soft/50 border-2 border-sage rounded-2xl p-8 mb-8">
           <div className="flex items-center gap-3 mb-3">
             <svg
               width="28"
@@ -158,14 +178,38 @@ export default function HotPhonePage() {
           </p>
         </section>
 
+        {/* Ways to relax */}
+        <section className="letter-paper p-8 md:p-10 mb-12">
+          <div className="scribble-underline inline-block mb-4">
+            <span className="font-hand text-2xl text-navy">while you wait, take a breath</span>
+          </div>
+          <p className="font-body text-lg text-ink leading-relaxed mb-6">
+            There is nothing to fix right now, so this is a good moment to relax.
+            Pick whichever one of these sounds nice.
+          </p>
+          <ul className="space-y-4">
+            {relax.map((line, i) => (
+              <li
+                key={i}
+                className="font-body text-lg text-ink leading-relaxed flex gap-3"
+              >
+                <span className="text-rose" aria-hidden="true">
+                  &#10084;
+                </span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         {/* Closing */}
         <section className="text-center mb-8">
           <p className="font-body text-lg md:text-xl text-ink leading-relaxed italic mb-6">
             That is the whole thing. Your phone is fine, and now you know
             exactly what to do whenever you want to double check. You never have
-            to sit and worry, and you do not have to wait for me.
+            to sit and worry, and you do not have to wait for anyone.
           </p>
-          <span className="signature">{"— Ben"}</span>
+          <span className="signature">your son&apos;s AI</span>
         </section>
 
         <footer className="pt-8 text-center border-t border-rose/20">
