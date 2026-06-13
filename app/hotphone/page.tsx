@@ -5,10 +5,18 @@ export const metadata: Metadata = {
   robots: "noindex",
 };
 
+const GETHELP = "https://support.google.com/pixelphone/gethelp";
+
 const whyWarm: string[] = [
   "Phones get warm when you use them. Warm is normal. It does not mean anything is broken.",
   "The apps that follow your location, like the Snapshot app for your insurance, run a little warm while they work. That warmth is the trade for your lower bill, and it is worth it.",
   "Your phone is smart. If it ever truly got too hot, it would simply turn itself off on its own to stay safe. It will not hurt itself, and it cannot hurt you.",
+];
+
+const hotspot: string[] = [
+  "It makes the phone a little warmer, because the phone is doing more work. That is normal.",
+  "It uses more battery, so you may need to charge a little more often.",
+  "It uses your cell data instead of home internet. Your plan includes the hotspot, so it does not cost you extra.",
 ];
 
 const dontSpend: string[] = [
@@ -16,26 +24,63 @@ const dontSpend: string[] = [
   "This phone is less than a year old, so it is under warranty. That means if anything is ever truly wrong, Google fixes it for free. You would never pay a store a single dollar.",
 ];
 
-const steps: { title: string; body: string }[] = [
+type Step = {
+  n: number;
+  banner: string;
+  caption: string;
+  img?: string;
+  kind?: "button" | "sage";
+};
+
+const steps: Step[] = [
   {
-    title: "Open Settings",
-    body: "It is the gray gear icon on your phone. Give it a tap.",
+    n: 1,
+    banner: "Tap the button below to open Google.",
+    caption: "If it asks who you are, sign in. Your password is in the email I sent you.",
+    kind: "button",
   },
   {
-    title: "Tap Device health & support",
-    body: "It is in the Settings list. You may have to scroll down a little to see it.",
+    n: 2,
+    banner: "Type these two words: hot phone",
+    caption: "Tap the box under What can we help with, then type the two words. Lowercase is fine.",
+    img: "/hotphone/step-2.jpg",
   },
   {
-    title: "Tap Tips & support, then Contact us",
-    body: "Contact us is near the bottom of that screen.",
+    n: 3,
+    banner: "Tap Device is warm, then tap Next step.",
+    caption: "Device is warm turns blue when you tap it. That is how you know it worked.",
+    img: "/hotphone/step-3.jpg",
   },
   {
-    title: "Tell it what is happening",
-    body: "Type something simple, like: my phone gets a little warm when I use it. Then tap Next step.",
+    n: 4,
+    banner: "Tap Next step again.",
+    caption: "A list of articles shows up first. You do not read them. Just tap Next step.",
+    img: "/hotphone/step-4.jpg",
   },
   {
-    title: "Tap Get a call",
-    body: "Put in your phone number. A real person at Google calls you back. It is free, and they answer day and night.",
+    n: 5,
+    banner: "Tap the Get a call card.",
+    caption: "It is the one that says less than 1 min wait. The other one is Chat. You want Get a call.",
+    img: "/hotphone/step-5.jpg",
+  },
+  {
+    n: 6,
+    banner: "Type your phone number in the box.",
+    caption: "Your name is already filled in. You only add your number.",
+    img: "/hotphone/step-6.jpg",
+  },
+  {
+    n: 7,
+    banner: "Tap the small box, then tap Next.",
+    caption: "Tapping the box puts a check in it. Then tap Next, and Google calls you.",
+    img: "/hotphone/step-7.jpg",
+  },
+  {
+    n: 8,
+    banner: "When it rings, tap Speaker and set the phone on the table.",
+    caption:
+      "Google calls you within a minute. Tap Speaker, lay the phone flat, and talk toward it. That keeps your cheek off the screen so the call does not hang up by accident. That is the only thing that happened last time.",
+    kind: "sage",
   },
 ];
 
@@ -45,6 +90,34 @@ const relax: string[] = [
   "Go for a swim. The phone will be right where you left it.",
   "Make a cup of tea and let the phone sit there.",
 ];
+
+function NumberBadge({ n }: { n: number }) {
+  return (
+    <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-full bg-ochre text-paper font-display text-2xl font-bold" style={{ height: 52, width: 52 }}>
+      {n}
+    </span>
+  );
+}
+
+function VideoCard({ label, sub }: { label: string; sub?: string }) {
+  return (
+    <figure className="bg-paper-aged rounded-2xl p-4 shadow-sm">
+      <video
+        className="w-full rounded-xl block"
+        controls
+        muted
+        preload="none"
+        poster="/hotphone/poster.jpg"
+      >
+        <source src="/hotphone/walkthrough.mp4" type="video/mp4" />
+      </video>
+      <figcaption className="text-center mt-3">
+        <span className="font-hand text-2xl text-rose">{label}</span>
+        {sub && <span className="block font-body text-base text-ink-soft mt-1">{sub}</span>}
+      </figcaption>
+    </figure>
+  );
+}
 
 export default function HotPhonePage() {
   return (
@@ -59,9 +132,12 @@ export default function HotPhonePage() {
             Your phone is okay.
           </h1>
           <p className="font-body text-lg md:text-xl text-ink leading-relaxed">
-            Really, it is. It just gets a little warm when you use it, and that
-            is completely normal. Here is what is going on, and how to get a
-            real Google expert to call you and tell you the very same thing.
+            It just gets a little warm when you use it, which is normal. It is
+            under warranty, so if anything were ever truly wrong, Google would
+            fix it for free. You do not need a new phone, and you do not need a
+            repair store. The pictures below show you how to get a Google expert
+            to call you and tell you the same thing. You cannot break anything by
+            following them.
           </p>
         </header>
 
@@ -72,17 +148,37 @@ export default function HotPhonePage() {
           </div>
           <ul className="space-y-5">
             {whyWarm.map((line, i) => (
-              <li
-                key={i}
-                className="font-body text-lg text-ink leading-relaxed flex gap-3"
-              >
-                <span className="text-sage font-bold" aria-hidden="true">
-                  &#10003;
-                </span>
+              <li key={i} className="font-body text-lg text-ink leading-relaxed flex gap-3">
+                <span className="text-sage font-bold" aria-hidden="true">&#10003;</span>
                 <span>{line}</span>
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Hotspot */}
+        <section className="letter-paper p-8 md:p-10 mb-8">
+          <div className="scribble-underline inline-block mb-4">
+            <span className="font-hand text-2xl text-navy">about your hotspot</span>
+          </div>
+          <p className="font-body text-lg text-ink leading-relaxed mb-5">
+            You use your hotspot every day, and that is fine. It is safe, and you
+            can keep using it. Here is the trade, so you know what is happening.
+          </p>
+          <ul className="space-y-4 mb-5">
+            {hotspot.map((line, i) => (
+              <li key={i} className="font-body text-lg text-ink leading-relaxed flex gap-3">
+                <span className="text-ochre font-bold" aria-hidden="true">&bull;</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="font-body text-lg text-ink leading-relaxed">
+            None of that can hurt the phone. If it ever feels too warm, take it
+            off the charger and keep it out of the sun. The phone also turns
+            itself off on its own if it ever got too hot, so it cannot harm
+            itself.
+          </p>
         </section>
 
         {/* Don't spend money */}
@@ -92,18 +188,13 @@ export default function HotPhonePage() {
           </h2>
           <ul className="space-y-4">
             {dontSpend.map((line, i) => (
-              <li
-                key={i}
-                className="font-body text-lg leading-relaxed text-paper/95"
-              >
-                {line}
-              </li>
+              <li key={i} className="font-body text-lg leading-relaxed text-paper/95">{line}</li>
             ))}
           </ul>
         </section>
 
         {/* Sign in first */}
-        <section className="bg-rose-soft/40 border-l-4 border-rose rounded-r-2xl p-6 md:p-8 mb-8">
+        <section className="bg-rose-soft/40 border-l-4 border-rose rounded-r-2xl p-6 md:p-8 mb-12">
           <h2 className="font-display text-xl md:text-2xl font-bold text-ink leading-snug mb-2">
             Before you start: sign in.
           </h2>
@@ -114,68 +205,91 @@ export default function HotPhonePage() {
           </p>
         </section>
 
-        {/* Steps */}
-        <section className="mb-8">
+        {/* Walkthrough */}
+        <section className="mb-10">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight mb-3">
             Want a Google expert to call you?
           </h2>
           <p className="font-body text-lg text-ink-soft leading-relaxed mb-8">
-            You can do this yourself, any time, day or night. It is free. Just
-            follow these five steps on your phone. I also sent you a little
-            video in your email that shows the whole thing.
+            There is nothing wrong with your phone. These steps just get a real
+            person at Google to call you, for free, and they answer day and
+            night. Follow the pictures one at a time.
           </p>
 
-          <ol className="space-y-4">
-            {steps.map((step, i) => (
-              <li
-                key={i}
-                className="bg-paper-aged rounded-2xl p-6 flex gap-5 items-start"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ochre text-paper font-display text-xl font-bold">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="font-display text-xl font-bold text-ink leading-snug mb-1">
-                    {step.title}
-                  </h3>
-                  <p className="font-body text-lg text-ink leading-relaxed">
-                    {step.body}
-                  </p>
+          {/* Video preview (top) */}
+          <div className="mb-10">
+            <VideoCard
+              label="watch the whole thing first if you like"
+              sub="This same video is in the email I sent you, in case you would rather watch it there."
+            />
+          </div>
+
+          {/* Steps */}
+          <ol className="mx-auto max-w-md space-y-6">
+            {steps.map((step) => (
+              <li key={step.n} className="bg-paper-aged rounded-2xl overflow-hidden shadow-sm">
+                {/* banner bar */}
+                <div className="bg-navy text-paper flex items-center gap-4 px-5 py-4">
+                  <NumberBadge n={step.n} />
+                  <span className="font-display font-bold text-lg leading-snug">{step.banner}</span>
                 </div>
+
+                {step.caption && (
+                  <p className="font-body text-base text-ink leading-relaxed px-5 pt-4 pb-1">
+                    {step.caption}
+                  </p>
+                )}
+
+                {step.img && (
+                  <div className="p-4">
+                    <img
+                      src={step.img}
+                      alt={`Step ${step.n}: ${step.banner}`}
+                      className="w-full block rounded-xl border border-ink/10"
+                    />
+                  </div>
+                )}
+
+                {step.kind === "button" && (
+                  <div className="p-6 pt-4">
+                    <a
+                      href={GETHELP}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-full rounded-2xl bg-rose text-paper font-display text-xl font-bold px-6 py-5 hover:bg-navy transition-colors"
+                      style={{ minHeight: 64 }}
+                    >
+                      Open Google support
+                    </a>
+                  </div>
+                )}
+
+                {step.kind === "sage" && (
+                  <div className="m-4 mt-4 bg-sage-soft/50 border-2 border-sage rounded-xl p-5 flex gap-4 items-start">
+                    <svg
+                      width="32" height="32" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      className="text-navy shrink-0 mt-1" aria-hidden="true"
+                    >
+                      <path d="M11 5 6 9H2v6h4l5 4z" />
+                      <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                      <path d="M19 5a9 9 0 0 1 0 14" />
+                    </svg>
+                    <p className="font-body text-base text-ink leading-relaxed">
+                      Tap the <strong>speaker</strong> button, set the phone on
+                      the table, and talk toward it. That keeps your cheek off
+                      the screen so the call does not hang up by accident.
+                    </p>
+                  </div>
+                )}
               </li>
             ))}
           </ol>
         </section>
 
-        {/* Speaker tip */}
-        <section className="bg-sage-soft/50 border-2 border-sage rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-3 mb-3">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-navy shrink-0"
-              aria-hidden="true"
-            >
-              <path d="M11 5 6 9H2v6h4l5 4z" />
-              <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-              <path d="M19 5a9 9 0 0 1 0 14" />
-            </svg>
-            <h2 className="font-display text-2xl font-bold text-ink leading-snug">
-              When they call, do this one thing.
-            </h2>
-          </div>
-          <p className="font-body text-lg text-ink leading-relaxed">
-            Tap the <strong>speaker</strong> button, then set the phone down on
-            the table and talk toward it. That keeps your cheek from pressing
-            the screen and hanging up by accident. Last time the call dropped,
-            that is all it was. Nothing was wrong.
-          </p>
+        {/* Video again (bottom safety net) */}
+        <section className="mx-auto max-w-md mb-12">
+          <VideoCard label="watch the whole thing again" />
         </section>
 
         {/* Ways to relax */}
@@ -189,13 +303,8 @@ export default function HotPhonePage() {
           </p>
           <ul className="space-y-4">
             {relax.map((line, i) => (
-              <li
-                key={i}
-                className="font-body text-lg text-ink leading-relaxed flex gap-3"
-              >
-                <span className="text-rose" aria-hidden="true">
-                  &#10084;
-                </span>
+              <li key={i} className="font-body text-lg text-ink leading-relaxed flex gap-3">
+                <span className="text-rose" aria-hidden="true">&#10084;</span>
                 <span>{line}</span>
               </li>
             ))}

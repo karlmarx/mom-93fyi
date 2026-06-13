@@ -39,6 +39,16 @@ export default function WorryCard({
         {worry.shortAnswer}
       </p>
 
+      {worry.actionLink && (
+        <a
+          href={worry.actionLink.url}
+          className="mb-6 flex items-center justify-center gap-2 px-5 py-4 bg-sage/20 border-2 border-sage text-navy font-display font-semibold text-lg hover:bg-sage hover:text-paper transition-all"
+        >
+          {worry.actionLink.text}
+          <ExternalLink size={18} />
+        </a>
+      )}
+
       <button
         onClick={() => setExpanded(!expanded)}
         className="font-hand text-xl text-rose hover:text-navy transition-colors inline-flex items-center gap-2 pull-tab"
@@ -59,16 +69,6 @@ export default function WorryCard({
               <p className="text-base md:text-lg text-ink-soft leading-relaxed font-body">
                 {worry.fullAnswer}
               </p>
-
-              {worry.actionLink && (
-                <a
-                  href={worry.actionLink.url}
-                  className="mt-6 inline-flex items-center gap-2 px-5 py-3 bg-sage/20 border-2 border-sage text-navy font-display font-semibold hover:bg-sage hover:text-paper transition-all"
-                >
-                  {worry.actionLink.text}
-                  <ExternalLink size={18} />
-                </a>
-              )}
 
               {worry.stillWorried && (
                 <div className="mt-6">
