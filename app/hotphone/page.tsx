@@ -40,10 +40,10 @@ const steps: { title: string; body: string }[] = [
 ];
 
 const relax: string[] = [
-  "Set the phone down. It is okay to walk away from it for a while. Nothing bad happens.",
-  "Take ten slow breaths. In through your nose, out through your mouth. Let your shoulders drop.",
-  "Go for a swim. You always feel better after the pool, and the phone will be right where you left it.",
-  "Make a cup of tea and let the phone just sit there. It can wait for you.",
+  "Set the phone down and walk away from it for a while. Nothing happens to it.",
+  "Step outside or sit on the porch for a few minutes.",
+  "Go for a swim. The phone will be right where you left it.",
+  "Make a cup of tea and let the phone sit there.",
 ];
 
 export default function HotPhonePage() {
@@ -181,11 +181,11 @@ export default function HotPhonePage() {
         {/* Ways to relax */}
         <section className="letter-paper p-8 md:p-10 mb-12">
           <div className="scribble-underline inline-block mb-4">
-            <span className="font-hand text-2xl text-navy">while you wait, take a breath</span>
+            <span className="font-hand text-2xl text-navy">while you wait</span>
           </div>
           <p className="font-body text-lg text-ink leading-relaxed mb-6">
-            There is nothing to fix right now, so this is a good moment to relax.
-            Pick whichever one of these sounds nice.
+            There is nothing to fix right now. If you want to put the phone down
+            for a bit, here are a few ideas.
           </p>
           <ul className="space-y-4">
             {relax.map((line, i) => (
@@ -205,9 +205,8 @@ export default function HotPhonePage() {
         {/* Closing */}
         <section className="text-center mb-8">
           <p className="font-body text-lg md:text-xl text-ink leading-relaxed italic mb-6">
-            That is the whole thing. Your phone is fine, and now you know
-            exactly what to do whenever you want to double check. You never have
-            to sit and worry, and you do not have to wait for anyone.
+            That is the whole thing. The phone is fine, and now you know how to
+            get Google to check it any time you want.
           </p>
           <span className="signature">your son&apos;s AI</span>
         </section>
