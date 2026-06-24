@@ -1,0 +1,35 @@
+name: Daily self-review of Sonnet answers
+
+# Once per day, re-reads yesterday's Sonnet 4.6 answers and asks Sonnet to
+# critique them against the plan. If a flaw is found, posts a correction
+# comment on the issue — which fires answer-mom.yml and sends Mom an
+# updated SMS/email. Capped by MAX_REVIEWS_PER_DAY and the daily $ cap.
+#
+# Runs after the cost-summary cron so today's review activity shows up in
+# tomorrow's summary.
+
+on:
+  schedule:
+    - cron: '0 15 * * *'   # 15:00 UTC = 11 AM ET (10 AM during DST)
+  workflow_dispatch:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run self-review
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN_ANSWER: ${{ secrets.GH_TOKEN_ANSWER }}
+          GH_TOKEN_BOT: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.10' }}
+          MAX_REVIEWS_PER_DAY: ${{ vars.MAX_REVIEWS_PER_DAY || '5' }}
+        run: node .github/scripts/self-review.mjs

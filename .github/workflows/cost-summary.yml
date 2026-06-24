@@ -1,0 +1,39 @@
+name: Daily cost summary
+
+# Sums yesterday's auto-answer bot cost comments and emails the total to
+# KARL_EMAIL via Resend. No Anthropic call — this is the scheduled job
+# that replaces the polling Claude-Code routine hitting the 15/day limit.
+#
+# Required GitHub Actions secrets:
+#   - RESEND_API_KEY  same key as Vercel; resend.com → API Keys
+#   - KARL_EMAIL      where the daily summary lands
+#
+# Optional repo variables:
+#   - RESEND_FROM           default ben@bedbug.93.fyi
+#   - COST_CAP_DAILY_USD    default 0.10
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 13:00 UTC = 9 AM ET (8 AM during DST)
+  workflow_dispatch:
+
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Send daily summary
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          KARL_EMAIL: ${{ secrets.KARL_EMAIL }}
+          RESEND_FROM: ${{ vars.RESEND_FROM || 'ben@bedbug.93.fyi' }}
+          COST_CAP_DAILY_USD: ${{ vars.COST_CAP_DAILY_USD || '0.10' }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node .github/scripts/cost-summary.mjs

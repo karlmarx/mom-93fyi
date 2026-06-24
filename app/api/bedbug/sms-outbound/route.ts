@@ -16,6 +16,7 @@ function stripMarkdown(s: string): string {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)") // links
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "") // images
     .replace(/^\s*[-*+]\s+/gm, "• ") // list bullets
+    .replace(/<!--[\s\S]*?-->/g, "") // HTML comments (e.g. bot cost markers)
     .trim();
 }
 
@@ -66,16 +67,38 @@ async function sendSms(
   return { ok: true, status: 200 };
 }
 
+// Outgoing emails set reply_to to `bedbug+<N>@<inbound-domain>` when an
+// issue number is available, so Karl's email replies can be routed back to
+// the right issue by the Postmark inbound webhook (/api/bedbug/email-inbound).
 async function sendEmail(
   body: string,
   toEmail: string,
   subject: string,
+  issueNumber: number | null,
 ): Promise<{ ok: boolean; status: number; detail?: string }> {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM ?? "ben@bedbug.93.fyi";
+  const inboundDomain = process.env.POSTMARK_INBOUND_DOMAIN ?? "inbound.93.fyi";
   if (!key) {
     return { ok: false, status: 500, detail: "RESEND_API_KEY not configured" };
   }
+
+  const replyTo =
+    issueNumber && issueNumber > 0
+      ? `bedbug+${issueNumber}@${inboundDomain}`
+      : undefined;
+  const subjectWithRef =
+    issueNumber && issueNumber > 0
+      ? `${subject} [mom-bedbug #${issueNumber}]`
+      : subject;
+
+  const payload: Record<string, unknown> = {
+    from: `Bedbug Q&A <${from}>`,
+    to: [toEmail],
+    subject: subjectWithRef,
+    text: body,
+  };
+  if (replyTo) payload.reply_to = replyTo;
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -83,12 +106,7 @@ async function sendEmail(
       Authorization: `Bearer ${key}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      from: `Bedbug Q&A <${from}>`,
-      to: [toEmail],
-      subject,
-      text: body,
-    }),
+    body: JSON.stringify(payload),
   });
 
   if (!res.ok) {
@@ -145,6 +163,11 @@ export async function POST(req: NextRequest) {
   const originator =
     payload.originator === "karl" ? "karl" : "mom";
 
+  const issueNumber =
+    typeof payload.issue === "number" && payload.issue > 0
+      ? payload.issue
+      : null;
+
   const text = stripMarkdown(raw);
   const truncated =
     text.length > SMS_MAX ? `${text.slice(0, SMS_MAX - 3)}...` : text;
@@ -159,6 +182,7 @@ export async function POST(req: NextRequest) {
       truncated,
       karlEmail,
       "Bedbug Q&A — your reply",
+      issueNumber,
     );
     if (!result.ok) {
       console.error(
@@ -187,7 +211,12 @@ export async function POST(req: NextRequest) {
       { status: 500 },
     );
   }
-  const result = await sendEmail(truncated, momEmail, "From Ben");
+  const result = await sendEmail(
+    truncated,
+    momEmail,
+    "From Ben",
+    issueNumber,
+  );
   if (!result.ok) {
     console.error(
       `sms-outbound: email send failed ${result.status}: ${result.detail}`,
